@@ -13,7 +13,8 @@ import { GITHUB_URL } from "@/lib/site";
 import { cn } from "@/lib/utils";
 
 const LINKS = [
-  { href: "/components/motion", match: "/components", label: "Components" },
+  { href: "/components/motion", match: "/components/motion", label: "Components" },
+  { href: "/components/agents", match: "/components/agents", label: "Agents" },
   { href: "/playground", match: "/playground", label: "Playground" },
 ];
 

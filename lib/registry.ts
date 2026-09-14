@@ -284,6 +284,44 @@ export const catalog: CategoryEntry[] = [
       },
     ],
   },
+  {
+    slug: "agents",
+    name: "Agents",
+    description:
+      "React components for AI interfaces, covering conversations, streaming answers, progress, and tool activity.",
+    components: [
+      {
+        slug: "message-bubble",
+        name: "Message Bubble",
+        description:
+          "A focused conversational surface with visual tones, independent alignment, and a speech-bubble tail that pops in on arrival.",
+        file: "components/motion/message-bubble.tsx",
+        badge: "new",
+        launchedAt: "2026-09-14",
+        keywords: ["chat bubble", "message bubble", "conversation ui"],
+      },
+      {
+        slug: "agent-loading-states",
+        name: "Agent Loading States",
+        description:
+          "Three loading states for AI interfaces: shimmering status text, live agent progress, and cycling reasoning phrases.",
+        file: "components/motion/agent-loading-states.tsx",
+        badge: "new",
+        launchedAt: "2026-09-14",
+        keywords: ["ai loading state", "shimmer text", "agent progress"],
+      },
+      {
+        slug: "todo-list",
+        name: "Todo List",
+        description:
+          "A collapsible agent task plan with morphing status marks and a completion count.",
+        file: "components/motion/todo-list.tsx",
+        badge: "new",
+        launchedAt: "2026-09-14",
+        keywords: ["agent task list", "todo list", "task plan"],
+      },
+    ],
+  },
 ];
 
 /** The catalog with each category's components in alphabetical order, as every list on the site shows them. */

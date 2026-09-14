@@ -19,10 +19,10 @@ const categoryContent = {
       "Larger easeUI patterns built from the core components that you can adapt to your product.",
   },
   agents: {
-    title: "React Components for AI Interfaces",
-    heading: "AI interface components",
+    title: "Open Source AI Agent Components",
+    heading: "AI Agents",
     description:
-      "easeUI components for AI products, covering conversations, streaming answers, progress, and tool activity.",
+      "Build clear, responsive AI experiences with open-source React components for agent reasoning, progress, tool activity, and conversation states.",
   },
 } as const;
 
