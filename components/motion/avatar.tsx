@@ -20,7 +20,7 @@ export function Avatar({ src, alt = "", fallback, className }: AvatarProps) {
   return (
     <span
       className={cn(
-        "relative inline-flex h-10 w-10 shrink-0 items-center justify-center overflow-hidden rounded-full bg-muted text-sm font-medium text-muted-foreground",
+        "relative inline-flex h-10 w-10 shrink-0 items-center justify-center overflow-hidden rounded-full bg-muted text-sm font-medium text-muted-foreground shadow-[0_0_0_1px_var(--border)]",
         className,
       )}
     >

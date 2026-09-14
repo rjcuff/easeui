@@ -35,7 +35,7 @@ const NEWEST_COMPONENTS = catalog
 
 const SOCIAL_LINKS = [
   { href: GITHUB_URL, label: "GitHub", Icon: GithubIcon },
-  { href: AUTHOR_X_URL, label: "X", Icon: XIcon },
+  { href: AUTHOR_X_URL, label: "Twitter", Icon: XIcon },
 ];
 
 function MenuLink({ href, label, active }: { href: string; label: string; active: boolean }) {
