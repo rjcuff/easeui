@@ -14,9 +14,15 @@ export function ProgressPreview() {
   }, []);
 
   return (
-    <div className="flex w-full max-w-xs flex-col gap-6">
-      <Progress value={value} />
-      <Progress />
+    <div className="flex w-full max-w-xs flex-col gap-5 rounded-2xl bg-background p-4 shadow-[0_0_0_1px_var(--border)]">
+      <div className="flex flex-col gap-1.5 text-sm">
+        <span className="font-medium text-foreground">Uploading video.mp4</span>
+        <Progress value={value} showValue />
+      </div>
+      <div className="flex flex-col gap-1.5 text-sm">
+        <span className="font-medium text-foreground">Processing</span>
+        <Progress />
+      </div>
     </div>
   );
 }
