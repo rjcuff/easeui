@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { JsonLd } from "@/components/app/analytics/json-ld";
-import { ShowcaseCard } from "@/components/app/showcase-card";
+import { ShowcaseListItem } from "@/components/app/showcase-list-item";
 import { findCategory, registry } from "@/lib/registry";
 import { breadcrumbJsonLd, categoryJsonLd } from "@/lib/seo";
 
@@ -132,7 +132,7 @@ export default async function CategoryPage({
         className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3"
       >
         {cat.components.map((comp) => (
-          <ShowcaseCard
+          <ShowcaseListItem
             key={comp.slug}
             category={cat.slug}
             slug={comp.slug}
