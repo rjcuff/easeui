@@ -29,6 +29,10 @@ const COMPONENT_DATES: Readonly<Record<string, ComponentDates>> = {
   "motion/textarea": { publishedAt: "2026-09-14", updatedAt: "2026-09-14" },
   "motion/badge": { publishedAt: "2026-09-14", updatedAt: "2026-09-14" },
   "motion/progress": { publishedAt: "2026-09-14", updatedAt: "2026-09-14" },
+  "motion/card": { publishedAt: "2026-09-14", updatedAt: "2026-09-14" },
+  "motion/avatar": { publishedAt: "2026-09-14", updatedAt: "2026-09-14" },
+  "motion/alert": { publishedAt: "2026-09-14", updatedAt: "2026-09-14" },
+  "motion/dropdown-menu": { publishedAt: "2026-09-14", updatedAt: "2026-09-14" },
 };
 
 export function componentDates(category: string, slug: string): ComponentDates {

@@ -242,6 +242,46 @@ export const catalog: CategoryEntry[] = [
         launchedAt: "2026-09-14",
         keywords: ["react progress bar", "loading bar", "indeterminate progress"],
       },
+      {
+        slug: "card",
+        name: "Card",
+        description:
+          "Bordered surface with header, content, and footer parts for grouping related content.",
+        file: "components/motion/card.tsx",
+        badge: "new",
+        launchedAt: "2026-09-14",
+        keywords: ["react card", "card component", "content card"],
+      },
+      {
+        slug: "avatar",
+        name: "Avatar",
+        description:
+          "Round avatar whose image fades in on load and crossfades to initials if it fails.",
+        file: "components/motion/avatar.tsx",
+        badge: "new",
+        launchedAt: "2026-09-14",
+        keywords: ["react avatar", "profile picture", "initials fallback"],
+      },
+      {
+        slug: "alert",
+        name: "Alert",
+        description:
+          "Banner with a colored accent stripe. Body text stays neutral so contrast never depends on the variant.",
+        file: "components/motion/alert.tsx",
+        badge: "new",
+        launchedAt: "2026-09-14",
+        keywords: ["react alert", "banner", "callout"],
+      },
+      {
+        slug: "dropdown-menu",
+        name: "Dropdown Menu",
+        description:
+          "Action menu that opens from a trigger, flips upward when there is no room below, and supports a destructive item.",
+        file: "components/motion/dropdown-menu.tsx",
+        badge: "new",
+        launchedAt: "2026-09-14",
+        keywords: ["react dropdown menu", "context menu", "action menu"],
+      },
     ],
   },
 ];

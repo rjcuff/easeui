@@ -64,6 +64,18 @@ export const previews: Record<string, ComponentType> = {
   "motion/progress": dynamic(() =>
     import("./motion/progress.preview").then((m) => m.ProgressPreview),
   ),
+  "motion/card": dynamic(() =>
+    import("./motion/card.preview").then((m) => m.CardPreview),
+  ),
+  "motion/avatar": dynamic(() =>
+    import("./motion/avatar.preview").then((m) => m.AvatarPreview),
+  ),
+  "motion/alert": dynamic(() =>
+    import("./motion/alert.preview").then((m) => m.AlertPreview),
+  ),
+  "motion/dropdown-menu": dynamic(() =>
+    import("./motion/dropdown-menu.preview").then((m) => m.DropdownMenuPreview),
+  ),
 };
 
 export function getPreview(category: string, slug: string) {
