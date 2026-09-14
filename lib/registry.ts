@@ -45,8 +45,12 @@ export type CategoryEntry = {
 /**
  * The easeUI catalog. Add a category here, then its components. Every
  * component also needs an entry in lib/component-dates.ts.
+ *
+ * Components stay in the order they shipped, unlike `registry` below. That
+ * makes this the one to read from when breaking ties between components that
+ * launched on the same day, such as picking the most recent few to feature.
  */
-const catalog: CategoryEntry[] = [
+export const catalog: CategoryEntry[] = [
   {
     slug: "motion",
     name: "Components",
@@ -59,7 +63,6 @@ const catalog: CategoryEntry[] = [
         description:
           "Button with a quick press, hairline rings instead of borders, four variants, and a 44px tap area even at small sizes.",
         file: "components/motion/button.tsx",
-        badge: "new",
         launchedAt: "2026-09-13",
         keywords: ["react button", "animated button", "press animation"],
       },
@@ -69,7 +72,6 @@ const catalog: CategoryEntry[] = [
         description:
           "Pill, segment, or underline tabs with an indicator that slides to the selected tab.",
         file: "components/motion/tabs.tsx",
-        badge: "new",
         launchedAt: "2026-09-13",
         keywords: ["react tabs", "animated tabs", "tab indicator"],
       },
@@ -79,7 +81,6 @@ const catalog: CategoryEntry[] = [
         description:
           "Composable select whose menu fades and scales out of the trigger, and opens upward when there is no room below.",
         file: "components/motion/select.tsx",
-        badge: "new",
         launchedAt: "2026-09-13",
         keywords: ["react select", "animated select", "dropdown"],
       },
@@ -89,7 +90,6 @@ const catalog: CategoryEntry[] = [
         description:
           "Tooltip that shows a label with its keyboard shortcut, using Command on Mac and Ctrl elsewhere. Moving along a toolbar crossfades to the next tooltip with no delay.",
         file: "components/motion/tooltip.tsx",
-        badge: "new",
         launchedAt: "2026-09-13",
         keywords: ["react tooltip", "keyboard shortcut tooltip", "toolbar tooltip"],
       },
@@ -99,7 +99,6 @@ const catalog: CategoryEntry[] = [
         description:
           "Light and dark switch that reveals the new theme as a circle growing from the center of the screen or from the button itself.",
         file: "components/motion/theme-toggle.tsx",
-        badge: "new",
         launchedAt: "2026-09-13",
         keywords: ["theme toggle", "dark mode toggle", "view transition"],
       },
@@ -109,7 +108,6 @@ const catalog: CategoryEntry[] = [
         description:
           "Native range input with a filled track and tick dots, so keyboard and screen reader support come built in.",
         file: "components/motion/range-slider.tsx",
-        badge: "new",
         launchedAt: "2026-09-13",
         keywords: ["react slider", "range slider", "stepped slider"],
       },
@@ -119,7 +117,6 @@ const catalog: CategoryEntry[] = [
         description:
           "Button for destructive actions that fills while you hold it and only fires once the fill completes. Letting go early drains it back quickly.",
         file: "components/motion/hold-to-confirm.tsx",
-        badge: "new",
         launchedAt: "2026-09-13",
         keywords: ["hold to confirm", "hold to delete", "press and hold button"],
       },
@@ -129,7 +126,6 @@ const catalog: CategoryEntry[] = [
         description:
           "On and off switch with a quick slide and no bounce. Inside a label, the whole row is the tap target.",
         file: "components/motion/switch.tsx",
-        badge: "new",
         launchedAt: "2026-09-13",
         keywords: ["react switch", "toggle switch", "accessible switch"],
       },
@@ -139,7 +135,6 @@ const catalog: CategoryEntry[] = [
         description:
           "Copies text to the clipboard and trades its icon for a check for a moment, with a label or as a single icon.",
         file: "components/motion/copy-button.tsx",
-        badge: "new",
         launchedAt: "2026-09-13",
         keywords: ["copy button", "copy to clipboard", "react clipboard"],
       },
@@ -149,7 +144,6 @@ const catalog: CategoryEntry[] = [
         description:
           "Toasts that stay long enough to read based on their word count, and pause while hovered or while the tab is in the background.",
         file: "components/motion/toast.tsx",
-        badge: "new",
         launchedAt: "2026-09-13",
         keywords: ["react toast", "notification", "toaster"],
       },
@@ -159,7 +153,6 @@ const catalog: CategoryEntry[] = [
         description:
           "Text filled with a slowly drifting rainbow. It pauses while off screen and holds still when reduced motion is on.",
         file: "components/motion/gradient-text.tsx",
-        badge: "new",
         launchedAt: "2026-09-13",
         keywords: ["gradient text", "rainbow text", "animated gradient"],
       },
@@ -169,7 +162,6 @@ const catalog: CategoryEntry[] = [
         description:
           "Centered dialog on the native dialog element that fades and scales in, leaves faster than it arrives, and keeps focus inside while open.",
         file: "components/motion/modal.tsx",
-        badge: "new",
         launchedAt: "2026-09-13",
         keywords: ["react modal", "dialog", "animated modal"],
       },
@@ -179,7 +171,6 @@ const catalog: CategoryEntry[] = [
         description:
           "Loading placeholder with one shimmer shared across the page. Wrap real content and it takes the same shape, then crossfades away.",
         file: "components/motion/skeleton.tsx",
-        badge: "new",
         launchedAt: "2026-09-13",
         keywords: ["skeleton loader", "loading placeholder", "shimmer"],
       },
@@ -189,9 +180,28 @@ const catalog: CategoryEntry[] = [
         description:
           "Expanding sections that grow to their natural height with no measuring, with arrow key navigation and closed panels skipped by Tab.",
         file: "components/motion/accordion.tsx",
-        badge: "new",
         launchedAt: "2026-09-13",
         keywords: ["react accordion", "collapsible", "faq"],
+      },
+      {
+        slug: "checkbox",
+        name: "Checkbox",
+        description:
+          "Checkbox on a real checkbox input, with a check mark that pops in rather than just appearing.",
+        file: "components/motion/checkbox.tsx",
+        badge: "new",
+        launchedAt: "2026-09-14",
+        keywords: ["react checkbox", "animated checkbox", "accessible checkbox"],
+      },
+      {
+        slug: "drawer",
+        name: "Drawer",
+        description:
+          "Sheet that slides up from the bottom edge on the native dialog element. Drag the handle down, or flick it, to dismiss.",
+        file: "components/motion/drawer.tsx",
+        badge: "new",
+        launchedAt: "2026-09-14",
+        keywords: ["react drawer", "bottom sheet", "swipe to dismiss"],
       },
     ],
   },

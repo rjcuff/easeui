@@ -23,6 +23,8 @@ const COMPONENT_DATES: Readonly<Record<string, ComponentDates>> = {
   "motion/modal": { publishedAt: "2026-09-13", updatedAt: "2026-09-13" },
   "motion/skeleton": { publishedAt: "2026-09-13", updatedAt: "2026-09-13" },
   "motion/accordion": { publishedAt: "2026-09-13", updatedAt: "2026-09-13" },
+  "motion/checkbox": { publishedAt: "2026-09-14", updatedAt: "2026-09-14" },
+  "motion/drawer": { publishedAt: "2026-09-14", updatedAt: "2026-09-14" },
 };
 
 export function componentDates(category: string, slug: string): ComponentDates {

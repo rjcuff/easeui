@@ -46,6 +46,12 @@ export const previews: Record<string, ComponentType> = {
   "motion/accordion": dynamic(() =>
     import("./motion/accordion.preview").then((m) => m.AccordionPreview),
   ),
+  "motion/checkbox": dynamic(() =>
+    import("./motion/checkbox.preview").then((m) => m.CheckboxPreview),
+  ),
+  "motion/drawer": dynamic(() =>
+    import("./motion/drawer.preview").then((m) => m.DrawerPreview),
+  ),
 };
 
 export function getPreview(category: string, slug: string) {
