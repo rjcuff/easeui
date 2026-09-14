@@ -202,6 +202,46 @@ export const catalog: CategoryEntry[] = [
         launchedAt: "2026-09-14",
         keywords: ["react drawer", "bottom sheet", "swipe to dismiss"],
       },
+      {
+        slug: "input",
+        name: "Input",
+        description:
+          "Text input whose focus ring grows from a hairline to two px, with a destructive ring for aria-invalid.",
+        file: "components/motion/input.tsx",
+        badge: "new",
+        launchedAt: "2026-09-14",
+        keywords: ["react input", "text field", "form input"],
+      },
+      {
+        slug: "textarea",
+        name: "Textarea",
+        description:
+          "Textarea that grows with its content instead of scrolling, down to three rows and up to a scrollable cap.",
+        file: "components/motion/textarea.tsx",
+        badge: "new",
+        launchedAt: "2026-09-14",
+        keywords: ["react textarea", "auto grow textarea", "form textarea"],
+      },
+      {
+        slug: "badge",
+        name: "Badge",
+        description:
+          "Small status pill in five colors, with a crossfade for when its variant changes.",
+        file: "components/motion/badge.tsx",
+        badge: "new",
+        launchedAt: "2026-09-14",
+        keywords: ["react badge", "status pill", "tag"],
+      },
+      {
+        slug: "progress",
+        name: "Progress",
+        description:
+          "Progress bar that fills with scale instead of width, plus an indeterminate state for unknown durations.",
+        file: "components/motion/progress.tsx",
+        badge: "new",
+        launchedAt: "2026-09-14",
+        keywords: ["react progress bar", "loading bar", "indeterminate progress"],
+      },
     ],
   },
 ];

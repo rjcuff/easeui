@@ -52,6 +52,18 @@ export const previews: Record<string, ComponentType> = {
   "motion/drawer": dynamic(() =>
     import("./motion/drawer.preview").then((m) => m.DrawerPreview),
   ),
+  "motion/input": dynamic(() =>
+    import("./motion/input.preview").then((m) => m.InputPreview),
+  ),
+  "motion/textarea": dynamic(() =>
+    import("./motion/textarea.preview").then((m) => m.TextareaPreview),
+  ),
+  "motion/badge": dynamic(() =>
+    import("./motion/badge.preview").then((m) => m.BadgePreview),
+  ),
+  "motion/progress": dynamic(() =>
+    import("./motion/progress.preview").then((m) => m.ProgressPreview),
+  ),
 };
 
 export function getPreview(category: string, slug: string) {

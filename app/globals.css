@@ -125,6 +125,7 @@
     --animate-action-archive: action-archive 300ms var(--ease-out) both;
     --animate-action-bell: action-bell 420ms var(--ease-out) both;
     --animate-action-settings: action-settings 380ms var(--ease-out) both;
+    --animate-progress-indeterminate: progress-indeterminate 1.4s ease-in-out infinite;
 
     @keyframes marquee {
         from {
@@ -221,6 +222,17 @@
         }
         100% {
             transform: rotate(90deg);
+        }
+    }
+    @keyframes progress-indeterminate {
+        0% {
+            transform: translateX(-100%) scaleX(0.4);
+        }
+        50% {
+            transform: translateX(20%) scaleX(0.6);
+        }
+        100% {
+            transform: translateX(120%) scaleX(0.4);
         }
     }
 }
