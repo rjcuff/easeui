@@ -52,7 +52,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(function Button
       whileTap={reduce ? NO_PRESS : PRESS}
       transition={PRESS_TRANSITION}
       className={cn(
-        "relative inline-flex shrink-0 touch-manipulation select-none items-center justify-center rounded-full font-medium outline-none",
+        "group relative inline-flex shrink-0 touch-manipulation select-none items-center justify-center rounded-full font-medium outline-none will-change-transform",
         "transition-[background-color,color,box-shadow] duration-150 ease-out",
         "focus-visible:ring-2 focus-visible:ring-foreground/40 focus-visible:ring-offset-2 focus-visible:ring-offset-background",
         "disabled:pointer-events-none disabled:opacity-50",

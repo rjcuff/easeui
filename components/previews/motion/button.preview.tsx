@@ -9,10 +9,10 @@ export function ButtonPreview() {
       <div className="flex flex-wrap items-center justify-center gap-3">
         <Button variant="primary">
           Continue
-          <ArrowRight className="h-4 w-4" />
+          <ArrowRight className="h-4 w-4 transition-transform duration-150 ease-out group-hover:translate-x-0.5 motion-reduce:transition-none" />
         </Button>
         <Button variant="secondary">
-          <Download className="h-4 w-4" />
+          <Download className="h-4 w-4 group-hover:animate-action-download motion-reduce:group-hover:animate-none" />
           Download
         </Button>
         <Button variant="outline">Outline</Button>

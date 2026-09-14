@@ -105,10 +105,10 @@ export default function ThemePage() {
               href="/theme.css"
               target="_blank"
               rel="noreferrer noopener"
-              className="inline-flex items-center gap-1 text-foreground underline underline-offset-4"
+              className="group inline-flex items-center gap-1 text-foreground underline underline-offset-4"
             >
               open the raw file
-              <ArrowUpRight className="h-3 w-3" />
+              <ArrowUpRight className="h-3 w-3 transition-transform duration-150 ease-out group-hover:-translate-y-0.5 group-hover:translate-x-0.5 motion-reduce:transition-none" />
             </Link>
             .
           </p>

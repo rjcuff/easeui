@@ -65,7 +65,7 @@ export function ShowcaseCard({
         </div>
         <ChevronRight
           aria-hidden="true"
-          className="mt-0.5 h-4 w-4 shrink-0 text-muted-foreground opacity-0 transition-opacity duration-150 ease-out group-hover/card:opacity-100 group-focus-within/card:opacity-100"
+          className="mt-0.5 h-4 w-4 shrink-0 text-muted-foreground opacity-0 transition-[opacity,transform] duration-150 ease-out group-hover/card:translate-x-0.5 group-hover/card:opacity-100 group-focus-within/card:translate-x-0.5 group-focus-within/card:opacity-100 motion-reduce:transition-opacity"
         />
       </div>
     </article>
