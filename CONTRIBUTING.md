@@ -19,7 +19,9 @@ A component needs five pieces. `bun run check:registry` fails if any are missing
 4. **Registry entry** in `lib/registry.ts` with `slug`, `name`, `description`, and `file`. Add `badge: "new"` and `launchedAt` for a new launch.
 5. **Dates** in `lib/component-dates.ts` with `publishedAt` and `updatedAt`.
 
-Then run `bun run check` before opening a pull request.
+Then run `bun run check` before opening a pull request. That includes
+`@shadcn/lint`, which flags restyling a component via `className` instead of
+using its variants. See `.oxlintrc.json` for exceptions.
 
 ## Motion guidelines
 

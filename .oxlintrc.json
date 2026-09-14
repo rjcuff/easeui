@@ -1,0 +1,40 @@
+{
+  "jsPlugins": ["@shadcn/lint"],
+  "settings": {
+    "shadcn": {
+      "ui": "@/components/motion",
+      "note": "See CONTRIBUTING.md for easeUI's component conventions."
+    }
+  },
+  "rules": {
+    "shadcn/no-restyle": [
+      "error",
+      {
+        "allow": ["layout"],
+        "contracts": [
+          {
+            "pattern": "^(Tabs|ThemeToggle)$",
+            "allow": ["layout", "spacing", "typography", "color", "shape", "motion", "effects"]
+          },
+          {
+            "pattern": "^Skeleton$",
+            "allow": ["layout", "spacing", "shape"]
+          }
+        ]
+      }
+    ]
+  },
+  "overrides": [
+    {
+      "files": ["components/motion/**"],
+      "rules": { "shadcn/no-restyle": "off" }
+    },
+    {
+      "files": [
+        "components/app/docs/install-command.tsx",
+        "components/app/docs/copy-button.tsx"
+      ],
+      "rules": { "shadcn/no-restyle": "off" }
+    }
+  ]
+}

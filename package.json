@@ -25,10 +25,11 @@
     "build": "next build",
     "start": "next start",
     "lint": "biome lint .",
+    "lint:shadcn": "oxlint",
     "typecheck": "tsc --noEmit",
     "check:registry": "bun scripts/check-registry.ts",
     "test": "bun test",
-    "check": "bun run typecheck && bun run lint && bun run check:registry"
+    "check": "bun run typecheck && bun run lint && bun run lint:shadcn && bun run check:registry"
   },
   "dependencies": {
     "@paper-design/shaders-react": "^0.0.76",
@@ -54,6 +55,7 @@
   "devDependencies": {
     "@biomejs/biome": "^2.4.16",
     "@happy-dom/global-registrator": "^20.10.6",
+    "@shadcn/lint": "^0.1.0",
     "@tailwindcss/postcss": "^4.0.0",
     "@testing-library/dom": "^10.4.1",
     "@testing-library/react": "^16.3.2",
@@ -63,6 +65,7 @@
     "@types/react": "^19.0.7",
     "@types/react-dom": "^19.0.3",
     "jest-axe": "^10.0.0",
+    "oxlint": "^1.83.0",
     "postcss": "^8.5.1",
     "react-docgen-typescript": "^2.4.0",
     "tailwindcss": "^4.0.0",
