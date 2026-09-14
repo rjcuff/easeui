@@ -15,7 +15,7 @@ export default async function ComponentsLayout({
   if (!cat) notFound();
 
   return (
-    <div className="flex flex-1 flex-col items-start gap-6 md:flex-row md:gap-6">
+    <div className="flex flex-1 flex-col gap-6 md:pl-52">
       <ComponentsSidebar
         categorySlug={cat.slug}
         components={cat.components.map((component) => ({
@@ -23,7 +23,7 @@ export default async function ComponentsLayout({
           name: component.name,
         }))}
       />
-      <div className="min-w-0 flex-1">{children}</div>
+      <div className="min-w-0">{children}</div>
     </div>
   );
 }

@@ -67,8 +67,8 @@ function NavLinks({
 }
 
 /**
- * Component list for the components section. A sticky column on desktop; a
- * button that opens the same list in a Drawer on mobile.
+ * Component list for the components section. Pinned to the viewport edge on
+ * desktop; a button that opens the same list in a Drawer on mobile.
  */
 export function ComponentsSidebar({
   categorySlug,
@@ -82,7 +82,7 @@ export function ComponentsSidebar({
 
   return (
     <>
-      <aside className="scrollbar-hide sticky top-20 hidden max-h-[calc(100dvh-6rem)] w-44 shrink-0 overflow-y-auto md:block">
+      <aside className="scrollbar-hide fixed left-4 top-20 hidden max-h-[calc(100dvh-6rem)] w-44 overflow-y-auto md:block lg:left-6">
         <NavLinks categorySlug={categorySlug} components={components} pathname={pathname} />
       </aside>
 
