@@ -76,6 +76,8 @@ export function GradientText({
       ref={ref}
       data-active={active || undefined}
       className={cn(
+        // Keeps descenders like "y" inside the clip; the negative margin cancels the padding.
+        "inline-block pb-[0.15em] -mb-[0.15em]",
         active
           ? "bg-clip-text font-semibold text-transparent [-webkit-background-clip:text]"
           : "text-muted-foreground",

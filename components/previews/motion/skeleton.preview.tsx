@@ -20,16 +20,16 @@ export function SkeletonPreview() {
   return (
     <div className="flex w-full max-w-xs flex-col items-center gap-5">
       <div className="flex w-full items-center gap-3 rounded-2xl bg-background p-4 shadow-[0_0_0_1px_var(--border)]">
-        <Skeleton loading={loading} className="shrink-0 [&>span]:rounded-full">
+        <Skeleton loading={loading} className="shrink-0 rounded-full">
           <div className="flex h-11 w-11 items-center justify-center rounded-full bg-accent text-sm font-semibold text-accent-foreground">
             MR
           </div>
         </Skeleton>
         <div className="flex min-w-0 flex-1 flex-col gap-1.5">
-          <Skeleton loading={loading} className="w-fit [&>span]:rounded-md">
+          <Skeleton loading={loading} className="w-fit rounded-md">
             <p className="text-sm font-medium text-foreground">Maya Rivera</p>
           </Skeleton>
-          <Skeleton loading={loading} className="w-fit [&>span]:rounded-md">
+          <Skeleton loading={loading} className="w-fit rounded-md">
             <p className="text-xs text-muted-foreground">Design lead, joined in March</p>
           </Skeleton>
         </div>

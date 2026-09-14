@@ -11,7 +11,7 @@ export function GradientTextPreview() {
     <div className="flex flex-col items-center gap-8 text-center">
       <p className="text-4xl font-semibold tracking-tight text-foreground">
         Upgrade to{" "}
-        <GradientText active={active} className="-mb-[0.15em] inline-block pb-[0.15em]">
+        <GradientText active={active}>
           Pro
         </GradientText>
       </p>

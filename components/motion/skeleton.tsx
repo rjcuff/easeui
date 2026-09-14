@@ -56,8 +56,9 @@ export function Skeleton({ loading = true, children, className, ...props }: Skel
       ref={shimmer}
       aria-hidden="true"
       className={cn(
-        "block rounded-lg bg-muted transition-opacity duration-200 ease-out motion-reduce:transition-none",
-        children ? "absolute inset-0" : "h-4 w-full",
+        "block bg-muted transition-opacity duration-200 ease-out motion-reduce:transition-none",
+        // Inherits the wrapper's radius so it matches the content it hides.
+        children ? "absolute inset-0 rounded-[inherit]" : "h-4 w-full rounded-lg",
         !loading && "opacity-0",
         !children && className,
       )}

@@ -14,8 +14,7 @@ const LINES: ReactNode[] = [
   "Components that",
   <>
     move{" "}
-    {/* Extra bottom padding keeps the descender of the y inside the clipped gradient. */}
-    <GradientText className="-mb-[0.15em] inline-block pb-[0.15em]">naturally</GradientText>
+    <GradientText>naturally</GradientText>
   </>,
 ];
 

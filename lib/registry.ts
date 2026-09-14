@@ -46,9 +46,8 @@ export type CategoryEntry = {
  * The easeUI catalog. Add a category here, then its components. Every
  * component also needs an entry in lib/component-dates.ts.
  *
- * Components stay in the order they shipped, unlike `registry` below. That
- * makes this the one to read from when breaking ties between components that
- * launched on the same day, such as picking the most recent few to feature.
+ * Unlike `registry` below, this keeps shipping order, for breaking same-day
+ * ties (e.g. picking the newest few to feature).
  */
 export const catalog: CategoryEntry[] = [
   {

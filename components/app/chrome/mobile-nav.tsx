@@ -20,9 +20,7 @@ const PAGES = [
   { href: "/playground", label: "Playground" },
 ];
 
-// Read from `catalog` rather than `registry`, since `registry` is
-// alphabetized and would break same-day ties alphabetically instead of by
-// shipping order.
+// `catalog` (not `registry`) keeps ship order, for breaking same-day ties.
 const NEWEST_COMPONENTS = catalog
   .flatMap((category) =>
     category.components.map((component, index) => ({
@@ -32,8 +30,6 @@ const NEWEST_COMPONENTS = catalog
       index,
     })),
   )
-  // Newest published date first; among same-day ties, the one that shipped
-  // later (higher index) counts as newer.
   .sort((a, b) => b.publishedAt.localeCompare(a.publishedAt) || b.index - a.index)
   .slice(0, 5);
 

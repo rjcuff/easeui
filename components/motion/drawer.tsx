@@ -51,10 +51,7 @@ function useReducedMotion() {
 
 /**
  * A sheet that slides up from the bottom edge, built on the native dialog
- * element so focus stays inside, the page behind is inert, and focus returns
- * to the trigger on close. Drag the handle down to dismiss: past 40% of the
- * panel's height, or with a quick flick, it follows through and closes,
- * otherwise it snaps back.
+ * element like Modal. Drag the handle down, or flick it, to dismiss.
  */
 export function Drawer({
   open,
@@ -176,7 +173,7 @@ export function Drawer({
           className,
         )}
       >
-        {/* Drag handle. The whole header is draggable too, except for the close button. */}
+        {/* Handle plus header are draggable; the close button is excluded. */}
         <div
           onPointerDown={onPointerDown}
           onPointerMove={onPointerMove}
