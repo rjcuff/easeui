@@ -73,7 +73,10 @@ export function RangeSlider({
   return (
     <div className={cn("relative flex h-10 w-full items-center", disabled && "opacity-50", className)}>
       {/* Track and fill are decoration. The native input underneath does the work. */}
-      <div aria-hidden="true" className="pointer-events-none absolute inset-x-0 h-1.5 rounded-full bg-muted">
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-x-0 h-1.5 rounded-full bg-muted shadow-[0_0_0_1px_var(--border)]"
+      >
         <div className="h-full rounded-full bg-foreground" style={{ width: along(fraction) }} />
       </div>
       {ticks.map((tick) => (

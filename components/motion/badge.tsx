@@ -9,7 +9,7 @@ export interface BadgeProps extends HTMLAttributes<HTMLSpanElement> {
 }
 
 const VARIANT_CLASS: Record<BadgeVariant, string> = {
-  neutral: "bg-muted text-muted-foreground",
+  neutral: "bg-muted text-muted-foreground shadow-[0_0_0_1px_var(--border)]",
   accent: "bg-accent/15 text-accent",
   success: "bg-success/15 text-success",
   warning: "bg-warning/15 text-warning",

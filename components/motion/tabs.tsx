@@ -36,8 +36,8 @@ const EASE = [0.23, 1, 0.32, 1] as const;
 const INDICATOR_TRANSITION = { duration: 0.2, ease: EASE } as const;
 
 const LIST_CLASS: Record<Variant, string> = {
-  pill: "inline-flex items-center gap-1 rounded-full bg-muted p-1",
-  segment: "inline-flex items-center gap-0.5 rounded-lg bg-muted p-0.5",
+  pill: "inline-flex items-center gap-1 rounded-full bg-muted p-1 shadow-[0_0_0_1px_var(--border)]",
+  segment: "inline-flex items-center gap-0.5 rounded-lg bg-muted p-0.5 shadow-[0_0_0_1px_var(--border)]",
   underline: "flex items-center gap-5 border-b border-border",
 };
 
