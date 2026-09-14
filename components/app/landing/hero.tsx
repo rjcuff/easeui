@@ -6,6 +6,7 @@ import type { ReactNode } from "react";
 import { PressLink } from "@/components/app/press-link";
 import { GradientText } from "@/components/motion/gradient-text";
 import { EASE_OUT } from "@/lib/ease";
+import { COMPONENT_COUNT } from "@/lib/registry";
 
 /** Gap between each piece of the hero arriving, in seconds. */
 const STEP = 0.06;
@@ -33,17 +34,25 @@ export function Hero() {
 
   return (
     <div className="mx-auto flex max-w-3xl flex-col items-center text-center">
-      <h1 className="font-display text-5xl font-semibold leading-[0.95] tracking-tight text-foreground sm:text-6xl md:text-7xl">
+      <motion.span
+        {...enter(0)}
+        className="inline-flex items-center gap-1.5 rounded-full bg-muted px-3 py-1 text-xs font-medium text-muted-foreground shadow-[0_0_0_1px_var(--border)]"
+      >
+        <span aria-hidden="true" className="h-1.5 w-1.5 rounded-full bg-accent" />
+        {COMPONENT_COUNT} components and counting
+      </motion.span>
+
+      <h1 className="mt-5 font-display text-5xl font-semibold leading-[0.95] tracking-tight text-foreground sm:text-6xl md:text-7xl">
         {LINES.map((line, index) => (
           // biome-ignore lint/suspicious/noArrayIndexKey: the lines are static and never reorder.
-          <motion.span key={index} className="block" {...enter(index)}>
+          <motion.span key={index} className="block" {...enter(index + 1)}>
             {line}
           </motion.span>
         ))}
       </h1>
 
       <motion.p
-        {...enter(LINES.length)}
+        {...enter(LINES.length + 1)}
         className="mx-auto mt-6 max-w-lg text-pretty text-base leading-7 text-muted-foreground"
       >
         easeUI is a set of React components with smooth easing and spring
@@ -52,7 +61,7 @@ export function Hero() {
       </motion.p>
 
       <motion.div
-        {...enter(LINES.length + 1)}
+        {...enter(LINES.length + 2)}
         className="mt-8 flex flex-wrap items-center justify-center gap-3"
       >
         <PressLink

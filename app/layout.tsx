@@ -94,7 +94,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
         <link rel="alternate" type="application/json" title="Component registry" href="/r" />
         <link rel="alternate" type="application/json" title="shadcn registry" href="/registry.json" />
       </head>
-      <body className="min-h-screen antialiased">
+      <body className="min-h-screen antialiased" suppressHydrationWarning>
         <JsonLd data={siteJsonLd()} />
         <ThemeProvider>
           <KeyboardShortcuts />

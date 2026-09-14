@@ -14,6 +14,12 @@ const TOP_LINKS = [
   { href: "/playground", label: "Playground" },
 ];
 
+/** Shows Agents right under the Playground link, ahead of the components list. */
+const CATEGORY_ORDER = ["agents", "motion"];
+const sidebarCategories = [...registry].sort(
+  (a, b) => CATEGORY_ORDER.indexOf(a.slug) - CATEGORY_ORDER.indexOf(b.slug),
+);
+
 function NavLink({
   href,
   label,
@@ -58,7 +64,7 @@ function NavLinks({ pathname, onNavigate }: { pathname: string; onNavigate?: () 
         />
       ))}
       <div className="my-2 h-px bg-border" />
-      {registry.map((category) => (
+      {sidebarCategories.map((category) => (
         <div key={category.slug} className="mt-3 flex flex-col gap-0.5 first:mt-0">
           <Link
             href={`/components/${category.slug}`}

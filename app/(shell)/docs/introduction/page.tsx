@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import type { ReactNode } from "react";
+import { InstallCommand } from "@/components/app/docs/install-command";
 
 export const metadata: Metadata = {
   title: "Introduction",
@@ -58,6 +60,31 @@ export default function IntroductionPage() {
           own the code and can change anything.
         </p>
       </header>
+
+      <Section title="How components work">
+        <p className="text-sm leading-6 text-muted-foreground">
+          Each component lives on its own page with a live preview, its
+          props, and its full source. There is no package to install and no
+          version to track: the CLI copies the file into your project, so
+          from that point on it is your code to read, change, or delete.
+        </p>
+        <p className="text-sm leading-6 text-muted-foreground">
+          Components read their colors and easing curves from a small set of
+          tokens, so they need a one-time{" "}
+          <Link href="/docs/theme" className="text-foreground underline underline-offset-4">
+            theme setup
+          </Link>{" "}
+          in your project before the first one is added.
+        </p>
+      </Section>
+
+      <Section title="Installation">
+        <p className="text-sm leading-6 text-muted-foreground">
+          Once the theme is set up, add any component with its shadcn
+          command, swapping in that component's name:
+        </p>
+        <InstallCommand className="max-w-lg" />
+      </Section>
 
       <Section title="The stack">
         <ul className="flex flex-col gap-3">

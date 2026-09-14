@@ -76,6 +76,15 @@ export const previews: Record<string, ComponentType> = {
   "motion/dropdown-menu": dynamic(() =>
     import("./motion/dropdown-menu.preview").then((m) => m.DropdownMenuPreview),
   ),
+  "motion/command-palette": dynamic(() =>
+    import("./motion/command-palette.preview").then((m) => m.CommandPalettePreview),
+  ),
+  "motion/number-ticker": dynamic(() =>
+    import("./motion/number-ticker.preview").then((m) => m.NumberTickerPreview),
+  ),
+  "motion/otp-input": dynamic(() =>
+    import("./motion/otp-input.preview").then((m) => m.OtpInputPreview),
+  ),
   "agents/message-bubble": dynamic(() =>
     import("./agents/message-bubble.preview").then((m) => m.MessageBubblePreview),
   ),

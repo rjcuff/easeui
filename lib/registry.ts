@@ -282,6 +282,36 @@ export const catalog: CategoryEntry[] = [
         launchedAt: "2026-09-14",
         keywords: ["react dropdown menu", "context menu", "action menu"],
       },
+      {
+        slug: "command-palette",
+        name: "Command Palette",
+        description:
+          "Command-K style search overlay that filters as you type, with arrow keys to move the highlight and Enter to select.",
+        file: "components/motion/command-palette.tsx",
+        badge: "new",
+        launchedAt: "2026-09-14",
+        keywords: ["command palette", "cmdk", "search overlay"],
+      },
+      {
+        slug: "number-ticker",
+        name: "Number Ticker",
+        description:
+          "Number that rolls to a new value like an odometer, one changed digit at a time.",
+        file: "components/motion/number-ticker.tsx",
+        badge: "new",
+        launchedAt: "2026-09-14",
+        keywords: ["animated counter", "odometer", "number roll"],
+      },
+      {
+        slug: "otp-input",
+        name: "OTP Input",
+        description:
+          "One box per digit for a verification code, with paste and SMS autofill support and a shake for a wrong code.",
+        file: "components/motion/otp-input.tsx",
+        badge: "new",
+        launchedAt: "2026-09-14",
+        keywords: ["otp input", "pin input", "verification code"],
+      },
     ],
   },
   {
