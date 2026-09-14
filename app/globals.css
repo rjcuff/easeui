@@ -234,6 +234,9 @@
     html {
         color-scheme: light dark;
         overflow-x: clip;
+        /* Reserves the scrollbar's width permanently, so Modal and Drawer
+           locking scroll (overflow: hidden) never shifts the layout. */
+        scrollbar-gutter: stable;
     }
     body {
         background: var(--background);
