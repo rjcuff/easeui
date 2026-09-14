@@ -1,0 +1,113 @@
+"use client";
+
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { registry } from "@/lib/registry";
+import { NewBadge } from "@/components/app/docs/new-badge";
+import { SharedLayoutBg } from "@/components/motion/shared-layout-bg";
+import { isComponentNew } from "@/lib/component-status";
+import { cn } from "@/lib/utils";
+
+const INTRO = [
+  { slug: "home", name: "Home", href: "/components/motion" },
+];
+
+const SIDEBAR_CATEGORY_ORDER: Record<string, number> = {
+  agents: 0,
+  motion: 1,
+  blocks: 2,
+};
+
+const SIDEBAR_CATEGORIES = [...registry].sort(
+  (a, b) =>
+    (SIDEBAR_CATEGORY_ORDER[a.slug] ?? Number.MAX_SAFE_INTEGER) -
+    (SIDEBAR_CATEGORY_ORDER[b.slug] ?? Number.MAX_SAFE_INTEGER),
+);
+
+function moveNewItemsToTop<
+  T extends { badge?: "new"; launchedAt?: string },
+>(items: readonly T[], now: number) {
+  return [
+    ...items.filter((item) => isComponentNew(item, now)),
+    ...items.filter((item) => !isComponentNew(item, now)),
+  ];
+}
+
+function linkClass(active: boolean) {
+  return cn(
+    "relative block rounded-lg px-3 py-1.5 text-sm outline-none transition-colors focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-ring",
+    active
+      ? "text-foreground font-medium bg-foreground/[0.06]"
+      : "text-muted-foreground hover:text-foreground",
+  );
+}
+
+/** Nav list shared by the desktop sidebar and the mobile bottom sheet. */
+export function SidebarNav({ onNavigate }: { onNavigate?: () => void }) {
+  const pathname = usePathname();
+  const now = Date.now();
+
+  return (
+    <nav className="flex flex-col gap-8">
+      <div>
+        <p className="mb-2 block px-3 text-[11px] font-semibold uppercase tracking-wider text-muted-foreground">
+          Intro
+        </p>
+        <SharedLayoutBg inset={0} pillClassName="rounded-lg bg-foreground/[0.05]">
+          {INTRO.map((item) => (
+            <Link
+              key={item.slug}
+              href={item.href}
+              onClick={onNavigate}
+              className={linkClass(pathname === item.href)}
+            >
+              {item.name}
+            </Link>
+          ))}
+        </SharedLayoutBg>
+      </div>
+      {SIDEBAR_CATEGORIES.map((cat) => (
+        <div key={cat.slug}>
+          <Link
+            href={`/components/${cat.slug}`}
+            onClick={onNavigate}
+            className="mb-2 flex items-center gap-2 rounded-md px-3 text-[11px] font-semibold uppercase tracking-wider text-muted-foreground outline-none transition-colors hover:text-foreground focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-ring"
+          >
+            {cat.name}
+            <span className="inline-flex h-4 min-w-4 items-center justify-center rounded-full bg-foreground/[0.06] px-1 text-[10px] font-medium tabular-nums text-muted-foreground">
+              {cat.components.length}
+            </span>
+          </Link>
+          <SharedLayoutBg inset={0} pillClassName="rounded-lg bg-foreground/[0.05]">
+            {moveNewItemsToTop(cat.components, now).map((comp) => {
+              const href = `/components/${cat.slug}/${comp.slug}`;
+              return (
+                <Link
+                  key={comp.slug}
+                  href={href}
+                  onClick={onNavigate}
+                  className={linkClass(pathname === href)}
+                >
+                  <span className="flex items-center justify-between gap-2">
+                    <span className="truncate">{comp.name}</span>
+                    {comp.badge === "new" ? (
+                      <NewBadge launchedAt={comp.launchedAt} />
+                    ) : null}
+                  </span>
+                </Link>
+              );
+            })}
+          </SharedLayoutBg>
+        </div>
+      ))}
+    </nav>
+  );
+}
+
+export function SiteSidebar() {
+  return (
+    <aside className="fixed top-14 hidden h-[calc(100vh-3.5rem)] w-60 overflow-x-visible overflow-y-auto scrollbar-hide py-6 pr-4 md:block">
+      <SidebarNav />
+    </aside>
+  );
+}

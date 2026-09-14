@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none">
+  <title>easeUI</title>
+  <style>
+    polygon { stroke: #000; }
+    @media (prefers-color-scheme: dark) { polygon { stroke: #fff; } }
+  </style>
+  <polygon points="8.27,3 15.73,3 21,8.27 21,15.73 15.73,21 8.27,21 3,15.73 3,8.27" stroke-width="3.5" stroke-linejoin="round" />
+</svg>

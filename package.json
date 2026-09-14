@@ -1,0 +1,71 @@
+{
+  "name": "easeui",
+  "version": "0.1.0",
+  "private": true,
+  "author": {
+    "name": "Ryan Cuff",
+    "url": "https://x.com/ryancuff_"
+  },
+  "license": "MIT",
+  "description": "Open-source React components with smooth easing and spring animations",
+  "keywords": [
+    "react",
+    "reactjs",
+    "ui",
+    "components",
+    "tailwindcss",
+    "typescript"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/rjcuff/easeui"
+  },
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "biome lint .",
+    "typecheck": "tsc --noEmit",
+    "check:registry": "bun scripts/check-registry.ts",
+    "test": "bun test",
+    "check": "bun run typecheck && bun run lint && bun run check:registry"
+  },
+  "dependencies": {
+    "@paper-design/shaders-react": "^0.0.76",
+    "@shikijs/transformers": "^4.2.0",
+    "@tanstack/react-virtual": "^3.14.4",
+    "@vercel/analytics": "^1.4.1",
+    "@vercel/speed-insights": "^1.1.0",
+    "border-beam": "^1.3.0",
+    "clsx": "^2.1.1",
+    "geist": "^1.7.2",
+    "lenis": "^1.3.23",
+    "lucide-react": "^1.16.0",
+    "motion": "^11.15.0",
+    "next": "16.3.0",
+    "next-themes": "^0.4.6",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "react-tweet": "^3.3.1",
+    "react-use-measure": "^2.1.7",
+    "shiki": "^4.2.0",
+    "tailwind-merge": "^3.6.0"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "^2.4.16",
+    "@happy-dom/global-registrator": "^20.10.6",
+    "@tailwindcss/postcss": "^4.0.0",
+    "@testing-library/dom": "^10.4.1",
+    "@testing-library/react": "^16.3.2",
+    "@types/bun": "^1.3.14",
+    "@types/jest-axe": "^3.5.9",
+    "@types/node": "^22.10.5",
+    "@types/react": "^19.0.7",
+    "@types/react-dom": "^19.0.3",
+    "jest-axe": "^10.0.0",
+    "postcss": "^8.5.1",
+    "react-docgen-typescript": "^2.4.0",
+    "tailwindcss": "^4.0.0",
+    "typescript": "^5.7.3"
+  }
+}

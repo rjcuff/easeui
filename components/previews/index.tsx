@@ -1,0 +1,29 @@
+import dynamic from "next/dynamic";
+import type { ComponentType } from "react";
+
+// Every preview is a client component that pulls in its library code.
+// Lazy chunks keep a page's JS limited to the previews it actually renders.
+export const previews: Record<string, ComponentType> = {
+  "motion/button": dynamic(() =>
+    import("./motion/button.preview").then((m) => m.ButtonPreview),
+  ),
+  "motion/tabs": dynamic(() =>
+    import("./motion/tabs.preview").then((m) => m.TabsPreview),
+  ),
+  "motion/select": dynamic(() =>
+    import("./motion/select.preview").then((m) => m.SelectPreview),
+  ),
+  "motion/tooltip": dynamic(() =>
+    import("./motion/tooltip.preview").then((m) => m.TooltipPreview),
+  ),
+  "motion/theme-toggle": dynamic(() =>
+    import("./motion/theme-toggle.preview").then((m) => m.ThemeTogglePreview),
+  ),
+  "motion/range-slider": dynamic(() =>
+    import("./motion/range-slider.preview").then((m) => m.RangeSliderPreview),
+  ),
+};
+
+export function getPreview(category: string, slug: string) {
+  return previews[`${category}/${slug}`];
+}
