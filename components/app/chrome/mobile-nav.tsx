@@ -6,23 +6,41 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { createPortal } from "react-dom";
+import { GithubIcon, XIcon } from "@/components/app/brand-icons";
 import { Button } from "@/components/motion/button";
-import { registry } from "@/lib/registry";
+import { componentDates } from "@/lib/component-dates";
+import { catalog } from "@/lib/registry";
+import { AUTHOR_X_URL, GITHUB_URL } from "@/lib/site";
 import { cn } from "@/lib/utils";
 
 const EASE = [0.23, 1, 0.32, 1] as const;
 
 const PAGES = [
-  { href: "/components/motion", label: "Components" },
+  { href: "/components/motion", label: "All Components" },
   { href: "/playground", label: "Playground" },
 ];
 
-const COMPONENTS = registry.flatMap((category) =>
-  category.components.map((component) => ({
-    href: `/components/${category.slug}/${component.slug}`,
-    label: component.name,
-  })),
-);
+// Read from `catalog` rather than `registry`, since `registry` is
+// alphabetized and would break same-day ties alphabetically instead of by
+// shipping order.
+const NEWEST_COMPONENTS = catalog
+  .flatMap((category) =>
+    category.components.map((component, index) => ({
+      href: `/components/${category.slug}/${component.slug}`,
+      label: component.name,
+      publishedAt: componentDates(category.slug, component.slug).publishedAt,
+      index,
+    })),
+  )
+  // Newest published date first; among same-day ties, the one that shipped
+  // later (higher index) counts as newer.
+  .sort((a, b) => b.publishedAt.localeCompare(a.publishedAt) || b.index - a.index)
+  .slice(0, 5);
+
+const SOCIAL_LINKS = [
+  { href: GITHUB_URL, label: "GitHub", Icon: GithubIcon },
+  { href: AUTHOR_X_URL, label: "X", Icon: XIcon },
+];
 
 function MenuLink({ href, label, active }: { href: string; label: string; active: boolean }) {
   return (
@@ -121,13 +139,11 @@ export function MobileNav() {
                       />
                     ))}
                   </ul>
-                  {COMPONENTS.length ? (
+                  {NEWEST_COMPONENTS.length ? (
                     <div className="flex flex-col gap-1 border-t border-border pt-3">
-                      <p className="px-3 text-xs font-medium text-muted-foreground">
-                        All components
-                      </p>
+                      <p className="px-3 text-xs font-medium text-muted-foreground">Newest</p>
                       <ul className="flex flex-col">
-                        {COMPONENTS.map((component) => (
+                        {NEWEST_COMPONENTS.map((component) => (
                           <MenuLink
                             key={component.href}
                             href={component.href}
@@ -138,6 +154,21 @@ export function MobileNav() {
                       </ul>
                     </div>
                   ) : null}
+                  <div className="flex items-center gap-1 border-t border-border pt-2">
+                    {SOCIAL_LINKS.map(({ href, label, Icon }) => (
+                      <a
+                        key={href}
+                        href={href}
+                        target="_blank"
+                        rel="noreferrer noopener"
+                        aria-label={label}
+                        className="inline-flex h-11 flex-1 items-center justify-center gap-2 rounded-lg text-sm text-muted-foreground transition-colors duration-150 hover:bg-muted hover:text-foreground"
+                      >
+                        <Icon className="h-4 w-4" />
+                        {label}
+                      </a>
+                    ))}
+                  </div>
                 </motion.nav>
               ) : null}
             </AnimatePresence>,
