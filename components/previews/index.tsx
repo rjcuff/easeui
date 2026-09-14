@@ -77,13 +77,13 @@ export const previews: Record<string, ComponentType> = {
     import("./motion/dropdown-menu.preview").then((m) => m.DropdownMenuPreview),
   ),
   "agents/message-bubble": dynamic(() =>
-    import("./motion/message-bubble.preview").then((m) => m.MessageBubblePreview),
+    import("./agents/message-bubble.preview").then((m) => m.MessageBubblePreview),
   ),
   "agents/agent-loading-states": dynamic(() =>
-    import("./motion/agent-loading-states.preview").then((m) => m.AgentLoadingStatesPreview),
+    import("./agents/agent-loading-states.preview").then((m) => m.AgentLoadingStatesPreview),
   ),
   "agents/todo-list": dynamic(() =>
-    import("./motion/todo-list.preview").then((m) => m.TodoListPreview),
+    import("./agents/todo-list.preview").then((m) => m.TodoListPreview),
   ),
 };
 

@@ -14,8 +14,8 @@ Thanks for helping out. This guide covers local setup, adding a component, and w
 A component needs five pieces. `bun run check:registry` fails if any are missing.
 
 1. **Source file** in `components/motion/<slug>.tsx`. Export the component and its props interface, and document each prop with a short JSDoc comment so it shows up in the API table.
-2. **Preview** in `components/previews/motion/<slug>.preview.tsx`, exporting a component such as `ButtonPreview`.
-3. **Preview registration** in `components/previews/index.tsx` under the key `motion/<slug>`.
+2. **Preview** in `components/previews/<category>/<slug>.preview.tsx`, exporting a component such as `ButtonPreview`. The folder is the registry category the component belongs to (`motion`, `agents`), not always `motion`.
+3. **Preview registration** in `components/previews/index.tsx` under the key `<category>/<slug>`.
 4. **Registry entry** in `lib/registry.ts` with `slug`, `name`, `description`, and `file`. Add `badge: "new"` and `launchedAt` for a new launch.
 5. **Dates** in `lib/component-dates.ts` with `publishedAt` and `updatedAt`.
 

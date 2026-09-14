@@ -28,6 +28,16 @@ for (const component of allComponents()) {
     errors.push(`${label}: ${(error as Error).message}`);
   }
 
+  // Matches the path the component page reads for its Usage tab.
+  const previewFile =
+    component.usageFile ??
+    `components/previews/${component.category.slug}/${component.slug}.preview.tsx`;
+  try {
+    await readSourceFile(previewFile);
+  } catch (error) {
+    errors.push(`${label}: ${(error as Error).message}`);
+  }
+
   for (const example of component.examples ?? []) {
     for (const file of [example.file, example.previewFile]) {
       try {
