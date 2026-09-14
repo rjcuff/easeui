@@ -17,6 +17,7 @@ export interface ButtonProps extends Omit<HTMLMotionProps<"button">, "children">
 
 // A quick press confirms the tap before the action finishes.
 const PRESS = { scale: 0.97 };
+const NO_PRESS = { scale: 1 };
 const PRESS_TRANSITION = { duration: 0.15, ease: [0.23, 1, 0.32, 1] } as const;
 
 // Hairline rings are drawn with box-shadow so they blend with any background.
@@ -47,7 +48,8 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(function Button
     <motion.button
       ref={ref}
       type={type}
-      whileTap={reduce ? undefined : PRESS}
+      // Always pass a gesture so the server and client render the same attributes.
+      whileTap={reduce ? NO_PRESS : PRESS}
       transition={PRESS_TRANSITION}
       className={cn(
         "relative inline-flex shrink-0 touch-manipulation select-none items-center justify-center rounded-full font-medium outline-none",

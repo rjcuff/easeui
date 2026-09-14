@@ -1,32 +1,20 @@
-const DAY_MS = 24 * 60 * 60 * 1000;
+/** How long a launch keeps its "new" marker, in ms. */
+export const NEW_BADGE_DURATION_MS = 7 * 24 * 60 * 60 * 1000;
 
-export const NEW_BADGE_DURATION_MS = 7 * DAY_MS;
+type Launch = { badge?: "new"; launchedAt?: string };
 
-type ComponentLaunch = {
-  badge?: "new";
-  launchedAt?: string;
-};
-
-function launchTimestamp(launchedAt?: string) {
-  if (!launchedAt) return null;
-
-  const timestamp = Date.parse(`${launchedAt}T00:00:00Z`);
-  return Number.isNaN(timestamp) ? null : timestamp;
+/**
+ * Milliseconds left in a launch's "new" window. Scheduled launches count the
+ * time until launch as well. Returns 0 when there is no valid launch date.
+ */
+export function getNewBadgeRemainingMs(launchedAt?: string, now = Date.now()): number {
+  if (!launchedAt) return 0;
+  const launch = Date.parse(`${launchedAt}T00:00:00Z`);
+  if (Number.isNaN(launch)) return 0;
+  return Math.max(0, launch + NEW_BADGE_DURATION_MS - now);
 }
 
-export function getNewBadgeRemainingMs(
-  launchedAt?: string,
-  now = Date.now(),
-) {
-  const launched = launchTimestamp(launchedAt);
-  if (launched === null) return 0;
-
-  return Math.max(0, launched + NEW_BADGE_DURATION_MS - now);
-}
-
-export function isComponentNew(component: ComponentLaunch, now = Date.now()) {
-  return (
-    component.badge === "new" &&
-    getNewBadgeRemainingMs(component.launchedAt, now) > 0
-  );
+/** A component is new when it is marked new and still inside its launch window. */
+export function isComponentNew(component: Launch, now = Date.now()): boolean {
+  return component.badge === "new" && getNewBadgeRemainingMs(component.launchedAt, now) > 0;
 }

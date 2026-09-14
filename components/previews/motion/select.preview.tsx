@@ -10,18 +10,20 @@ import {
 } from "@/components/motion/select";
 
 export function SelectPreview() {
-  const [value, setValue] = useState("next");
+  const [order, setOrder] = useState("updated");
+
   return (
-    <div className="w-56">
-      <Select value={value} onValueChange={setValue}>
+    <div className="flex w-60 flex-col gap-2">
+      <span className="text-xs font-medium text-muted-foreground">Sort projects</span>
+      <Select value={order} onValueChange={setOrder}>
         <SelectTrigger>
-          <SelectValue placeholder="Pick a framework" />
+          <SelectValue placeholder="Choose an order" />
         </SelectTrigger>
         <SelectContent>
-          <SelectItem value="next">Next.js</SelectItem>
-          <SelectItem value="remix">Remix</SelectItem>
-          <SelectItem value="astro">Astro</SelectItem>
-          <SelectItem value="vite">Vite</SelectItem>
+          <SelectItem value="updated">Recently updated</SelectItem>
+          <SelectItem value="newest">Newest first</SelectItem>
+          <SelectItem value="oldest">Oldest first</SelectItem>
+          <SelectItem value="name">Name</SelectItem>
         </SelectContent>
       </Select>
     </div>

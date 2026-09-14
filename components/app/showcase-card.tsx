@@ -3,10 +3,10 @@
 import { ChevronRight } from "lucide-react";
 import Link from "next/link";
 import { useInView } from "motion/react";
-import { useEffect, useRef, useState } from "react";
+import { useRef } from "react";
 import { PreviewFit } from "@/components/app/landing/preview-fit";
+import { NewDot } from "@/components/app/new-indicator";
 import { getPreview } from "@/components/previews";
-import { getNewBadgeRemainingMs } from "@/lib/component-status";
 
 export interface ShowcaseCardProps {
   category: string;
@@ -17,30 +17,9 @@ export interface ShowcaseCardProps {
   launchedAt?: string;
 }
 
-/** Rose dot marking a recent launch. Checked on the client so it never goes stale. */
-function NewDot({ launchedAt }: { launchedAt?: string }) {
-  const [visible, setVisible] = useState(false);
-
-  useEffect(() => {
-    const remaining = getNewBadgeRemainingMs(launchedAt);
-    setVisible(remaining > 0);
-    if (remaining <= 0) return;
-    const timeout = window.setTimeout(() => setVisible(false), remaining);
-    return () => window.clearTimeout(timeout);
-  }, [launchedAt]);
-
-  if (!visible) return null;
-  return (
-    <span className="inline-flex items-center">
-      <span aria-hidden="true" className="h-1.5 w-1.5 rounded-full bg-accent" />
-      <span className="sr-only">New</span>
-    </span>
-  );
-}
-
 /**
  * easeUI component card. A live preview sits above the name and a short
- * description. Hover brightens the border and fades in a chevron.
+ * description. Hover fades in a chevron.
  */
 export function ShowcaseCard({
   category,

@@ -15,6 +15,14 @@ const COMPONENT_DATES: Readonly<Record<string, ComponentDates>> = {
   "motion/tooltip": { publishedAt: "2026-09-13", updatedAt: "2026-09-13" },
   "motion/theme-toggle": { publishedAt: "2026-09-13", updatedAt: "2026-09-13" },
   "motion/range-slider": { publishedAt: "2026-09-13", updatedAt: "2026-09-13" },
+  "motion/hold-to-confirm": { publishedAt: "2026-09-13", updatedAt: "2026-09-13" },
+  "motion/switch": { publishedAt: "2026-09-13", updatedAt: "2026-09-13" },
+  "motion/copy-button": { publishedAt: "2026-09-13", updatedAt: "2026-09-13" },
+  "motion/toast": { publishedAt: "2026-09-13", updatedAt: "2026-09-13" },
+  "motion/gradient-text": { publishedAt: "2026-09-13", updatedAt: "2026-09-13" },
+  "motion/modal": { publishedAt: "2026-09-13", updatedAt: "2026-09-13" },
+  "motion/skeleton": { publishedAt: "2026-09-13", updatedAt: "2026-09-13" },
+  "motion/accordion": { publishedAt: "2026-09-13", updatedAt: "2026-09-13" },
 };
 
 export function componentDates(category: string, slug: string): ComponentDates {

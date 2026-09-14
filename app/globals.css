@@ -73,9 +73,6 @@
     );
 }
 
-/* Color theme presets (full token sets) are injected at runtime from
-   lib/themes.ts via PreferencesProvider, keyed by data-theme on <html>. */
-
 @theme inline {
     /* Strong easing curves shared across every component. */
     --ease-out: cubic-bezier(0.23, 1, 0.32, 1);

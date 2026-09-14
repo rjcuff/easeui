@@ -1,23 +1,17 @@
 export type JsonLdSchema = Record<string, unknown>;
 
-/**
- * Renders JSON-LD structured data. Server component, no client cost.
- * Pass one schema object or an array; each is emitted as its own script tag.
- */
+/** Escape "<" so structured data can never close the script tag early. */
+const serialize = (schema: JsonLdSchema) => JSON.stringify(schema).replace(/</g, "\\u003c");
+
+/** Structured data for search engines. Accepts one schema or a list of them. */
 export function JsonLd({ data }: { data: JsonLdSchema | JsonLdSchema[] }) {
-  const items = Array.isArray(data) ? data : [data];
+  const schemas = Array.isArray(data) ? data : [data];
   return (
-    <>
-      {items.map((item, i) => (
-        <script
-          // biome-ignore lint/suspicious/noArrayIndexKey: stable build-time list
-          key={i}
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify(item).replace(/</g, "\\u003c"),
-          }}
-        />
-      ))}
-    </>
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{
+        __html: schemas.length === 1 ? serialize(schemas[0]) : `[${schemas.map(serialize).join(",")}]`,
+      }}
+    />
   );
 }

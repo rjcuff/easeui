@@ -1,20 +1,14 @@
-type GtagParams = Record<string, string | number | boolean | undefined>;
+type EventParams = Record<string, string | number | boolean | undefined>;
 
 declare global {
   interface Window {
-    gtag?: (
-      command: "event" | "config" | "js",
-      action: string,
-      params?: GtagParams,
-    ) => void;
+    gtag?: (command: string, name: string, params?: EventParams) => void;
+    dataLayer?: unknown[];
   }
 }
 
-/**
- * Fire a client-side GA4 event. No-ops when gtag is absent (analytics id
- * unset, ad-blocker, SSR), so callers never need to guard.
- */
-export function trackEvent(name: string, params?: GtagParams) {
-  if (typeof window === "undefined") return;
-  window.gtag?.("event", name, params);
+/** Send an analytics event. Does nothing when analytics is not loaded. */
+export function trackEvent(name: string, params?: EventParams) {
+  if (typeof window === "undefined" || !window.gtag) return;
+  window.gtag("event", name, params);
 }

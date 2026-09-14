@@ -1,103 +1,56 @@
 "use client";
 
 import { type ReactNode, useLayoutEffect, useRef, useState } from "react";
-import { cn } from "@/lib/utils";
 
-// Cap so a preview never renders larger than intended; only previews bigger
-// than the card shrink further to actually fit, so nothing clips. `maxScale`
-// per card lets feature tiles show their preview larger than grid tiles.
-const MIN_SCALE = 0.22;
-
-// A real desktop width for the preview to render at before it gets scaled
-// down, like screenshotting the full-size preview and shrinking the image.
-// Without it, a preview whose root is `w-full` has no definite width inside a
-// shrink-wrapped box and collapses to its narrowest fixed-size child.
-const STAGE_WIDTH = 460;
+/** Width the preview lays out at before it is scaled into the card. */
+const LAYOUT_WIDTH = 460;
+/** Space kept free around the scaled preview, as a share of the frame. */
+const FILL = 0.9;
 
 /**
- * Shrinks a preview to fit the card frame instead of clipping or collapsing.
- * Renders the preview at a fixed stage width, measures its natural height at
- * that width, and scales the whole stage down to fit the card.
+ * Lays a preview out at a desktop width, then scales it down so the whole
+ * thing fits its card. Nothing clips and nothing collapses to a narrow column.
  */
-export function PreviewFit({
-  children,
-  overlay,
-  maxScale = 0.82,
-}: {
-  children: ReactNode;
-  overlay?: ReactNode;
-  maxScale?: number;
-}) {
-  const outerRef = useRef<HTMLDivElement>(null);
-  const stageRef = useRef<HTMLDivElement>(null);
-  const [fitScale, setFitScale] = useState(MIN_SCALE);
-  const [measured, setMeasured] = useState(false);
+export function PreviewFit({ children, maxScale = 0.8 }: { children: ReactNode; maxScale?: number }) {
+  const frameRef = useRef<HTMLDivElement>(null);
+  const contentRef = useRef<HTMLDivElement>(null);
+  const [scale, setScale] = useState<number | null>(null);
 
   useLayoutEffect(() => {
-    const outer = outerRef.current;
-    const stage = stageRef.current;
-    if (!outer || !stage) return;
+    const frame = frameRef.current;
+    const content = contentRef.current;
+    if (!frame || !content) return;
 
-    const measure = () => {
-      // clientWidth/offsetHeight are the pre-transform layout size, unlike
-      // getBoundingClientRect, which would read an already-scaled box and
-      // compound into the wrong scale every render.
-      const outerW = outer.clientWidth;
-      const outerH = outer.clientHeight;
-      const childSizes = Array.from(stage.children, (child) => {
-        const element = child as HTMLElement;
-        return {
-          width: Math.max(element.offsetWidth, element.scrollWidth),
-          height: Math.max(element.offsetHeight, element.scrollHeight),
-        };
-      });
-      const contentW = Math.max(
-        stage.offsetWidth,
-        stage.scrollWidth,
-        ...childSizes.map(({ width }) => width),
+    const fit = () => {
+      // offset and client sizes ignore transforms, so the current scale never feeds back in.
+      const width = Math.max(content.offsetWidth, content.scrollWidth);
+      const height = Math.max(content.offsetHeight, content.scrollHeight);
+      if (!width || !height || !frame.clientWidth || !frame.clientHeight) return;
+      const next = Math.min(
+        maxScale,
+        (frame.clientWidth * FILL) / width,
+        (frame.clientHeight * FILL) / height,
       );
-      const contentH = Math.max(
-        stage.offsetHeight,
-        stage.scrollHeight,
-        ...childSizes.map(({ height }) => height),
-      );
-      if (!outerW || !outerH || !contentW || !contentH) return;
-      const fit = Math.min(
-        (outerW * 0.94) / contentW,
-        (outerH * 0.94) / contentH,
-      );
-      setFitScale(Math.max(MIN_SCALE, fit));
-      setMeasured(true);
+      setScale(next);
     };
 
-    measure();
-    const ro = new ResizeObserver(measure);
-    ro.observe(outer);
-    ro.observe(stage);
-    Array.from(stage.children).forEach((child) => {
-      ro.observe(child);
-    });
-    return () => ro.disconnect();
-  }, []);
-
-  const scale = Math.min(maxScale, fitScale);
+    fit();
+    const observer = new ResizeObserver(fit);
+    observer.observe(frame);
+    observer.observe(content);
+    return () => observer.disconnect();
+  }, [maxScale]);
 
   return (
-    <div
-      ref={outerRef}
-      className="absolute inset-0 flex items-center justify-center overflow-hidden p-4 contain-[paint]"
-    >
+    <div ref={frameRef} className="absolute inset-0 flex items-center justify-center overflow-hidden">
       <div
-        ref={stageRef}
-        style={{ width: STAGE_WIDTH, transform: `scale(${scale})` }}
-        className={cn(
-          "pointer-events-none flex origin-center shrink-0 items-center justify-center [&_*]:!cursor-default",
-          !measured && "invisible",
-        )}
+        ref={contentRef}
+        style={{ width: LAYOUT_WIDTH, transform: `scale(${scale ?? 1})`, visibility: scale ? "visible" : "hidden" }}
+        // The card link sits above, so the preview is for looking only.
+        className="pointer-events-none flex shrink-0 items-center justify-center"
       >
         {children}
       </div>
-      {overlay}
     </div>
   );
 }

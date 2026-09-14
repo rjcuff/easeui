@@ -22,6 +22,30 @@ export const previews: Record<string, ComponentType> = {
   "motion/range-slider": dynamic(() =>
     import("./motion/range-slider.preview").then((m) => m.RangeSliderPreview),
   ),
+  "motion/hold-to-confirm": dynamic(() =>
+    import("./motion/hold-to-confirm.preview").then((m) => m.HoldToConfirmPreview),
+  ),
+  "motion/switch": dynamic(() =>
+    import("./motion/switch.preview").then((m) => m.SwitchPreview),
+  ),
+  "motion/copy-button": dynamic(() =>
+    import("./motion/copy-button.preview").then((m) => m.CopyButtonPreview),
+  ),
+  "motion/toast": dynamic(() =>
+    import("./motion/toast.preview").then((m) => m.ToastPreview),
+  ),
+  "motion/gradient-text": dynamic(() =>
+    import("./motion/gradient-text.preview").then((m) => m.GradientTextPreview),
+  ),
+  "motion/modal": dynamic(() =>
+    import("./motion/modal.preview").then((m) => m.ModalPreview),
+  ),
+  "motion/skeleton": dynamic(() =>
+    import("./motion/skeleton.preview").then((m) => m.SkeletonPreview),
+  ),
+  "motion/accordion": dynamic(() =>
+    import("./motion/accordion.preview").then((m) => m.AccordionPreview),
+  ),
 };
 
 export function getPreview(category: string, slug: string) {

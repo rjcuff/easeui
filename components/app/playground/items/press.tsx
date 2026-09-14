@@ -13,7 +13,8 @@ function PressPreview({ values }: { values: Values; replayKey: number }) {
     <div className="flex justify-center">
       <motion.button
         type="button"
-        whileTap={reduce ? undefined : { scale }}
+        // Always pass a gesture so the server and client render the same attributes.
+        whileTap={{ scale: reduce ? 1 : scale }}
         transition={{ duration, ease: EASE_OUT }}
         className="h-12 touch-manipulation rounded-full bg-primary px-8 text-sm font-medium text-primary-foreground"
       >

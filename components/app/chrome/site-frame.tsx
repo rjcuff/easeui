@@ -1,18 +1,34 @@
 "use client";
 
+import { motion, useReducedMotion } from "motion/react";
 import { usePathname } from "next/navigation";
-import type { ReactNode } from "react";
-import { PageTransition } from "@/components/app/chrome/page-transition";
+import { type ReactNode, useEffect, useRef } from "react";
 
-const DOCS_PATHS = ["/components", "/docs"];
-
+/**
+ * Wraps each page. Navigating fades the new page in quickly. The first load
+ * shows the page at once, and only opacity animates so fixed elements inside
+ * stay anchored to the viewport.
+ */
 export function SiteFrame({ children }: { children: ReactNode }) {
   const pathname = usePathname();
-  const isDocs = DOCS_PATHS.some((p) => pathname.startsWith(p));
+  const reduce = useReducedMotion();
+  const firstRender = useRef(true);
+
+  useEffect(() => {
+    firstRender.current = false;
+  }, []);
+
+  const padded = pathname.startsWith("/components") || pathname.startsWith("/docs");
 
   return (
-    <div className={isDocs ? "py-8" : undefined}>
-      <PageTransition>{children}</PageTransition>
-    </div>
+    <motion.div
+      key={pathname}
+      initial={firstRender.current || reduce ? false : { opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.15, ease: "easeOut" }}
+      className={padded ? "py-8" : undefined}
+    >
+      {children}
+    </motion.div>
   );
 }

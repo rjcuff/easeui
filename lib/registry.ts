@@ -1,5 +1,3 @@
-import type { AgentGuide } from "@/lib/agent-guides";
-
 export type ComponentExample = {
   slug: string;
   name: string;
@@ -35,13 +33,6 @@ export type ComponentEntry = {
   usageFile?: string;
   /** Per-variant breakdown rendered as separate Preview / Usage / Source on the page. */
   examples?: ComponentExample[];
-  /** Optional contributor credit shown on the website only. */
-  credit?: {
-    name: string;
-    url: string;
-  };
-  /** Optional behavior guide rendered on the component documentation page. */
-  guide?: AgentGuide;
 };
 
 export type CategoryEntry = {
@@ -55,7 +46,7 @@ export type CategoryEntry = {
  * The easeUI catalog. Add a category here, then its components. Every
  * component also needs an entry in lib/component-dates.ts.
  */
-export const registry: CategoryEntry[] = [
+const catalog: CategoryEntry[] = [
   {
     slug: "motion",
     name: "Components",
@@ -96,11 +87,11 @@ export const registry: CategoryEntry[] = [
         slug: "tooltip",
         name: "Tooltip",
         description:
-          "Hover or focus tooltip that fades in beside its trigger. After the first one opens, nearby tooltips appear without a delay.",
+          "Tooltip that shows a label with its keyboard shortcut, using Command on Mac and Ctrl elsewhere. Moving along a toolbar crossfades to the next tooltip with no delay.",
         file: "components/motion/tooltip.tsx",
         badge: "new",
         launchedAt: "2026-09-13",
-        keywords: ["react tooltip", "animated tooltip"],
+        keywords: ["react tooltip", "keyboard shortcut tooltip", "toolbar tooltip"],
       },
       {
         slug: "theme-toggle",
@@ -122,9 +113,95 @@ export const registry: CategoryEntry[] = [
         launchedAt: "2026-09-13",
         keywords: ["react slider", "range slider", "stepped slider"],
       },
+      {
+        slug: "hold-to-confirm",
+        name: "Hold to Confirm",
+        description:
+          "Button for destructive actions that fills while you hold it and only fires once the fill completes. Letting go early drains it back quickly.",
+        file: "components/motion/hold-to-confirm.tsx",
+        badge: "new",
+        launchedAt: "2026-09-13",
+        keywords: ["hold to confirm", "hold to delete", "press and hold button"],
+      },
+      {
+        slug: "switch",
+        name: "Switch",
+        description:
+          "On and off switch with a quick slide and no bounce. Inside a label, the whole row is the tap target.",
+        file: "components/motion/switch.tsx",
+        badge: "new",
+        launchedAt: "2026-09-13",
+        keywords: ["react switch", "toggle switch", "accessible switch"],
+      },
+      {
+        slug: "copy-button",
+        name: "Copy Button",
+        description:
+          "Copies text to the clipboard and trades its icon for a check for a moment, with a label or as a single icon.",
+        file: "components/motion/copy-button.tsx",
+        badge: "new",
+        launchedAt: "2026-09-13",
+        keywords: ["copy button", "copy to clipboard", "react clipboard"],
+      },
+      {
+        slug: "toast",
+        name: "Toast",
+        description:
+          "Toasts that stay long enough to read based on their word count, and pause while hovered or while the tab is in the background.",
+        file: "components/motion/toast.tsx",
+        badge: "new",
+        launchedAt: "2026-09-13",
+        keywords: ["react toast", "notification", "toaster"],
+      },
+      {
+        slug: "gradient-text",
+        name: "Gradient Text",
+        description:
+          "Text filled with a slowly drifting rainbow. It pauses while off screen and holds still when reduced motion is on.",
+        file: "components/motion/gradient-text.tsx",
+        badge: "new",
+        launchedAt: "2026-09-13",
+        keywords: ["gradient text", "rainbow text", "animated gradient"],
+      },
+      {
+        slug: "modal",
+        name: "Modal",
+        description:
+          "Centered dialog on the native dialog element that fades and scales in, leaves faster than it arrives, and keeps focus inside while open.",
+        file: "components/motion/modal.tsx",
+        badge: "new",
+        launchedAt: "2026-09-13",
+        keywords: ["react modal", "dialog", "animated modal"],
+      },
+      {
+        slug: "skeleton",
+        name: "Skeleton",
+        description:
+          "Loading placeholder with one shimmer shared across the page. Wrap real content and it takes the same shape, then crossfades away.",
+        file: "components/motion/skeleton.tsx",
+        badge: "new",
+        launchedAt: "2026-09-13",
+        keywords: ["skeleton loader", "loading placeholder", "shimmer"],
+      },
+      {
+        slug: "accordion",
+        name: "Accordion",
+        description:
+          "Expanding sections that grow to their natural height with no measuring, with arrow key navigation and closed panels skipped by Tab.",
+        file: "components/motion/accordion.tsx",
+        badge: "new",
+        launchedAt: "2026-09-13",
+        keywords: ["react accordion", "collapsible", "faq"],
+      },
     ],
   },
 ];
+
+/** The catalog with each category's components in alphabetical order, as every list on the site shows them. */
+export const registry: CategoryEntry[] = catalog.map((category) => ({
+  ...category,
+  components: [...category.components].sort((a, b) => a.name.localeCompare(b.name)),
+}));
 
 export function findCategory(slug: string): CategoryEntry | undefined {
   return registry.find((c) => c.slug === slug);

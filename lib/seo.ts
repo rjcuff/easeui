@@ -66,8 +66,6 @@ export function componentKeywords(
  * SERP/social snippet carries the tail.
  */
 export function componentMetaDescription(comp: ComponentEntry): string {
-  if (comp.guide?.seo.description) return comp.guide.seo.description;
-
   return `${comp.description} An open-source easeUI component with tuned motion. Add the source to your project with the shadcn CLI.`;
 }
 
@@ -189,9 +187,9 @@ export function componentJsonLd(
     "@context": "https://schema.org",
     "@type": "TechArticle",
     "@id": `${url}#article`,
-    headline: comp.guide?.seo.title ?? `${comp.name} React component by easeUI`,
+    headline: `${comp.name} React component by easeUI`,
     name: comp.name,
-    description: comp.guide?.seo.description ?? comp.description,
+    description: comp.description,
     url,
     image: abs(`/api/og?component=${comp.slug}`),
     inLanguage: "en",
@@ -207,7 +205,7 @@ export function componentJsonLd(
     about: {
       "@type": "SoftwareSourceCode",
       name: comp.name,
-      description: comp.guide?.seo.description ?? comp.description,
+      description: comp.description,
       codeRepository: GITHUB_URL,
       license: `${GITHUB_URL}/blob/main/LICENSE`,
       programmingLanguage: "TypeScript",

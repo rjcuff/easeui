@@ -50,8 +50,7 @@ export function Playground() {
       typeof value === "number" ? Math.round(value * 1e6) / 1e6 : value;
     setValuesByType((prev) => {
       const merged = { ...prev[active.slug], [key]: clean };
-      const nextValues = active.coerce ? active.coerce(key, merged) : merged;
-      return { ...prev, [active.slug]: nextValues };
+      return { ...prev, [active.slug]: merged };
     });
     // Replay once the value settles. Restarting on every slider tick made the
     // preview stutter while dragging.

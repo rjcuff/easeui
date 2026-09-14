@@ -1,44 +1,50 @@
 "use client";
 
-import { motion, useReducedMotion } from "motion/react";
 import { ArrowRight } from "lucide-react";
-import { EASE_OUT } from "@/lib/ease";
+import { motion, useReducedMotion } from "motion/react";
+import type { ReactNode } from "react";
 import { PressLink } from "@/components/app/press-link";
-import { TextReveal } from "@/components/motion/text-reveal";
+import { GradientText } from "@/components/motion/gradient-text";
+import { EASE_OUT } from "@/lib/ease";
 
-const HEADLINE = ["Components that", "move naturally."];
-const HEADLINE_WORDS = HEADLINE.reduce((n, l) => n + l.split(" ").length, 0);
-const STAGGER = 0.04;
-const START = 0.05;
+/** Gap between each piece of the hero arriving, in seconds. */
+const STEP = 0.06;
+
+const LINES: ReactNode[] = [
+  "Components that",
+  <>
+    move{" "}
+    {/* Extra bottom padding keeps the descender of the y inside the clipped gradient. */}
+    <GradientText className="-mb-[0.15em] inline-block pb-[0.15em]">naturally</GradientText>
+  </>,
+];
 
 export function Hero() {
   const reduce = useReducedMotion();
-  const headlineEnd = START + HEADLINE_WORDS * STAGGER;
-  const subDelay = headlineEnd + 0.05;
-  const ctaDelay = subDelay + 0.1;
 
-  // A short fade and 6px rise. Reduced motion renders the final state.
-  const enter = (delay: number) =>
-    reduce
-      ? { initial: false as const }
-      : {
-          initial: { opacity: 0, y: 6 },
-          animate: { opacity: 1, y: 0 },
-          transition: { duration: 0.3, ease: EASE_OUT, delay },
-        };
+  // Each piece fades in and rises 8px. Reduced motion jumps straight to the end state. Always
+  // passing animate matters, because the server renders the starting state before it knows.
+  const enter = (index: number) => ({
+    initial: { opacity: 0, y: 8 },
+    animate: { opacity: 1, y: 0 },
+    transition: reduce
+      ? { duration: 0 }
+      : { duration: 0.35, ease: EASE_OUT, delay: index * STEP },
+  });
 
   return (
     <div className="mx-auto flex max-w-3xl flex-col items-center text-center">
-      <TextReveal
-        as="h1"
-        text={HEADLINE}
-        delay={START}
-        stagger={STAGGER}
-        className="mx-auto font-display text-5xl font-semibold leading-[0.95] tracking-tight text-foreground sm:text-6xl md:text-7xl"
-      />
+      <h1 className="font-display text-5xl font-semibold leading-[0.95] tracking-tight text-foreground sm:text-6xl md:text-7xl">
+        {LINES.map((line, index) => (
+          // biome-ignore lint/suspicious/noArrayIndexKey: the lines are static and never reorder.
+          <motion.span key={index} className="block" {...enter(index)}>
+            {line}
+          </motion.span>
+        ))}
+      </h1>
 
       <motion.p
-        {...enter(subDelay)}
+        {...enter(LINES.length)}
         className="mx-auto mt-6 max-w-lg text-pretty text-base leading-7 text-muted-foreground"
       >
         easeUI is a set of React components with smooth easing and spring
@@ -47,7 +53,7 @@ export function Hero() {
       </motion.p>
 
       <motion.div
-        {...enter(ctaDelay)}
+        {...enter(LINES.length + 1)}
         className="mt-8 flex flex-wrap items-center justify-center gap-3"
       >
         <PressLink
@@ -55,7 +61,7 @@ export function Hero() {
           className="group inline-flex min-h-11 touch-manipulation items-center gap-2 rounded-full bg-foreground px-5 text-sm font-medium text-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-foreground/40 focus-visible:ring-offset-2 focus-visible:ring-offset-background"
         >
           Browse components
-          <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
+          <ArrowRight className="h-4 w-4 transition-transform duration-150 group-hover:translate-x-0.5" />
         </PressLink>
       </motion.div>
     </div>

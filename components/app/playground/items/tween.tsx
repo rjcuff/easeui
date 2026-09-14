@@ -5,7 +5,9 @@ import { fmtNum, num, type PlaygroundItem, str, type Values } from "../core";
 import { TravelPreview } from "./travel-preview";
 
 /** Named curves from the easing guidance, in order of how often to reach for them. */
-const CURVES: Record<string, { label: string; value: number[] }> = {
+type Bezier = [number, number, number, number];
+
+const CURVES: Record<string, { label: string; value: Bezier }> = {
   "ease-out": { label: "Ease out", value: [0.23, 1, 0.32, 1] },
   "ease-in-out": { label: "Ease in out", value: [0.645, 0.045, 0.355, 1] },
   ease: { label: "Ease", value: [0.25, 0.1, 0.25, 1] },

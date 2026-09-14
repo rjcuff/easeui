@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { GithubIcon } from "@/components/app/icons";
+import { GithubIcon, XIcon } from "@/components/app/brand-icons";
 import { EaseMark } from "@/components/app/logo";
 import { AUTHOR_X_URL, GITHUB_URL, SITE_AUTHOR } from "@/lib/site";
 
@@ -10,7 +10,7 @@ const LINKS = [
 ];
 
 const iconLinkClass =
-  "inline-flex h-11 w-11 items-center justify-center rounded-full text-muted-foreground transition-colors hover:text-foreground";
+  "inline-flex h-11 w-11 items-center justify-center rounded-full text-muted-foreground transition-colors duration-150 hover:text-foreground";
 
 export function SiteFooter() {
   return (
@@ -35,7 +35,7 @@ export function SiteFooter() {
             <li key={link.href}>
               <Link
                 href={link.href}
-                className="text-sm text-muted-foreground transition-colors hover:text-foreground"
+                className="text-sm text-muted-foreground transition-colors duration-150 hover:text-foreground"
               >
                 {link.label}
               </Link>
@@ -58,12 +58,10 @@ export function SiteFooter() {
           href={AUTHOR_X_URL}
           target="_blank"
           rel="noreferrer noopener"
-          aria-label="X / Twitter"
+          aria-label="X"
           className={iconLinkClass}
         >
-          <svg viewBox="0 0 24 24" className="h-4 w-4" fill="currentColor" aria-hidden="true">
-            <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.73-8.835L1.254 2.25H8.08l4.253 5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
-          </svg>
+          <XIcon className="h-4 w-4" />
         </Link>
       </div>
 
