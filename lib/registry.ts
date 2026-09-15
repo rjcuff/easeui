@@ -350,6 +350,26 @@ export const catalog: CategoryEntry[] = [
         launchedAt: "2026-09-14",
         keywords: ["agent task list", "todo list", "task plan"],
       },
+      {
+        slug: "streaming-text",
+        name: "Streaming Text",
+        description:
+          "Reveals a model response as it streams in, fading each newly arrived word in on its own without replaying what's already on screen.",
+        file: "components/motion/streaming-text.tsx",
+        badge: "new",
+        launchedAt: "2026-09-14",
+        keywords: ["streaming text", "ai response", "typewriter effect"],
+      },
+      {
+        slug: "streaming-response",
+        name: "Streaming Response",
+        description:
+          "Wraps a response with the actions people expect once it settles: copy, replay, share, and a thumbs up or down. No card or border, so the answer reads as part of the page.",
+        file: "components/motion/streaming-response.tsx",
+        badge: "new",
+        launchedAt: "2026-09-14",
+        keywords: ["ai response actions", "copy retry feedback", "chat response toolbar"],
+      },
     ],
   },
 ];

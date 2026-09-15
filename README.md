@@ -13,7 +13,7 @@
 Quick, quiet motion you install as source files with the shadcn CLI.</p>
 
 <p>
-  <a href="https://easeui.dev/components/motion"><img alt="Components" src="https://img.shields.io/badge/components-14-e11d48?style=flat-square" /></a>
+  <a href="https://easeui.dev/components/motion"><img alt="Components" src="https://img.shields.io/endpoint?url=https%3A%2F%2Feaseui.dev%2Fapi%2Fbadge%2Fcomponents&style=flat-square" /></a>
   <a href="LICENSE"><img alt="MIT license" src="https://img.shields.io/badge/license-MIT-171717?style=flat-square" /></a>
   <img alt="React 19" src="https://img.shields.io/badge/React-19-171717?style=flat-square&logo=react" />
   <img alt="Tailwind CSS 4" src="https://img.shields.io/badge/Tailwind_CSS-4-171717?style=flat-square&logo=tailwindcss" />
@@ -22,6 +22,7 @@ Quick, quiet motion you install as source files with the shadcn CLI.</p>
 <p>
   <a href="https://easeui.dev"><strong>Website</strong></a> &nbsp;·&nbsp;
   <a href="https://easeui.dev/components/motion"><strong>Components</strong></a> &nbsp;·&nbsp;
+  <a href="https://easeui.dev/components/agents"><strong>Agents</strong></a> &nbsp;·&nbsp;
   <a href="https://easeui.dev/playground"><strong>Playground</strong></a>
 </p>
 
@@ -41,22 +42,12 @@ Most animation libraries make interfaces feel busy. easeUI goes the other way. E
 
 ## Components
 
-| Component | Highlights |
-| --- | --- |
-| [Button](https://easeui.dev/components/motion/button) | Quick press feedback, four variants, and a 44px tap area at every size |
-| [Tabs](https://easeui.dev/components/motion/tabs) | Pill, segment, or underline styles with a sliding indicator and arrow key support |
-| [Select](https://easeui.dev/components/motion/select) | Menu that fades and scales out of its trigger, with full keyboard control |
-| [Tooltip](https://easeui.dev/components/motion/tooltip) | Label plus keyboard shortcut, with a quick crossfade along a toolbar |
-| [Theme Toggle](https://easeui.dev/components/motion/theme-toggle) | Reveals the new theme as a circle from the screen center or from the button |
-| [Range Slider](https://easeui.dev/components/motion/range-slider) | Native range input with a filled track and tick dots |
-| [Hold to Confirm](https://easeui.dev/components/motion/hold-to-confirm) | Fills while held and only fires once the fill completes |
-| [Switch](https://easeui.dev/components/motion/switch) | Quick slide with no bounce, and the whole label row is the tap target |
-| [Copy Button](https://easeui.dev/components/motion/copy-button) | Copies text and crossfades to a check without changing width |
-| [Toast](https://easeui.dev/components/motion/toast) | Stacked toasts that spread on hover, swipe away, and stay long enough to read |
-| [Gradient Text](https://easeui.dev/components/motion/gradient-text) | Text filled with a slowly drifting rainbow that pauses off screen |
-| [Modal](https://easeui.dev/components/motion/modal) | Native dialog that fades and scales in and keeps focus inside |
-| [Skeleton](https://easeui.dev/components/motion/skeleton) | One shared shimmer, and a crossfade to real content with no layout shift |
-| [Accordion](https://easeui.dev/components/motion/accordion) | Sections that grow to their natural height, with arrow key navigation |
+Two categories, growing on their own schedule:
+
+- **[Components](https://easeui.dev/components/motion)** — buttons, inputs, overlays, and feedback. Things like a command palette, an OTP input, a number ticker, tabs, toasts, and menus.
+- **[Agents](https://easeui.dev/components/agents)** — pieces for AI interfaces, such as a message bubble, streaming loading states, and a task list.
+
+Every component page has a live preview, the full source, manual install steps, and an API reference. This file doesn't keep its own list, since one more component would make it stale again the same day; browse the current set at [easeui.dev](https://easeui.dev).
 
 ## Getting started
 
@@ -103,8 +94,6 @@ export default function App() {
 }
 ```
 
-Every component page on [easeui.dev](https://easeui.dev/components/motion) has a live preview, the full source, manual install steps, and an API reference.
-
 ## Develop locally
 
 easeUI is built with Next.js 16, React 19, Tailwind CSS 4, and [Bun](https://bun.sh).
@@ -124,9 +113,10 @@ The site runs at http://localhost:3000.
 | `bun run build` | Builds for production |
 | `bun run typecheck` | Checks types |
 | `bun run lint` | Lints with Biome |
+| `bun run lint:shadcn` | Lints components against shadcn registry rules |
 | `bun run test` | Runs unit tests |
 | `bun run check:registry` | Validates every registry entry, date, and source file |
-| `bun run check` | Runs typecheck, lint, and the registry check together |
+| `bun run check` | Runs typecheck, lint, both linters, and the registry check together |
 
 ### Project layout
 

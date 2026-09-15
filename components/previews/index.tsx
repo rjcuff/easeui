@@ -94,6 +94,12 @@ export const previews: Record<string, ComponentType> = {
   "agents/todo-list": dynamic(() =>
     import("./agents/todo-list.preview").then((m) => m.TodoListPreview),
   ),
+  "agents/streaming-text": dynamic(() =>
+    import("./agents/streaming-text.preview").then((m) => m.StreamingTextPreview),
+  ),
+  "agents/streaming-response": dynamic(() =>
+    import("./agents/streaming-response.preview").then((m) => m.StreamingResponsePreview),
+  ),
 };
 
 export function getPreview(category: string, slug: string) {
