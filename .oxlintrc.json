@@ -13,7 +13,7 @@
         "allow": ["layout"],
         "contracts": [
           {
-            "pattern": "^(Tabs|ThemeToggle)$",
+            "pattern": "^(Tabs|ThemeToggle|Popover.*)$",
             "allow": ["layout", "spacing", "typography", "color", "shape", "motion", "effects"]
           },
           {

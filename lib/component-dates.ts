@@ -38,14 +38,21 @@ const COMPONENT_DATES: Readonly<Record<string, ComponentDates>> = {
   "motion/otp-input": { publishedAt: "2026-09-14", updatedAt: "2026-09-14" },
   "motion/file-upload": { publishedAt: "2026-09-14", updatedAt: "2026-09-14" },
   "motion/popover": { publishedAt: "2026-09-14", updatedAt: "2026-09-14" },
+  "motion/table": { publishedAt: "2026-09-15", updatedAt: "2026-09-15" },
+  "motion/selection-actions": { publishedAt: "2026-09-15", updatedAt: "2026-09-15" },
+  "motion/insight-card": { publishedAt: "2026-09-15", updatedAt: "2026-09-15" },
+  "motion/diff-view": { publishedAt: "2026-09-15", updatedAt: "2026-09-15" },
   "agents/message-bubble": { publishedAt: "2026-09-14", updatedAt: "2026-09-14" },
   "agents/agent-loading-states": { publishedAt: "2026-09-14", updatedAt: "2026-09-14" },
+  "agents/pixel-loader": { publishedAt: "2026-09-15", updatedAt: "2026-09-15" },
   "agents/todo-list": { publishedAt: "2026-09-14", updatedAt: "2026-09-14" },
   "agents/streaming-text": { publishedAt: "2026-09-14", updatedAt: "2026-09-14" },
   "agents/streaming-response": { publishedAt: "2026-09-14", updatedAt: "2026-09-14" },
   "agents/prompt-input": { publishedAt: "2026-09-14", updatedAt: "2026-09-14" },
   "agents/code-block": { publishedAt: "2026-09-14", updatedAt: "2026-09-14" },
   "agents/tool-approval": { publishedAt: "2026-09-14", updatedAt: "2026-09-14" },
+  "agents/flowchart": { publishedAt: "2026-09-15", updatedAt: "2026-09-15" },
+  "agents/tool-chip": { publishedAt: "2026-09-15", updatedAt: "2026-09-15" },
 };
 
 export function componentDates(category: string, slug: string): ComponentDates {

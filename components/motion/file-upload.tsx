@@ -158,7 +158,7 @@ export function FileUpload({
                   type="button"
                   aria-label={`Remove ${file.name}`}
                   onClick={() => remove(index)}
-                  className="relative -mr-1 inline-flex h-7 w-7 shrink-0 items-center justify-center rounded-full text-muted-foreground transition-colors duration-150 hover:bg-muted hover:text-foreground"
+                  className="relative -mr-1 inline-flex h-7 w-7 shrink-0 items-center justify-center rounded-full text-muted-foreground transition-colors duration-150 after:absolute after:-inset-2 hover:bg-muted hover:text-foreground"
                 >
                   <X aria-hidden="true" className="h-3.5 w-3.5" />
                 </button>

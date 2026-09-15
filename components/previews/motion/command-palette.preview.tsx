@@ -21,7 +21,7 @@ export function CommandPalettePreview() {
 
   return (
     <div className="flex flex-col items-center gap-3">
-      <Button variant="secondary" onClick={() => setOpen(true)} className="gap-2.5">
+      <Button variant="secondary" onClick={() => setOpen(true)}>
         <Search aria-hidden="true" className="h-4 w-4 text-muted-foreground" />
         Search
       </Button>

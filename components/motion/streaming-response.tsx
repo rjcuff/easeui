@@ -32,7 +32,7 @@ export interface StreamingResponseProps {
 }
 
 const ICON_BUTTON = cn(
-  "relative inline-flex h-8 w-8 shrink-0 touch-manipulation items-center justify-center rounded-full text-muted-foreground outline-none",
+  "relative inline-flex h-8 w-8 shrink-0 touch-manipulation items-center justify-center rounded-full text-muted-foreground outline-none after:absolute after:-inset-1.5",
   "transition-colors duration-150 ease-out hover:bg-muted hover:text-foreground",
   "focus-visible:ring-2 focus-visible:ring-foreground/40 focus-visible:ring-offset-2 focus-visible:ring-offset-background",
 );

@@ -188,7 +188,6 @@ export const catalog: CategoryEntry[] = [
         description:
           "Checkbox on a real checkbox input, with a check mark that pops in rather than just appearing.",
         file: "components/motion/checkbox.tsx",
-        badge: "new",
         launchedAt: "2026-09-14",
         keywords: ["react checkbox", "animated checkbox", "accessible checkbox"],
       },
@@ -198,7 +197,6 @@ export const catalog: CategoryEntry[] = [
         description:
           "Sheet that slides up from the bottom edge on the native dialog element. Drag the handle down, or flick it, to dismiss.",
         file: "components/motion/drawer.tsx",
-        badge: "new",
         launchedAt: "2026-09-14",
         keywords: ["react drawer", "bottom sheet", "swipe to dismiss"],
       },
@@ -208,7 +206,6 @@ export const catalog: CategoryEntry[] = [
         description:
           "Text input whose focus ring grows from a hairline to two px, with a destructive ring for aria-invalid.",
         file: "components/motion/input.tsx",
-        badge: "new",
         launchedAt: "2026-09-14",
         keywords: ["react input", "text field", "form input"],
       },
@@ -218,7 +215,6 @@ export const catalog: CategoryEntry[] = [
         description:
           "Textarea that grows with its content instead of scrolling, down to three rows and up to a scrollable cap.",
         file: "components/motion/textarea.tsx",
-        badge: "new",
         launchedAt: "2026-09-14",
         keywords: ["react textarea", "auto grow textarea", "form textarea"],
       },
@@ -228,7 +224,6 @@ export const catalog: CategoryEntry[] = [
         description:
           "Small status pill in five colors, with a crossfade for when its variant changes.",
         file: "components/motion/badge.tsx",
-        badge: "new",
         launchedAt: "2026-09-14",
         keywords: ["react badge", "status pill", "tag"],
       },
@@ -238,7 +233,6 @@ export const catalog: CategoryEntry[] = [
         description:
           "Progress bar that fills with scale instead of width, plus an indeterminate state for unknown durations.",
         file: "components/motion/progress.tsx",
-        badge: "new",
         launchedAt: "2026-09-14",
         keywords: ["react progress bar", "loading bar", "indeterminate progress"],
       },
@@ -248,7 +242,6 @@ export const catalog: CategoryEntry[] = [
         description:
           "Bordered surface with header, content, and footer parts for grouping related content.",
         file: "components/motion/card.tsx",
-        badge: "new",
         launchedAt: "2026-09-14",
         keywords: ["react card", "card component", "content card"],
       },
@@ -258,7 +251,6 @@ export const catalog: CategoryEntry[] = [
         description:
           "Round avatar whose image fades in on load and crossfades to initials if it fails.",
         file: "components/motion/avatar.tsx",
-        badge: "new",
         launchedAt: "2026-09-14",
         keywords: ["react avatar", "profile picture", "initials fallback"],
       },
@@ -268,7 +260,6 @@ export const catalog: CategoryEntry[] = [
         description:
           "Banner with a colored accent stripe. Body text stays neutral so contrast never depends on the variant.",
         file: "components/motion/alert.tsx",
-        badge: "new",
         launchedAt: "2026-09-14",
         keywords: ["react alert", "banner", "callout"],
       },
@@ -278,7 +269,6 @@ export const catalog: CategoryEntry[] = [
         description:
           "Action menu that opens from a trigger, flips upward when there is no room below, and supports a destructive item.",
         file: "components/motion/dropdown-menu.tsx",
-        badge: "new",
         launchedAt: "2026-09-14",
         keywords: ["react dropdown menu", "context menu", "action menu"],
       },
@@ -288,7 +278,6 @@ export const catalog: CategoryEntry[] = [
         description:
           "Command-K style search overlay that filters as you type, with arrow keys to move the highlight and Enter to select.",
         file: "components/motion/command-palette.tsx",
-        badge: "new",
         launchedAt: "2026-09-14",
         keywords: ["command palette", "cmdk", "search overlay"],
       },
@@ -298,7 +287,6 @@ export const catalog: CategoryEntry[] = [
         description:
           "Number that rolls to a new value like an odometer, one changed digit at a time.",
         file: "components/motion/number-ticker.tsx",
-        badge: "new",
         launchedAt: "2026-09-14",
         keywords: ["animated counter", "odometer", "number roll"],
       },
@@ -308,7 +296,6 @@ export const catalog: CategoryEntry[] = [
         description:
           "One box per digit for a verification code, with paste and SMS autofill support and a shake for a wrong code.",
         file: "components/motion/otp-input.tsx",
-        badge: "new",
         launchedAt: "2026-09-14",
         keywords: ["otp input", "pin input", "verification code"],
       },
@@ -318,7 +305,6 @@ export const catalog: CategoryEntry[] = [
         description:
           "Dropzone that also opens the native file picker, with a list below it that pops each file in and collapses smoothly on remove.",
         file: "components/motion/file-upload.tsx",
-        badge: "new",
         launchedAt: "2026-09-14",
         keywords: ["file upload", "dropzone", "drag and drop"],
       },
@@ -328,9 +314,48 @@ export const catalog: CategoryEntry[] = [
         description:
           "A panel of arbitrary content anchored to a trigger, opening on click and flipping above it when there's no room below.",
         file: "components/motion/popover.tsx",
-        badge: "new",
         launchedAt: "2026-09-14",
         keywords: ["react popover", "anchored panel", "click to open"],
+      },
+      {
+        slug: "table",
+        name: "Table",
+        description:
+          "A plain, composable data table: sortable headers with an arrow that only shows on hover until active, and rows that tint when selected.",
+        file: "components/motion/table.tsx",
+        badge: "new",
+        launchedAt: "2026-09-15",
+        keywords: ["react table", "data table", "sortable table"],
+      },
+      {
+        slug: "selection-actions",
+        name: "Selection Actions",
+        description:
+          "A floating bar of bulk actions that fades and rises in once a selection leaves zero, for pairing with Table or any selectable list.",
+        file: "components/motion/selection-actions.tsx",
+        badge: "new",
+        launchedAt: "2026-09-15",
+        keywords: ["bulk actions", "selection toolbar", "floating action bar"],
+      },
+      {
+        slug: "insight-card",
+        name: "Insight Card",
+        description:
+          "A stat tile: a label, a headline value, and an optional trend pill. Pass a Number Ticker as the value to have it roll in on change.",
+        file: "components/motion/insight-card.tsx",
+        badge: "new",
+        launchedAt: "2026-09-15",
+        keywords: ["stat card", "metric tile", "kpi card"],
+      },
+      {
+        slug: "diff-view",
+        name: "Diff View",
+        description:
+          "A line-by-line diff with an added or removed mark in the gutter and a tinted row for each side. Renders a diff, doesn't compute one.",
+        file: "components/motion/diff-view.tsx",
+        badge: "new",
+        launchedAt: "2026-09-15",
+        keywords: ["diff view", "code diff", "line diff"],
       },
     ],
   },
@@ -346,7 +371,6 @@ export const catalog: CategoryEntry[] = [
         description:
           "A focused conversational surface with visual tones, independent alignment, and a speech-bubble tail that pops in on arrival.",
         file: "components/motion/message-bubble.tsx",
-        badge: "new",
         launchedAt: "2026-09-14",
         keywords: ["chat bubble", "message bubble", "conversation ui"],
       },
@@ -354,11 +378,20 @@ export const catalog: CategoryEntry[] = [
         slug: "agent-loading-states",
         name: "Agent Loading States",
         description:
-          "Four loading states for AI interfaces: a turning 3D color grid, shimmering status text, live agent progress, and cycling reasoning phrases.",
+          "Three loading states for AI interfaces: shimmering status text, live agent progress, and cycling reasoning phrases.",
         file: "components/motion/agent-loading-states.tsx",
-        badge: "new",
         launchedAt: "2026-09-14",
-        keywords: ["ai loading state", "thinking cube", "shimmer text", "agent progress"],
+        keywords: ["ai loading state", "shimmer text", "agent progress"],
+      },
+      {
+        slug: "pixel-loader",
+        name: "Pixel Loader",
+        description:
+          "A 3x3 grid of cells that twinkle on independent, randomized cycles, paired with a shimmering label and an optional live elapsed timer.",
+        file: "components/motion/pixel-loader.tsx",
+        badge: "new",
+        launchedAt: "2026-09-15",
+        keywords: ["pixel loader", "grid loader", "elapsed timer"],
       },
       {
         slug: "todo-list",
@@ -366,7 +399,6 @@ export const catalog: CategoryEntry[] = [
         description:
           "A collapsible agent task plan with morphing status marks and a completion count.",
         file: "components/motion/todo-list.tsx",
-        badge: "new",
         launchedAt: "2026-09-14",
         keywords: ["agent task list", "todo list", "task plan"],
       },
@@ -376,7 +408,6 @@ export const catalog: CategoryEntry[] = [
         description:
           "Reveals a model response as it streams in, fading each newly arrived word in on its own without replaying what's already on screen.",
         file: "components/motion/streaming-text.tsx",
-        badge: "new",
         launchedAt: "2026-09-14",
         keywords: ["streaming text", "ai response", "typewriter effect"],
       },
@@ -386,7 +417,6 @@ export const catalog: CategoryEntry[] = [
         description:
           "Wraps a response with the actions people expect once it settles: copy, replay, share, and a thumbs up or down. No card or border, so the answer reads as part of the page.",
         file: "components/motion/streaming-response.tsx",
-        badge: "new",
         launchedAt: "2026-09-14",
         keywords: ["ai response actions", "copy retry feedback", "chat response toolbar"],
       },
@@ -396,7 +426,6 @@ export const catalog: CategoryEntry[] = [
         description:
           "A chat composer that grows with its content, submits on Enter, and crossfades its send button into a stop button while a reply streams.",
         file: "components/motion/prompt-input.tsx",
-        badge: "new",
         launchedAt: "2026-09-14",
         keywords: ["chat input", "prompt input", "message composer"],
       },
@@ -406,7 +435,6 @@ export const catalog: CategoryEntry[] = [
         description:
           "A code block with a label, a copy button, and light coloring for keywords, strings, comments and numbers, with no highlighter dependency.",
         file: "components/motion/code-block.tsx",
-        badge: "new",
         launchedAt: "2026-09-14",
         keywords: ["code block", "syntax highlighting", "copy code"],
       },
@@ -416,9 +444,28 @@ export const catalog: CategoryEntry[] = [
         description:
           "A card for an agent action waiting on approval, with Approve and Deny that collapse into a single status pill once resolved.",
         file: "components/motion/tool-approval.tsx",
-        badge: "new",
         launchedAt: "2026-09-14",
         keywords: ["tool approval", "agent permission", "approve deny"],
+      },
+      {
+        slug: "flowchart",
+        name: "Flowchart",
+        description:
+          "A sequence of steps on a dotted canvas, connected by curves that measure the actual cards and follow as you drag one. Click a step to light up its connectors.",
+        file: "components/motion/flowchart.tsx",
+        badge: "new",
+        launchedAt: "2026-09-15",
+        keywords: ["agent workflow", "flowchart", "node canvas"],
+      },
+      {
+        slug: "tool-chip",
+        name: "Tool Chip",
+        description:
+          "A small pill naming a tool an agent used, with a spinner, check, or error mark that crossfades in place as its status changes.",
+        file: "components/motion/tool-chip.tsx",
+        badge: "new",
+        launchedAt: "2026-09-15",
+        keywords: ["tool chip", "agent tool", "tool call status"],
       },
     ],
   },

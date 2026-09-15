@@ -91,11 +91,26 @@ export const previews: Record<string, ComponentType> = {
   "motion/popover": dynamic(() =>
     import("./motion/popover.preview").then((m) => m.PopoverPreview),
   ),
+  "motion/table": dynamic(() =>
+    import("./motion/table.preview").then((m) => m.TablePreview),
+  ),
+  "motion/selection-actions": dynamic(() =>
+    import("./motion/selection-actions.preview").then((m) => m.SelectionActionsPreview),
+  ),
+  "motion/insight-card": dynamic(() =>
+    import("./motion/insight-card.preview").then((m) => m.InsightCardPreview),
+  ),
+  "motion/diff-view": dynamic(() =>
+    import("./motion/diff-view.preview").then((m) => m.DiffViewPreview),
+  ),
   "agents/message-bubble": dynamic(() =>
     import("./agents/message-bubble.preview").then((m) => m.MessageBubblePreview),
   ),
   "agents/agent-loading-states": dynamic(() =>
     import("./agents/agent-loading-states.preview").then((m) => m.AgentLoadingStatesPreview),
+  ),
+  "agents/pixel-loader": dynamic(() =>
+    import("./agents/pixel-loader.preview").then((m) => m.PixelLoaderPreview),
   ),
   "agents/todo-list": dynamic(() =>
     import("./agents/todo-list.preview").then((m) => m.TodoListPreview),
@@ -114,6 +129,12 @@ export const previews: Record<string, ComponentType> = {
   ),
   "agents/tool-approval": dynamic(() =>
     import("./agents/tool-approval.preview").then((m) => m.ToolApprovalPreview),
+  ),
+  "agents/flowchart": dynamic(() =>
+    import("./agents/flowchart.preview").then((m) => m.FlowchartPreview),
+  ),
+  "agents/tool-chip": dynamic(() =>
+    import("./agents/tool-chip.preview").then((m) => m.ToolChipPreview),
   ),
 };
 

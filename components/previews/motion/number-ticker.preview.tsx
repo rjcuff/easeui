@@ -9,7 +9,9 @@ export function NumberTickerPreview() {
 
   return (
     <div className="flex flex-col items-center gap-4">
-      <NumberTicker value={value} className="font-display text-5xl font-semibold text-foreground" />
+      <div className="font-display text-5xl font-semibold text-foreground">
+        <NumberTicker value={value} />
+      </div>
       <div className="flex gap-2">
         <Button variant="secondary" size="sm" onClick={() => setValue((v) => Math.max(0, v - 137))}>
           Sell

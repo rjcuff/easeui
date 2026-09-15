@@ -139,7 +139,7 @@ export function DropdownMenuTrigger({
       onClick={() => m.setOpen(!m.open)}
       onKeyDown={onKeyDown}
       className={cn(
-        "relative inline-flex h-9 w-9 touch-manipulation items-center justify-center rounded-full text-muted-foreground outline-none transition-colors duration-150",
+        "relative inline-flex h-9 w-9 touch-manipulation items-center justify-center rounded-full text-muted-foreground outline-none after:absolute after:-inset-1 transition-colors duration-150",
         "hover:bg-muted hover:text-foreground",
         "focus-visible:ring-2 focus-visible:ring-foreground/40 focus-visible:ring-offset-2 focus-visible:ring-offset-background",
         "disabled:pointer-events-none disabled:opacity-50",
@@ -234,7 +234,7 @@ export function DropdownMenuContent({
         pointerEvents: open ? "auto" : "none",
       }}
       className={cn(
-        "absolute z-30 flex min-w-40 flex-col gap-0.5 rounded-lg bg-background p-1",
+        "absolute z-30 flex min-w-40 max-w-[calc(100vw-2rem)] flex-col gap-0.5 rounded-lg bg-background p-1",
         "shadow-[0_0_0_1px_var(--border-strong),0_12px_24px_-12px_rgb(0_0_0/0.3)]",
         isTop ? "bottom-full mb-1.5" : "top-full mt-1.5",
         align === "end" ? "right-0" : "left-0",

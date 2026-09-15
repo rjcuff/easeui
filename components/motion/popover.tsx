@@ -202,7 +202,7 @@ export function PopoverContent({ side = "bottom", align = "start", className, ch
         pointerEvents: open ? "auto" : "none",
       }}
       className={cn(
-        "absolute z-30 min-w-56 rounded-2xl bg-background p-4",
+        "absolute z-30 min-w-56 max-w-[calc(100vw-2rem)] rounded-2xl bg-background p-4",
         "shadow-[0_0_0_1px_var(--border-strong),0_12px_24px_-12px_rgb(0_0_0/0.3)]",
         isTop ? "bottom-full mb-1.5" : "top-full mt-1.5",
         align === "end" ? "right-0" : "left-0",
