@@ -32,7 +32,7 @@ export interface OtpInputProps {
   className?: string;
 }
 
-// A short, gentle nudge rather than a rattle: two small swings that settle by 260ms.
+// A gentle nudge, not a rattle.
 const SHAKE: Keyframe[] = [
   { transform: "translateX(0)" },
   { transform: "translateX(-5px)" },
@@ -46,9 +46,7 @@ const POP: Keyframe[] = [
   { transform: "scale(1)", opacity: 1 },
 ];
 
-// The spinner and the check share a grid cell and a text slot, crossfading with a
-// small scale, so success reads as the spinner settling into a check rather than
-// a new element appearing next to the boxes.
+// Spinner and check share a slot, so success morphs in place.
 const SWAP = "col-start-1 row-start-1 transition-[opacity,scale] duration-200 ease-out motion-reduce:transition-none";
 const SHOWN = "scale-100 opacity-100";
 const HIDDEN = "scale-50 opacity-0";
@@ -87,7 +85,7 @@ export function OtpInput({
   const wasComplete = useRef(false);
   const verifyToken = useRef(0);
 
-  // Drives its own status once onVerify is set. Otherwise the invalid/success props apply directly.
+  // Auto status when onVerify is set; otherwise the props drive it.
   const [status, setStatus] = useState<"idle" | "checking" | "success" | "invalid">("idle");
   const checking = Boolean(onVerify) && status === "checking";
   const effectiveInvalid = onVerify ? status === "invalid" : invalid;
@@ -120,7 +118,7 @@ export function OtpInput({
     wasComplete.current = complete;
   };
 
-  // Pops each newly filled box, and shakes the whole row once when it turns invalid.
+  // Pop new digits, shake the row when invalid.
   useEffect(() => {
     if (prefersReducedMotion()) {
       prevDigits.current = digits;
@@ -138,15 +136,11 @@ export function OtpInput({
   useEffect(() => {
     const root = rootRef.current;
     if (!effectiveInvalid || !root || prefersReducedMotion()) return;
-    // A short delay lets the last box's own pop settle before the row shakes,
-    // so the two don't read as one overloaded motion.
+    // Wait for the last pop to settle first, so the two don't overlap.
     root.animate(SHAKE, { duration: 260, delay: 80, easing: "ease-out" });
   }, [effectiveInvalid]);
 
-  // Fades the status row in once, when it first appears. This only fires on the
-  // idle-to-visible edge: showStatus stays true straight through checking turning
-  // into success, so that transition is left entirely to the spinner-to-check
-  // crossfade below, rather than replaying an entrance on top of it.
+  // Fades the status row in once, on its first appearance only.
   useEffect(() => {
     const el = statusRef.current;
     if (!showStatus || !el || prefersReducedMotion()) return;
@@ -164,8 +158,7 @@ export function OtpInput({
       setValue(digits.slice(0, index) + digits.slice(index + 1));
       return;
     }
-    // A single keystroke replaces this box. A longer string, from a paste or an
-    // SMS autofill landing in one box, spreads across this box and the ones after it.
+    // One key replaces a box; a paste or autofill spreads across several.
     const next = (digits.slice(0, index) + chars + digits.slice(index + 1)).slice(0, length);
     setValue(next);
     focusInput(Math.min(index + chars.length, length - 1));

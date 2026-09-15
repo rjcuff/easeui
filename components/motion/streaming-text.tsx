@@ -19,20 +19,14 @@ function tokenize(text: string): string[] {
 }
 
 /**
- * Reveals text as it streams in. Feed it a growing string, such as the
- * running output of a model response, and each newly appended character
- * fades in on its own, quickly enough that a run of them reads as one
- * smooth ribbon of text rather than single letters popping in. Characters
- * already on screen never replay, so scrollback stays still while new
- * content keeps arriving behind it.
+ * Reveals text as it streams in. Feed it a growing string and each new
+ * character fades in fast enough to read as one smooth ribbon, not single
+ * letters popping in. Characters already shown never replay.
  */
 export function StreamingText({ text, streaming = false, className }: StreamingTextProps) {
   const reduce = useReducedMotion();
   const tokens = useMemo(() => tokenize(text), [text]);
-  // How many tokens were already on screen as of the last render, read here
-  // before the effect below updates it, so only tokens appended since the
-  // last render count as new. A text that shrinks (a fresh message replacing
-  // this one) is treated as fully settled instead of animating a jump backward.
+  // Tokens shown as of the last render. A shorter text (a new message) counts as fully settled.
   const shown = useRef(0);
   const settled = Math.min(tokens.length, shown.current);
 

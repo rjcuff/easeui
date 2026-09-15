@@ -39,10 +39,8 @@ const ICON_BUTTON = cn(
 
 /**
  * Wraps a response with the actions people expect once it settles: copy,
- * replay, share, and a thumbs up or down. It adds no card or border around
- * the content itself, so a streamed answer reads as part of the page rather
- * than a box sitting on it. The action row fades in only once status moves
- * off "streaming", and every action is opt-in: pass a handler to show it.
+ * replay, share, a thumbs up or down. No card or border, so the answer
+ * reads as part of the page. Each action is opt-in: pass a handler to show it.
  */
 export function StreamingResponse({
   children,

@@ -322,6 +322,16 @@ export const catalog: CategoryEntry[] = [
         launchedAt: "2026-09-14",
         keywords: ["file upload", "dropzone", "drag and drop"],
       },
+      {
+        slug: "popover",
+        name: "Popover",
+        description:
+          "A panel of arbitrary content anchored to a trigger, opening on click and flipping above it when there's no room below.",
+        file: "components/motion/popover.tsx",
+        badge: "new",
+        launchedAt: "2026-09-14",
+        keywords: ["react popover", "anchored panel", "click to open"],
+      },
     ],
   },
   {
@@ -344,11 +354,11 @@ export const catalog: CategoryEntry[] = [
         slug: "agent-loading-states",
         name: "Agent Loading States",
         description:
-          "Three loading states for AI interfaces: shimmering status text, live agent progress, and cycling reasoning phrases.",
+          "Four loading states for AI interfaces: a turning 3D color grid, shimmering status text, live agent progress, and cycling reasoning phrases.",
         file: "components/motion/agent-loading-states.tsx",
         badge: "new",
         launchedAt: "2026-09-14",
-        keywords: ["ai loading state", "shimmer text", "agent progress"],
+        keywords: ["ai loading state", "thinking cube", "shimmer text", "agent progress"],
       },
       {
         slug: "todo-list",
@@ -389,6 +399,26 @@ export const catalog: CategoryEntry[] = [
         badge: "new",
         launchedAt: "2026-09-14",
         keywords: ["chat input", "prompt input", "message composer"],
+      },
+      {
+        slug: "code-block",
+        name: "Code Block",
+        description:
+          "A code block with a label, a copy button, and light coloring for keywords, strings, comments and numbers, with no highlighter dependency.",
+        file: "components/motion/code-block.tsx",
+        badge: "new",
+        launchedAt: "2026-09-14",
+        keywords: ["code block", "syntax highlighting", "copy code"],
+      },
+      {
+        slug: "tool-approval",
+        name: "Tool Approval",
+        description:
+          "A card for an agent action waiting on approval, with Approve and Deny that collapse into a single status pill once resolved.",
+        file: "components/motion/tool-approval.tsx",
+        badge: "new",
+        launchedAt: "2026-09-14",
+        keywords: ["tool approval", "agent permission", "approve deny"],
       },
     ],
   },

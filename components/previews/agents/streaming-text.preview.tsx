@@ -2,7 +2,8 @@
 
 import { useReducedMotion } from "motion/react";
 import { useEffect, useState } from "react";
-import { StreamingResponse } from "@/components/motion/streaming-response";
+import { Button } from "@/components/motion/button";
+import { MessageBubble } from "@/components/motion/message-bubble";
 import { StreamingText } from "@/components/motion/streaming-text";
 
 const RESPONSE =
@@ -33,15 +34,13 @@ export function StreamingTextPreview() {
   }, [run, reduce]);
 
   return (
-    <div className="w-full max-w-sm">
-      <StreamingResponse
-        status={streaming ? "streaming" : "complete"}
-        copyText={RESPONSE}
-        onRetry={() => setRun((r) => r + 1)}
-        showFeedback
-      >
+    <div className="flex w-full max-w-sm flex-col items-center gap-3">
+      <MessageBubble align="start">
         <StreamingText text={RESPONSE.slice(0, count)} streaming={streaming} />
-      </StreamingResponse>
+      </MessageBubble>
+      <Button variant="secondary" size="sm" onClick={() => setRun((r) => r + 1)}>
+        Replay
+      </Button>
     </div>
   );
 }

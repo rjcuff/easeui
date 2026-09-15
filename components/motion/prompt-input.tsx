@@ -20,8 +20,7 @@ export interface PromptInputProps
   className?: string;
 }
 
-// Send and stop share a grid cell and trade places with a fade and a small scale,
-// the same swap CopyButton uses, so the button never changes size between states.
+// Same crossfade CopyButton uses, so the button never changes size.
 const SWAP = "col-start-1 row-start-1 transition-[opacity,scale] duration-200 ease-out motion-reduce:transition-none";
 const SHOWN = "scale-100 opacity-100";
 const HIDDEN = "scale-50 opacity-0";

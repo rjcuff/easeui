@@ -37,12 +37,15 @@ const COMPONENT_DATES: Readonly<Record<string, ComponentDates>> = {
   "motion/number-ticker": { publishedAt: "2026-09-14", updatedAt: "2026-09-14" },
   "motion/otp-input": { publishedAt: "2026-09-14", updatedAt: "2026-09-14" },
   "motion/file-upload": { publishedAt: "2026-09-14", updatedAt: "2026-09-14" },
+  "motion/popover": { publishedAt: "2026-09-14", updatedAt: "2026-09-14" },
   "agents/message-bubble": { publishedAt: "2026-09-14", updatedAt: "2026-09-14" },
   "agents/agent-loading-states": { publishedAt: "2026-09-14", updatedAt: "2026-09-14" },
   "agents/todo-list": { publishedAt: "2026-09-14", updatedAt: "2026-09-14" },
   "agents/streaming-text": { publishedAt: "2026-09-14", updatedAt: "2026-09-14" },
   "agents/streaming-response": { publishedAt: "2026-09-14", updatedAt: "2026-09-14" },
   "agents/prompt-input": { publishedAt: "2026-09-14", updatedAt: "2026-09-14" },
+  "agents/code-block": { publishedAt: "2026-09-14", updatedAt: "2026-09-14" },
+  "agents/tool-approval": { publishedAt: "2026-09-14", updatedAt: "2026-09-14" },
 };
 
 export function componentDates(category: string, slug: string): ComponentDates {

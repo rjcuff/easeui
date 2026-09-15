@@ -29,11 +29,9 @@ function formatSize(bytes: number): string {
 }
 
 /**
- * A dropzone that also opens the native file picker on click. Dropped or
- * picked files land in a list below it, each popping in on arrival and
- * collapsing smoothly out when removed. Nothing here uploads anything: it
- * hands back File objects and lets the file list be controlled, so it sits
- * in front of whatever upload logic the app already has.
+ * A dropzone that also opens the native file picker on click. Picked files
+ * land in a list below it, popping in on arrival, collapsing on remove.
+ * Nothing here uploads anything: it just hands back File objects.
  */
 export function FileUpload({
   value,

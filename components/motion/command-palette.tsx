@@ -105,8 +105,7 @@ export function CommandPalette({
 
   const items = useMemo(() => collectItems(children, query), [children, query]);
 
-  // The highlight follows the query. It only resets to the top once the item it
-  // was on filters out, rather than jumping to whatever now sits at its old index.
+  // Reset the highlight only once the active item filters out.
   useEffect(() => {
     if (items.some((item) => itemValue(item) === activeValue)) return;
     setActiveValue(items[0] ? itemValue(items[0]) : undefined);

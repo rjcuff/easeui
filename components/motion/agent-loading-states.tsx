@@ -1,11 +1,126 @@
 "use client";
 
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
-import { type ReactNode, useEffect, useState } from "react";
+import { type ReactNode, useEffect, useRef, useState } from "react";
 import { Progress } from "@/components/motion/progress";
 import { cn } from "@/lib/utils";
 
 const EASE = [0.23, 1, 0.32, 1] as const;
+
+const GRID = 3;
+// One shared loop cut into 6 even slots, one per row or column, so only one ever turns.
+const LOOP_MS = 6000;
+const SLOTS = 6;
+const TURN_MS = 400;
+
+/** A full spin inside one slot of the loop; flat everywhere else. */
+function turnKeyframes(axis: "X" | "Y", slot: number): Keyframe[] {
+  const start = slot / SLOTS;
+  const end = start + TURN_MS / LOOP_MS;
+  return [
+    { transform: `rotate${axis}(0deg)`, offset: 0 },
+    { transform: `rotate${axis}(0deg)`, offset: start, easing: "ease-in-out" },
+    { transform: `rotate${axis}(360deg)`, offset: end },
+    { transform: `rotate${axis}(360deg)`, offset: 1 },
+  ];
+}
+
+function prefersReducedMotion() {
+  return typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+}
+
+type Turn = { axis: "X" | "Y"; index: number };
+
+/** A random order for which row or column turns in each slot. */
+function shuffledTurns(): Turn[] {
+  const turns: Turn[] = [0, 1, 2].flatMap((index) => [
+    { axis: "X" as const, index },
+    { axis: "Y" as const, index },
+  ]);
+  for (let i = turns.length - 1; i > 0; i -= 1) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [turns[i], turns[j]] = [turns[j], turns[i]];
+  }
+  return turns;
+}
+
+export interface ThinkingCubeProps {
+  /** Size of one tile, in pixels. Default 9. */
+  tileSize?: number;
+  /** Accessible name for the status it represents. Default "Thinking". */
+  label?: string;
+  className?: string;
+}
+
+/**
+ * A 3x3 grid of white tiles that turns in 3D, a row or column at a time,
+ * like a cube being worked. Real CSS 3D transforms, no scene or model.
+ * Pauses with reduced motion on.
+ */
+export function ThinkingCube({ tileSize = 9, label = "Thinking", className }: ThinkingCubeProps) {
+  const rowRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const cellRefs = useRef<(HTMLSpanElement | null)[]>([]);
+
+  useEffect(() => {
+    if (prefersReducedMotion()) return;
+    const animations: Animation[] = [];
+    const options = { duration: LOOP_MS, iterations: Number.POSITIVE_INFINITY };
+
+    shuffledTurns().forEach((turn, slot) => {
+      if (turn.axis === "X") {
+        const wrapper = rowRefs.current[turn.index];
+        if (wrapper?.animate) animations.push(wrapper.animate(turnKeyframes("X", slot), options));
+        return;
+      }
+      for (let row = 0; row < GRID; row += 1) {
+        const cell = cellRefs.current[row * GRID + turn.index];
+        if (cell?.animate) animations.push(cell.animate(turnKeyframes("Y", slot), options));
+      }
+    });
+
+    return () => {
+      for (const animation of animations) animation.cancel();
+    };
+  }, []);
+
+  const gap = Math.max(1, Math.round(tileSize * 0.15));
+
+  return (
+    <div
+      role="status"
+      aria-label={label}
+      className={cn("inline-block", className)}
+      style={{ perspective: tileSize * 18 }}
+    >
+      <div className="flex flex-col" style={{ gap, transformStyle: "preserve-3d" }}>
+        {Array.from({ length: GRID }, (_, row) => (
+          <div
+            // biome-ignore lint/suspicious/noArrayIndexKey: a fixed 3x3 grid, rows never reorder.
+            key={row}
+            ref={(el) => {
+              rowRefs.current[row] = el;
+            }}
+            className="flex"
+            style={{ gap, transformStyle: "preserve-3d" }}
+          >
+            {Array.from({ length: GRID }, (_, col) => (
+              <span
+                // biome-ignore lint/suspicious/noArrayIndexKey: a fixed 3x3 grid, columns never reorder.
+                key={col}
+                ref={(el) => {
+                  cellRefs.current[row * GRID + col] = el;
+                }}
+                aria-hidden="true"
+                className="block rounded-[2px] bg-white shadow-[inset_0_0_0_1px_rgba(0,0,0,0.1)]"
+                style={{ width: tileSize, height: tileSize }}
+              />
+            ))}
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
 
 export interface ShimmerTextProps {
   children: ReactNode;
