@@ -22,6 +22,21 @@ export const previews: Record<string, ComponentType> = {
   "motion/range-slider": dynamic(() =>
     import("./motion/range-slider.preview").then((m) => m.RangeSliderPreview),
   ),
+  "motion/pull-to-refresh": dynamic(() =>
+    import("./motion/pull-to-refresh.preview").then((m) => m.PullToRefreshPreview),
+  ),
+  "motion/notification-stack": dynamic(() =>
+    import("./motion/notification-stack.preview").then((m) => m.NotificationStackPreview),
+  ),
+  "motion/expandable-tabs": dynamic(() =>
+    import("./motion/expandable-tabs.preview").then((m) => m.ExpandableTabsPreview),
+  ),
+  "motion/morphing-search": dynamic(() =>
+    import("./motion/morphing-search.preview").then((m) => m.MorphingSearchPreview),
+  ),
+  "motion/dynamic-island": dynamic(() =>
+    import("./motion/dynamic-island.preview").then((m) => m.DynamicIslandPreview),
+  ),
   "motion/hold-to-confirm": dynamic(() =>
     import("./motion/hold-to-confirm.preview").then((m) => m.HoldToConfirmPreview),
   ),

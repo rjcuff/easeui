@@ -111,6 +111,56 @@ export const catalog: CategoryEntry[] = [
         keywords: ["react slider", "range slider", "stepped slider"],
       },
       {
+        slug: "pull-to-refresh",
+        name: "Pull to Refresh",
+        description:
+          "A pull-down gesture over scrollable content: the indicator tracks the finger 1:1, then resists past the trigger distance and spins while refreshing.",
+        file: "components/motion/pull-to-refresh.tsx",
+        badge: "new",
+        launchedAt: "2026-09-15",
+        keywords: ["pull to refresh", "gesture", "mobile refresh", "swipe down"],
+      },
+      {
+        slug: "notification-stack",
+        name: "Notification Stack",
+        description:
+          "A deck of notification cards: collapsed to the top card with peeking edges behind it, fanning into a readable list on hover or focus.",
+        file: "components/motion/notification-stack.tsx",
+        badge: "new",
+        launchedAt: "2026-09-15",
+        keywords: ["notification stack", "card stack", "notification center"],
+      },
+      {
+        slug: "expandable-tabs",
+        name: "Expandable Tabs",
+        description:
+          "A row of icon tabs where the selected one expands to reveal its label, sliding a shared background pill to match.",
+        file: "components/motion/expandable-tabs.tsx",
+        badge: "new",
+        launchedAt: "2026-09-15",
+        keywords: ["expandable tabs", "icon tabs", "segmented control"],
+      },
+      {
+        slug: "morphing-search",
+        name: "Morphing Search",
+        description:
+          "A circular search button that morphs into a text field: the same element grows and reshapes via a layout animation, rather than a new one popping in beside it.",
+        file: "components/motion/morphing-search.tsx",
+        badge: "new",
+        launchedAt: "2026-09-15",
+        keywords: ["morphing search", "expanding search", "search bar animation"],
+      },
+      {
+        slug: "dynamic-island",
+        name: "Dynamic Island",
+        description:
+          "A pill that morphs between a compact status line and any number of named live-activity views — the same element reshaping via layout animation each time.",
+        file: "components/motion/dynamic-island.tsx",
+        badge: "new",
+        launchedAt: "2026-09-15",
+        keywords: ["dynamic island", "morphing pill", "status pill"],
+      },
+      {
         slug: "hold-to-confirm",
         name: "Hold to Confirm",
         description:
@@ -451,11 +501,11 @@ export const catalog: CategoryEntry[] = [
         slug: "flowchart",
         name: "Flowchart",
         description:
-          "A sequence of steps on a dotted canvas, connected by curves that measure the actual cards and follow as you drag one. Click a step to light up its connectors.",
+          "A sequence of steps on a dotted canvas, connected by curves that measure the actual cards and follow as you drag one. Click a step to light up its connectors, or edit an if/else step's chips with real dropdowns.",
         file: "components/motion/flowchart.tsx",
         badge: "new",
         launchedAt: "2026-09-15",
-        keywords: ["agent workflow", "flowchart", "node canvas"],
+        keywords: ["agent workflow", "flowchart", "node canvas", "if else", "condition"],
       },
       {
         slug: "tool-chip",

@@ -72,6 +72,29 @@ const setValue = (next: T) => {
 Boolean toggles use `checked`/`defaultChecked`/`onCheckedChange` instead of
 `value`/`onChange` (matches the native `<input type="checkbox">` naming).
 
+## Compound "named slot" props
+
+When a component can show one of several *distinct* pieces of content in
+an expanded or active state — not just an on/off toggle — a rigid enum of
+named props (`compact`, `expandedA`, `expandedB`, ...) doesn't scale.
+Dynamic Island's live-activity views (a call, a timer, a music player — any
+number of them) instead take a compound shape:
+
+```tsx
+<DynamicIsland view={activeId} compact={<>...</>}>
+  <DynamicIslandView id="call">...</DynamicIslandView>
+  <DynamicIslandView id="timer">...</DynamicIslandView>
+</DynamicIsland>
+```
+
+`DynamicIslandView` is never rendered on its own — it's read via
+`Children.toArray(children).filter(isValidElement)`, then matched by `id`
+against `view`. No shared context is needed here, since there's no
+per-child interactive state to coordinate (contrast with Tabs'
+`TabsContent`, which does need context for keyboard nav). Reach for this
+shape whenever "expanded" isn't one fixed layout but a family of them
+selected by id.
+
 ## Choosing how to animate: WAAPI vs motion/react vs plain CSS
 
 This is the single most common judgment call. Load the `pick-ui-library`
@@ -130,6 +153,41 @@ completely when it's true — never just makes it faster. If the component
 also depends on off-screen state (ThinkingCube, PixelLoader), pair reduced
 motion with the check, don't add a separate opt-out.
 
+## Layout-animation gotchas
+
+Two failure modes came up repeatedly while building components that morph
+shape via the `layout` prop (Dynamic Island, Morphing Search, Notification
+Stack's peek-to-list expansion):
+
+- **Nested content stretches during the resize.** `layout` on a container
+  animates its shape change via a scale-correction transform (a FLIP), and
+  that correction only propagates to *other* `layout`-aware descendants. A
+  child that isn't marked `layout` gets visually stretched or squashed
+  non-uniformly while the parent resizes around it — most obvious on text,
+  but it hits icons too (Morphing Search's collapsed icon looked warped
+  before this was fixed). Mark the content that swaps in — the compact
+  line, the expanded card, the icon button — with `layout` as well, not
+  just the outer shell. If something newly revealed still looks off mid
+  transition, delay its opacity fade-in (`animate={{ opacity: 1,
+  transition: { delay: ... } }}`) until the shape change is mostly
+  settled, so it only appears once it's actually the right size.
+- **A list collapsing reads as two separate motions instead of one.** When
+  `AnimatePresence` removes items from a `layout`-driven list, the default
+  `mode="sync"` keeps exiting items in normal flow until they finish
+  animating out — so a remaining sibling's `layout` reflow only happens
+  *after* they unmount, reading as "items fade, then the stack suddenly
+  snaps shut." `mode="popLayout"` pulls exiting items out of flow
+  immediately so the reflow animates in parallel with the fade.
+  ToolApproval already relies on this; Notification Stack and Morphing
+  Search needed it added too.
+
+A spring with visible bounce (`bounce` above 0) is a deliberate exception
+to this library's usual bounce:0 rule, reserved for a component that's
+meant to feel soft or alive rather than a stiff panel (Dynamic Island's
+shell uses `bounce: 0.35`). Say so in a comment when reaching for it — it
+should read as an intentional choice, not an oversight, and it should stay
+rare.
+
 ## Recipes seen more than once
 
 **Crossfading swap in a shared slot** (CopyButton's icon↔check, PromptInput's
@@ -180,6 +238,43 @@ const POP: Keyframe[] = [
 - Disabled: `disabled:pointer-events-none disabled:opacity-50`.
 - `className` is always the last prop, merged with `cn(...)` (tailwind-merge)
   so a consumer's override wins.
+- `bg-muted` and `bg-card` resolve to the *same* color in this theme
+  (`--muted: var(--card)`), so a `bg-muted` highlight drawn on top of a
+  `bg-card` surface is invisible — this exact bug shipped once before being
+  caught by actually looking at a screenshot. When two stacked surfaces
+  need to visibly contrast, reach for `bg-background` against `bg-card`
+  instead (those two do differ, in both themes), and don't trust a token
+  pair to contrast without checking a rendered screenshot.
+- A decorative element that needs to sit *behind* its in-flow siblings via
+  `position: absolute` plus a negative `z-index` needs its parent to
+  actually establish a stacking context, or the negative z-index escapes
+  to a higher ancestor and can render behind the component's own
+  background — or the page. Add `isolate` to the parent alongside
+  `relative`, then layer `-z-10`, `-z-20`, etc. on the decorative elements
+  from front to back.
+
+## A clickable row that contains its own buttons
+
+Flowchart's condition card and Notification Stack's hover-to-expand
+wrapper both needed the same shape: an outer element that reacts to a
+click or hover (select a card, expand a stack), while still containing
+independently-clickable children (a dropdown chip, a "View all" button). A
+native
+`<button>` can't nest another `<button>` — it's invalid HTML and breaks
+the inner control. Use `<div role="button" tabIndex={0} onClick={...}
+onKeyDown={...}>` for the outer element instead, and suppress the
+resulting biome rule with a comment that says *why*, not just that it's
+suppressed:
+
+```tsx
+// biome-ignore lint/a11y/useSemanticElements: a <button> can't nest the chip buttons inside it.
+<div role="button" tabIndex={0} ...>
+```
+
+A wrapper that only listens for hover or focus (no click, no role at all)
+trips `lint/a11y/noStaticElementInteractions` instead — same fix, worded
+around what's actually inside: "only tracks hover to expand the stack;
+every card underneath is its own focusable control."
 
 ## Comments
 

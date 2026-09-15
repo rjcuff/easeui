@@ -4,6 +4,7 @@ import { LayoutGrid } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
+import { NewDot } from "@/components/app/new-indicator";
 import { Button } from "@/components/motion/button";
 import { Drawer } from "@/components/motion/drawer";
 import { registry } from "@/lib/registry";
@@ -24,12 +25,16 @@ function NavLink({
   href,
   label,
   active,
+  badge,
+  launchedAt,
   onNavigate,
   className,
 }: {
   href: string;
   label: string;
   active: boolean;
+  badge?: string;
+  launchedAt?: string;
   onNavigate?: () => void;
   className?: string;
 }) {
@@ -39,14 +44,15 @@ function NavLink({
       onClick={onNavigate}
       aria-current={active ? "page" : undefined}
       className={cn(
-        "flex min-h-9 items-center rounded-lg px-3 text-sm transition-colors duration-150",
+        "flex min-h-9 items-center gap-1.5 rounded-lg px-3 text-sm transition-colors duration-150",
         active
           ? "bg-muted text-foreground"
           : "text-muted-foreground hover:bg-muted hover:text-foreground",
         className,
       )}
     >
-      {label}
+      <span className="truncate">{label}</span>
+      {badge === "new" ? <NewDot launchedAt={launchedAt} /> : null}
     </Link>
   );
 }
@@ -69,9 +75,10 @@ function NavLinks({ pathname, onNavigate }: { pathname: string; onNavigate?: () 
           <Link
             href={`/components/${category.slug}`}
             onClick={onNavigate}
-            className="px-3 py-1 text-xs font-medium uppercase tracking-wide text-muted-foreground/70 transition-colors duration-150 hover:text-foreground"
+            className="flex items-center gap-1.5 px-3 py-1 text-xs font-medium uppercase tracking-wide text-muted-foreground/70 transition-colors duration-150 hover:text-foreground"
           >
             {category.name}
+            <span className="text-muted-foreground/50">{category.components.length}</span>
           </Link>
           {category.components.map((component) => {
             const href = `/components/${category.slug}/${component.slug}`;
@@ -80,6 +87,8 @@ function NavLinks({ pathname, onNavigate }: { pathname: string; onNavigate?: () 
                 key={component.slug}
                 href={href}
                 label={component.name}
+                badge={component.badge}
+                launchedAt={component.launchedAt}
                 active={pathname === href}
                 onNavigate={onNavigate}
               />
