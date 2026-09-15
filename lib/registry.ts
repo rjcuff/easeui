@@ -312,6 +312,16 @@ export const catalog: CategoryEntry[] = [
         launchedAt: "2026-09-14",
         keywords: ["otp input", "pin input", "verification code"],
       },
+      {
+        slug: "file-upload",
+        name: "File Upload",
+        description:
+          "Dropzone that also opens the native file picker, with a list below it that pops each file in and collapses smoothly on remove.",
+        file: "components/motion/file-upload.tsx",
+        badge: "new",
+        launchedAt: "2026-09-14",
+        keywords: ["file upload", "dropzone", "drag and drop"],
+      },
     ],
   },
   {
@@ -369,6 +379,16 @@ export const catalog: CategoryEntry[] = [
         badge: "new",
         launchedAt: "2026-09-14",
         keywords: ["ai response actions", "copy retry feedback", "chat response toolbar"],
+      },
+      {
+        slug: "prompt-input",
+        name: "Prompt Input",
+        description:
+          "A chat composer that grows with its content, submits on Enter, and crossfades its send button into a stop button while a reply streams.",
+        file: "components/motion/prompt-input.tsx",
+        badge: "new",
+        launchedAt: "2026-09-14",
+        keywords: ["chat input", "prompt input", "message composer"],
       },
     ],
   },

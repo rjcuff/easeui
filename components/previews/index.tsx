@@ -85,6 +85,9 @@ export const previews: Record<string, ComponentType> = {
   "motion/otp-input": dynamic(() =>
     import("./motion/otp-input.preview").then((m) => m.OtpInputPreview),
   ),
+  "motion/file-upload": dynamic(() =>
+    import("./motion/file-upload.preview").then((m) => m.FileUploadPreview),
+  ),
   "agents/message-bubble": dynamic(() =>
     import("./agents/message-bubble.preview").then((m) => m.MessageBubblePreview),
   ),
@@ -99,6 +102,9 @@ export const previews: Record<string, ComponentType> = {
   ),
   "agents/streaming-response": dynamic(() =>
     import("./agents/streaming-response.preview").then((m) => m.StreamingResponsePreview),
+  ),
+  "agents/prompt-input": dynamic(() =>
+    import("./agents/prompt-input.preview").then((m) => m.PromptInputPreview),
   ),
 };
 
