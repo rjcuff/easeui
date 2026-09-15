@@ -24,7 +24,7 @@ export interface OtpInputProps {
   onVerify?: (value: string) => boolean | Promise<boolean>;
   /** Shakes the boxes once and switches the ring to the destructive color. Ignored while onVerify is set. */
   invalid?: boolean;
-  /** Switches the ring to the success color and pops in a check beside the boxes. Ignored while onVerify is set. */
+  /** Switches the ring to the success color and shows a check below the boxes. Ignored while onVerify is set. */
   success?: boolean;
   disabled?: boolean;
   /** Name for a hidden input, so the code submits with a plain HTML form. */
@@ -46,42 +46,23 @@ const POP: Keyframe[] = [
   { transform: "scale(1)", opacity: 1 },
 ];
 
-const CHECK_POP: Keyframe[] = [
-  { transform: "scale(0.6)", opacity: 0 },
-  { transform: "scale(1)", opacity: 1 },
-];
+// The spinner and the check share a grid cell and a text slot, crossfading with a
+// small scale, so success reads as the spinner settling into a check rather than
+// a new element appearing next to the boxes.
+const SWAP = "col-start-1 row-start-1 transition-[opacity,scale] duration-200 ease-out motion-reduce:transition-none";
+const SHOWN = "scale-100 opacity-100";
+const HIDDEN = "scale-50 opacity-0";
 
 function prefersReducedMotion() {
   return typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-}
-
-/** The check that pops in beside the boxes once the code is marked correct. */
-function SuccessCheck() {
-  const ref = useRef<HTMLSpanElement>(null);
-
-  useEffect(() => {
-    const el = ref.current;
-    if (!el || prefersReducedMotion()) return;
-    el.animate(CHECK_POP, { duration: 200, easing: EASE_OUT_CSS });
-  }, []);
-
-  return (
-    <span
-      ref={ref}
-      aria-hidden="true"
-      className="inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-success/15 text-success"
-    >
-      <Check className="h-3.5 w-3.5" strokeWidth={3} />
-    </span>
-  );
 }
 
 /**
  * A verification code as one box per digit. Typing advances to the next box,
  * Backspace steps back through empty ones, and pasting or an SMS autofill
  * spreads its digits across the remaining boxes. Marking it invalid gives the
- * row a short, gentle shake; marking it a success pops a check in beside it.
- * Pass onVerify and the input runs the whole check-and-color cycle itself.
+ * row a short, gentle shake. Pass onVerify and the input runs the whole
+ * check-and-color cycle itself, morphing its own spinner into a check.
  */
 export function OtpInput({
   length = 6,
@@ -101,6 +82,7 @@ export function OtpInput({
   const digits = (isControlled ? value : uncontrolled).slice(0, length);
   const refs = useRef<(HTMLInputElement | null)[]>([]);
   const rootRef = useRef<HTMLFieldSetElement>(null);
+  const statusRef = useRef<HTMLSpanElement>(null);
   const prevDigits = useRef(digits);
   const wasComplete = useRef(false);
   const verifyToken = useRef(0);
@@ -110,6 +92,7 @@ export function OtpInput({
   const checking = Boolean(onVerify) && status === "checking";
   const effectiveInvalid = onVerify ? status === "invalid" : invalid;
   const effectiveSuccess = onVerify ? status === "success" : success;
+  const showStatus = checking || effectiveSuccess;
 
   const setValue = (next: string) => {
     const clipped = next.slice(0, length);
@@ -160,6 +143,19 @@ export function OtpInput({
     root.animate(SHAKE, { duration: 260, delay: 80, easing: "ease-out" });
   }, [effectiveInvalid]);
 
+  // Fades the status row in once, when it first appears. This only fires on the
+  // idle-to-visible edge: showStatus stays true straight through checking turning
+  // into success, so that transition is left entirely to the spinner-to-check
+  // crossfade below, rather than replaying an entrance on top of it.
+  useEffect(() => {
+    const el = statusRef.current;
+    if (!showStatus || !el || prefersReducedMotion()) return;
+    el.animate([{ opacity: 0, transform: "translateY(4px)" }, { opacity: 1, transform: "translateY(0)" }], {
+      duration: 150,
+      easing: EASE_OUT_CSS,
+    });
+  }, [showStatus]);
+
   const focusInput = (index: number) => refs.current[index]?.focus();
 
   const onInputChange = (index: number, raw: string) => {
@@ -196,44 +192,53 @@ export function OtpInput({
 
   return (
     <div className="flex flex-col items-center gap-3">
-      <div className="inline-flex items-center gap-3">
-        <fieldset ref={rootRef} className={cn("m-0 inline-flex gap-2 border-0 p-0", className)}>
-          <legend className="sr-only">Verification code</legend>
-          {Array.from({ length }, (_, index) => index).map((index) => (
-            <input
-              key={index}
-              ref={(el) => {
-                refs.current[index] = el;
-              }}
-              type="text"
-              inputMode="numeric"
-              autoComplete={index === 0 ? "one-time-code" : "off"}
-              maxLength={length}
-              disabled={disabled || checking}
-              aria-invalid={effectiveInvalid}
-              value={digits[index] ?? ""}
-              onChange={(event) => onInputChange(index, event.target.value)}
-              onKeyDown={(event) => onKeyDown(index, event)}
-              onPaste={(event) => onPaste(index, event)}
-              onFocus={(event) => event.target.select()}
-              className={cn(
-                "h-12 w-10 rounded-xl bg-card text-center text-lg font-medium text-foreground shadow-[0_0_0_1px_var(--border-strong)] outline-none transition-shadow duration-150 ease-out",
-                "focus:shadow-[0_0_0_2px_var(--accent)]",
-                effectiveSuccess
-                  ? "shadow-[0_0_0_2px_var(--success)]"
-                  : "aria-invalid:shadow-[0_0_0_2px_var(--destructive)]",
-                "disabled:cursor-not-allowed disabled:opacity-50",
-              )}
+      <fieldset ref={rootRef} className={cn("m-0 inline-flex gap-2 border-0 p-0", className)}>
+        <legend className="sr-only">Verification code</legend>
+        {Array.from({ length }, (_, index) => index).map((index) => (
+          <input
+            key={index}
+            ref={(el) => {
+              refs.current[index] = el;
+            }}
+            type="text"
+            inputMode="numeric"
+            autoComplete={index === 0 ? "one-time-code" : "off"}
+            maxLength={length}
+            disabled={disabled || checking}
+            aria-invalid={effectiveInvalid}
+            value={digits[index] ?? ""}
+            onChange={(event) => onInputChange(index, event.target.value)}
+            onKeyDown={(event) => onKeyDown(index, event)}
+            onPaste={(event) => onPaste(index, event)}
+            onFocus={(event) => event.target.select()}
+            className={cn(
+              "h-12 w-10 rounded-xl bg-card text-center text-lg font-medium text-foreground shadow-[0_0_0_1px_var(--border-strong)] outline-none transition-shadow duration-150 ease-out",
+              "focus:shadow-[0_0_0_2px_var(--accent)]",
+              effectiveSuccess
+                ? "shadow-[0_0_0_2px_var(--success)]"
+                : "aria-invalid:shadow-[0_0_0_2px_var(--destructive)]",
+              "disabled:cursor-not-allowed disabled:opacity-50",
+            )}
+          />
+        ))}
+        {name ? <input type="hidden" name={name} value={digits} /> : null}
+      </fieldset>
+      {showStatus ? (
+        <span ref={statusRef} role="status" className="inline-flex items-center gap-2 text-xs font-medium">
+          <span aria-hidden="true" className="grid h-3.5 w-3.5 place-items-center">
+            <Loader2
+              className={cn(SWAP, "h-3.5 w-3.5 animate-spin text-muted-foreground", checking ? SHOWN : HIDDEN)}
             />
-          ))}
-          {name ? <input type="hidden" name={name} value={digits} /> : null}
-        </fieldset>
-        {effectiveSuccess ? <SuccessCheck /> : null}
-      </div>
-      {checking ? (
-        <span role="status" className="inline-flex items-center gap-2 text-xs text-muted-foreground">
-          <Loader2 aria-hidden="true" className="h-3.5 w-3.5 animate-spin" />
-          Verifying
+            <Check
+              strokeWidth={3}
+              className={cn(SWAP, "h-3.5 w-3.5 text-success", checking ? HIDDEN : SHOWN)}
+            />
+          </span>
+          <span aria-hidden="true" className="grid">
+            <span className={cn(SWAP, "text-muted-foreground", checking ? SHOWN : HIDDEN)}>Verifying</span>
+            <span className={cn(SWAP, "text-success", checking ? HIDDEN : SHOWN)}>Verified</span>
+          </span>
+          <span className="sr-only">{checking ? "Verifying" : "Verified"}</span>
         </span>
       ) : null}
     </div>
