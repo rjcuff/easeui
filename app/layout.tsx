@@ -6,7 +6,6 @@ import "./globals.css";
 import { GoogleAnalytics } from "@/components/app/analytics/google-analytics";
 import { JsonLd } from "@/components/app/analytics/json-ld";
 import { KeyboardShortcuts } from "@/components/app/chrome/keyboard-shortcuts";
-import { SiteFrame } from "@/components/app/chrome/site-frame";
 import { SiteHeader } from "@/components/app/chrome/site-header";
 import { ThemeProvider } from "@/components/app/chrome/theme-provider";
 import { getGithubStarCount } from "@/lib/github";
@@ -100,7 +99,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
           <KeyboardShortcuts />
           <SiteHeader githubStarCount={githubStarCount} />
           <main className="mx-auto flex w-full max-w-6xl flex-col px-4 pt-14 md:px-6">
-            <SiteFrame>{children}</SiteFrame>
+            {children}
           </main>
           {isProduction ? <Analytics /> : null}
           {isProduction ? <SpeedInsights /> : null}
