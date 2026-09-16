@@ -16,17 +16,17 @@ curl -fsS https://easeui.dev/r/registry.json
 ```
 
 2. Pick the closest install slug from `items[].name`.
-3. Install with the user's package runner, using the direct registry URL — it always works, with no dependency on the `@easeui` namespace being registered with shadcn's directory:
+3. Install with the user's package runner:
 
 ```bash
-npx shadcn@latest add https://easeui.dev/r/<slug>.json
+npx shadcn@latest add @easeui/<slug>
 # or
-pnpm dlx shadcn@latest add https://easeui.dev/r/<slug>.json
+pnpm dlx shadcn@latest add @easeui/<slug>
 # or
-bunx --bun shadcn@latest add https://easeui.dev/r/<slug>.json
+bunx --bun shadcn@latest add @easeui/<slug>
 ```
 
-Once `@easeui` is registered (check `npx shadcn@latest add @easeui/<slug>`), that shorter form works too — prefer it if it resolves.
+If that ever fails to resolve, fall back to the direct registry URL: `npx shadcn@latest add https://easeui.dev/r/<slug>.json`.
 
 4. Read the files that were added, then compose with the named exports. There is no `easeui` runtime package — every component becomes your own source.
 

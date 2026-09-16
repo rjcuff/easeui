@@ -59,24 +59,16 @@ easeUI works in any React project that uses Tailwind CSS 4 and the shadcn CLI.
 npx shadcn@latest init
 ```
 
-**2. Add a component** straight from its registry URL.
-
-```bash
-npx shadcn@latest add https://easeui.dev/r/toast.json
-```
-
-Or register easeUI once in `components.json` and add components by name.
-
-```json
-{
-  "registries": {
-    "@easeui": "https://easeui.dev/r/{name}.json"
-  }
-}
-```
+**2. Add a component.** easeUI is listed in [shadcn's registry directory](https://ui.shadcn.com/docs/directory) under the `@easeui` namespace, so this works with no extra setup.
 
 ```bash
 npx shadcn@latest add @easeui/toast
+```
+
+Or install straight from the registry URL, which works the same way.
+
+```bash
+npx shadcn@latest add https://easeui.dev/r/toast.json
 ```
 
 **3. Use it.**
