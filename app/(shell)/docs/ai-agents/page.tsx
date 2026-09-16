@@ -27,15 +27,15 @@ export const metadata: Metadata = {
 };
 
 const MCP_CLIENTS = [
-  { name: "Claude Code", code: `claude mcp add --transport http easeui ${SITE_URL}/mcp` },
-  { name: "Codex", code: `codex mcp add easeui --url ${SITE_URL}/mcp` },
+  { name: "Claude Code", code: `claude mcp add --transport http easeui ${SITE_URL}/api/mcp` },
+  { name: "Codex", code: `codex mcp add easeui --url ${SITE_URL}/api/mcp` },
 ];
 
 const MCP_MANUAL_CONFIG = `{
   "mcpServers": {
     "easeui": {
       "type": "http",
-      "url": "${SITE_URL}/mcp"
+      "url": "${SITE_URL}/api/mcp"
     }
   }
 }`;
@@ -81,7 +81,7 @@ export default function AiAgentsPage() {
         <p className="text-sm leading-6 text-muted-foreground">
           Connect the hosted easeUI MCP server at{" "}
           <code className="rounded bg-foreground/5 px-1.5 py-0.5 font-mono text-xs text-foreground">
-            {SITE_URL}/mcp
+            {SITE_URL}/api/mcp
           </code>
           .
         </p>

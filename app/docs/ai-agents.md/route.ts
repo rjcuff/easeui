@@ -28,14 +28,14 @@ npx skills add rjcuff/easeui --skill easeui
 
 ## MCP server
 
-Connect the hosted easeUI MCP server at \`${SITE_URL}/mcp\`.
+Connect the hosted easeUI MCP server at \`${SITE_URL}/api/mcp\`.
 
 \`\`\`bash
 # Claude Code
-claude mcp add --transport http easeui ${SITE_URL}/mcp
+claude mcp add --transport http easeui ${SITE_URL}/api/mcp
 
 # Codex
-codex mcp add easeui --url ${SITE_URL}/mcp
+codex mcp add easeui --url ${SITE_URL}/api/mcp
 \`\`\`
 
 Manual configuration:
@@ -45,7 +45,7 @@ Manual configuration:
   "mcpServers": {
     "easeui": {
       "type": "http",
-      "url": "${SITE_URL}/mcp"
+      "url": "${SITE_URL}/api/mcp"
     }
   }
 }

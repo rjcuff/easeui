@@ -102,7 +102,7 @@ The live registry is the source of truth. Use the table below only to resolve co
 
 ## Agent tooling
 
-- MCP server: `https://easeui.dev/mcp` (Streamable HTTP). Tools: `list_components`, `search_components`, `get_component`, `get_install_command`.
+- MCP server: `https://easeui.dev/api/mcp` (Streamable HTTP). Tools: `list_components`, `search_components`, `get_component`, `get_install_command`.
 - Machine-readable index: `https://easeui.dev/llms.txt` and `https://easeui.dev/r`.
 
 ## In this repo
