@@ -16,8 +16,8 @@ export function PullToRefreshPreview() {
   };
 
   return (
-    <div className="w-full max-w-sm">
-      <PullToRefresh onRefresh={handleRefresh} className="h-72 bg-card shadow-[0_0_0_1px_var(--border)]">
+    <div className="w-full max-w-sm rounded-2xl bg-card shadow-[0_0_0_1px_var(--border)]">
+      <PullToRefresh onRefresh={handleRefresh} className="h-72">
         <ul className="flex flex-col divide-y divide-border p-2">
           {items.map((item) => (
             <li key={item} className="px-3 py-3 text-sm text-foreground">

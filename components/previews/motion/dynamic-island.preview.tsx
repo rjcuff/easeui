@@ -55,7 +55,7 @@ export function DynamicIslandPreview() {
           </>
         }
       >
-        <DynamicIslandView id="call" className="gap-4">
+        <DynamicIslandView id="call">
           <div className="flex flex-col">
             <span className="text-[10px] uppercase tracking-wider text-background/60">Incoming call</span>
             <span className="text-sm font-semibold">Priya</span>
@@ -80,13 +80,15 @@ export function DynamicIslandPreview() {
           </div>
         </DynamicIslandView>
 
-        <DynamicIslandView id="timer" className="gap-3">
+        <DynamicIslandView id="timer">
           <Timer className="h-4 w-4 text-warning" aria-hidden="true" />
           <span className="text-[10px] uppercase tracking-wider text-background/60">Focus timer</span>
-          <NumberTicker value={seconds} format={formatClock} className="text-sm font-semibold" />
+          <span className="text-sm font-semibold">
+            <NumberTicker value={seconds} format={formatClock} />
+          </span>
         </DynamicIslandView>
 
-        <DynamicIslandView id="music" className="gap-3">
+        <DynamicIslandView id="music">
           <span className="flex h-7 w-7 items-center justify-center rounded-lg bg-background/15">
             <Music2 className="h-3.5 w-3.5" aria-hidden="true" />
           </span>
