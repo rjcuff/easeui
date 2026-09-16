@@ -52,6 +52,9 @@ export const previews: Record<string, ComponentType> = {
   "motion/gradient-text": dynamic(() =>
     import("./motion/gradient-text.preview").then((m) => m.GradientTextPreview),
   ),
+  "motion/text-animation": dynamic(() =>
+    import("./motion/text-animation.preview").then((m) => m.TextAnimationPreview),
+  ),
   "motion/modal": dynamic(() =>
     import("./motion/modal.preview").then((m) => m.ModalPreview),
   ),

@@ -407,6 +407,16 @@ export const catalog: CategoryEntry[] = [
         launchedAt: "2026-09-15",
         keywords: ["diff view", "code diff", "line diff"],
       },
+      {
+        slug: "text-animation",
+        name: "Text Animation",
+        description:
+          "One component, three ways to animate text: a scramble that resolves into place, a word or character reveal out of a blur, and a loading shimmer sweep.",
+        file: "components/motion/text-animation.tsx",
+        badge: "new",
+        launchedAt: "2026-09-15",
+        keywords: ["text scramble", "text reveal", "text shimmer", "animated text"],
+      },
     ],
   },
   {
