@@ -3,19 +3,9 @@
 import { useState } from "react";
 import { CopyButton } from "@/components/app/docs/copy-button";
 import { Tabs, TabsList, TabsTrigger } from "@/components/motion/tabs";
+import { installCommand, PACKAGE_MANAGERS as PMS, PM_COMMANDS, REGISTRY_NAMESPACE, type PackageManager as PM } from "@/lib/install-command";
 import { cn } from "@/lib/utils";
 
-const PM_COMMANDS = {
-  bun: "bunx --bun",
-  npm: "npx",
-  pnpm: "pnpm dlx",
-  yarn: "yarn dlx",
-} as const;
-
-type PM = keyof typeof PM_COMMANDS;
-const PMS = Object.keys(PM_COMMANDS) as PM[];
-
-const REGISTRY_NAMESPACE = "@easeui";
 /** Shown when no specific component is given, such as on the homepage. */
 const PLACEHOLDER = "component-name";
 
@@ -28,7 +18,7 @@ export function InstallCommand({
 }) {
   const [pm, setPm] = useState<PM>("bun");
   const name = slug ?? PLACEHOLDER;
-  const command = `${PM_COMMANDS[pm]} shadcn add ${REGISTRY_NAMESPACE}/${name}`;
+  const command = installCommand(name, pm);
 
   return (
     <div

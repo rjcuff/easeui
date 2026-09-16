@@ -32,6 +32,7 @@ const ENTRIES: Entry[] = [
   ),
   { id: "page/playground", label: "Playground", group: "Pages", href: "/playground", terms: "playground motion easing spring press popover modal stagger" },
   { id: "page/theme", label: "Theme setup", group: "Pages", href: "/docs/theme", terms: "theme setup tokens css install colors" },
+  { id: "page/ai-agents", label: "Agent guide", group: "Pages", href: "/docs/ai-agents", terms: "agent guide mcp server skill llms.txt registry ai" },
 ];
 
 function search(query: string) {

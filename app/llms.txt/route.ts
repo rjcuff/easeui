@@ -16,6 +16,10 @@ export async function GET() {
   lines.push(`- Raw source (text/plain): ${idx.endpoints.raw}`);
   lines.push(`- Component Markdown: ${idx.endpoints.markdown}`);
   lines.push("");
+  lines.push("## Guides");
+  lines.push("");
+  lines.push(`- [Agent Guide](${idx.site}/docs/ai-agents.md): Agent skill, MCP server, registry endpoints, and install flows.`);
+  lines.push("");
   lines.push("## Components");
   lines.push("");
   for (const c of idx.components) {

@@ -84,6 +84,13 @@ export default function IntroductionPage() {
           command, swapping in that component's name:
         </p>
         <InstallCommand className="max-w-lg" />
+        <p className="text-sm leading-6 text-muted-foreground">
+          Working with a coding agent? See the{" "}
+          <Link href="/docs/ai-agents" className="text-foreground underline underline-offset-4">
+            agent guide
+          </Link>{" "}
+          for the MCP server, an installable skill, and the machine-readable endpoints.
+        </p>
       </Section>
 
       <Section title="The stack">

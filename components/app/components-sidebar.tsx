@@ -12,6 +12,7 @@ import { cn } from "@/lib/utils";
 
 const TOP_LINKS = [
   { href: "/docs/introduction", label: "Introduction" },
+  { href: "/docs/ai-agents", label: "Agent guide" },
   { href: "/playground", label: "Playground" },
 ];
 

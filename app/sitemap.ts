@@ -12,6 +12,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const staticPages: MetadataRoute.Sitemap = [
     { url: `${SITE}/`, lastModified: newestComponentDate, changeFrequency: "weekly", priority: 1 },
     { url: `${SITE}/docs/introduction`, lastModified: newestComponentDate, changeFrequency: "monthly", priority: 0.8 },
+    { url: `${SITE}/docs/ai-agents`, lastModified: "2026-09-15", changeFrequency: "monthly", priority: 0.7 },
     { url: `${SITE}/components`, lastModified: newestComponentDate, changeFrequency: "weekly", priority: 0.9 },
     { url: `${SITE}/playground`, lastModified: newestComponentDate, changeFrequency: "monthly", priority: 0.6 },
     { url: `${SITE}/docs/theme`, lastModified: "2026-07-04", changeFrequency: "monthly", priority: 0.6 },
