@@ -1,6 +1,6 @@
 import { createMcpHandler } from "mcp-handler";
 import { z } from "zod";
-import { installCommand, PACKAGE_MANAGERS } from "@/lib/install-command";
+import { directInstallCommand, installCommand, PACKAGE_MANAGERS } from "@/lib/install-command";
 import { buildEntry, buildIndex, findCategoryBySlug } from "@/lib/registry-server";
 
 /** Lightweight relevance score over a component's name/slug/description/category. */
@@ -93,7 +93,8 @@ const handler = createMcpHandler((server) => {
                 category: entry.category,
                 page_url: entry.page_url,
                 dependencies: entry.dependencies,
-                install: installCommand(entry.slug),
+                install: directInstallCommand(entry.slug),
+                install_via_namespace: `${installCommand(entry.slug)} (only once @easeui is registered with shadcn's directory)`,
                 files: entry.files,
               },
               null,
@@ -124,8 +125,9 @@ const handler = createMcpHandler((server) => {
               {
                 slug,
                 packageManager,
-                command: installCommand(slug, packageManager),
-                all: PACKAGE_MANAGERS.map((pm) => ({ packageManager: pm, command: installCommand(slug, pm) })),
+                command: directInstallCommand(slug, packageManager),
+                command_via_namespace: `${installCommand(slug, packageManager)} (only once @easeui is registered with shadcn's directory)`,
+                all: PACKAGE_MANAGERS.map((pm) => ({ packageManager: pm, command: directInstallCommand(slug, pm) })),
               },
               null,
               2,
