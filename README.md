@@ -44,8 +44,8 @@ Most animation libraries make interfaces feel busy. easeUI goes the other way. E
 
 Two categories, growing on their own schedule:
 
-- **[Components](https://easeui.dev/components/motion)** — buttons, inputs, overlays, and feedback. Things like a command palette, an OTP input, a number ticker, tabs, toasts, and menus.
-- **[Agents](https://easeui.dev/components/agents)** — pieces for AI interfaces, such as a message bubble, streaming loading states, and a task list.
+- **[Components](https://easeui.dev/components/motion)**: buttons, inputs, overlays, and feedback. Things like a command palette, an OTP input, a number ticker, tabs, toasts, and menus.
+- **[Agents](https://easeui.dev/components/agents)**: pieces for AI interfaces, such as a message bubble, streaming loading states, and a task list.
 
 Every component page has a live preview, the full source, manual install steps, and an API reference. This file doesn't keep its own list, since one more component would make it stale again the same day; browse the current set at [easeui.dev](https://easeui.dev).
 

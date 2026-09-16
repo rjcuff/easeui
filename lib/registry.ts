@@ -154,7 +154,7 @@ export const catalog: CategoryEntry[] = [
         slug: "dynamic-island",
         name: "Dynamic Island",
         description:
-          "A pill that morphs between a compact status line and any number of named live-activity views — the same element reshaping via layout animation each time.",
+          "A pill that morphs between a compact status line and any number of named live-activity views, the same element reshaping via layout animation each time.",
         file: "components/motion/dynamic-island.tsx",
         badge: "new",
         launchedAt: "2026-09-15",
