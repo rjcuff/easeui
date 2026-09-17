@@ -1,21 +1,23 @@
 "use client";
 
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Sparkles } from "lucide-react";
 import { motion, useReducedMotion } from "motion/react";
 import type { ReactNode } from "react";
 import { PressLink } from "@/components/app/press-link";
 import { GradientText } from "@/components/motion/gradient-text";
 import { EASE_OUT } from "@/lib/ease";
-import { COMPONENT_COUNT } from "@/lib/registry";
+import { registry } from "@/lib/registry";
+
+const MOTION_COUNT = registry.find((category) => category.slug === "motion")?.components.length ?? 0;
+const AGENT_COUNT = registry.find((category) => category.slug === "agents")?.components.length ?? 0;
 
 /** Gap between each piece of the hero arriving, in seconds. */
 const STEP = 0.06;
 
 const LINES: ReactNode[] = [
-  "Components that",
+  "Interfaces that",
   <>
-    move{" "}
-    <GradientText>naturally</GradientText>
+    feel <GradientText>considered</GradientText>
   </>,
 ];
 
@@ -34,13 +36,21 @@ export function Hero() {
 
   return (
     <div className="mx-auto flex max-w-3xl flex-col items-center text-center">
-      <motion.span
-        {...enter(0)}
-        className="inline-flex items-center gap-1.5 rounded-full bg-muted px-3 py-1 text-xs font-medium text-muted-foreground shadow-[0_0_0_1px_var(--border)]"
-      >
-        <span aria-hidden="true" className="h-1.5 w-1.5 rounded-full bg-accent" />
-        {COMPONENT_COUNT} components and counting
-      </motion.span>
+      <motion.div {...enter(0)}>
+        <PressLink
+          href="/components/motion"
+          className="group inline-flex items-center gap-2 rounded-full bg-muted py-1 pl-1 pr-3 text-xs font-medium text-muted-foreground shadow-[0_0_0_1px_var(--border)] transition-colors duration-150 hover:text-foreground"
+        >
+          <span
+            aria-hidden="true"
+            className="flex h-5 w-5 items-center justify-center rounded-full bg-accent/15 text-accent"
+          >
+            <Sparkles className="h-3 w-3" />
+          </span>
+          {MOTION_COUNT + AGENT_COUNT} components · copy the source, skip the package
+          <ArrowRight className="h-3.5 w-3.5 transition-transform duration-150 group-hover:translate-x-0.5 motion-reduce:transition-none" />
+        </PressLink>
+      </motion.div>
 
       <h1 className="mt-5 font-display text-5xl font-semibold leading-[0.95] tracking-tight text-foreground sm:text-6xl md:text-7xl">
         {LINES.map((line, index) => (
@@ -55,9 +65,9 @@ export function Hero() {
         {...enter(LINES.length + 1)}
         className="mx-auto mt-6 max-w-lg text-pretty text-base leading-7 text-muted-foreground"
       >
-        easeUI is a set of React components with smooth easing and spring
-        animations. Add them to your project as source files with the shadcn
-        CLI.
+        easeUI is a set of React components with the easing and spring motion
+        already tuned. Copy the source into your project with the shadcn CLI,
+        no package to depend on.
       </motion.p>
 
       <motion.div
