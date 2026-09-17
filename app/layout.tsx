@@ -6,6 +6,7 @@ import "./globals.css";
 import { GoogleAnalytics } from "@/components/app/analytics/google-analytics";
 import { JsonLd } from "@/components/app/analytics/json-ld";
 import { KeyboardShortcuts } from "@/components/app/chrome/keyboard-shortcuts";
+import { MobileSidebarProvider } from "@/components/app/chrome/mobile-sidebar-context";
 import { SiteHeader } from "@/components/app/chrome/site-header";
 import { ThemeProvider } from "@/components/app/chrome/theme-provider";
 import { getGithubStarCount } from "@/lib/github";
@@ -96,11 +97,13 @@ export default async function RootLayout({ children }: { children: React.ReactNo
       <body className="min-h-screen antialiased" suppressHydrationWarning>
         <JsonLd data={siteJsonLd()} />
         <ThemeProvider>
-          <KeyboardShortcuts />
-          <SiteHeader githubStarCount={githubStarCount} />
-          <main className="mx-auto flex w-full max-w-6xl flex-col px-4 pt-14 md:px-6">
-            {children}
-          </main>
+          <MobileSidebarProvider>
+            <KeyboardShortcuts />
+            <SiteHeader githubStarCount={githubStarCount} />
+            <main className="mx-auto flex w-full max-w-6xl flex-col px-4 pt-14 md:px-6">
+              {children}
+            </main>
+          </MobileSidebarProvider>
           {isProduction ? <Analytics /> : null}
           {isProduction ? <SpeedInsights /> : null}
           <GoogleAnalytics measurementId={process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID} />

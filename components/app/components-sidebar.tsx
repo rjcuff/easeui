@@ -1,11 +1,10 @@
 "use client";
 
-import { LayoutGrid } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useState } from "react";
+import { useEffect } from "react";
 import { NewDot } from "@/components/app/new-indicator";
-import { Button } from "@/components/motion/button";
+import { useMobileSidebar } from "@/components/app/chrome/mobile-sidebar-context";
 import { Drawer } from "@/components/motion/drawer";
 import { registry } from "@/lib/registry";
 import { cn } from "@/lib/utils";
@@ -108,7 +107,13 @@ function NavLinks({ pathname, onNavigate }: { pathname: string; onNavigate?: () 
  */
 export function ComponentsSidebar() {
   const pathname = usePathname();
-  const [open, setOpen] = useState(false);
+  const { open, setOpen, registerSidebar } = useMobileSidebar();
+
+  // Tells the header's menu button to open this drawer instead of the site menu, for as long as this page is mounted.
+  useEffect(() => {
+    registerSidebar(true);
+    return () => registerSidebar(false);
+  }, [registerSidebar]);
 
   return (
     <>
@@ -116,17 +121,11 @@ export function ComponentsSidebar() {
         <NavLinks pathname={pathname} />
       </aside>
 
-      <div className="md:hidden">
-        <Button variant="secondary" size="sm" onClick={() => setOpen(true)}>
-          <LayoutGrid aria-hidden="true" className="h-3.5 w-3.5" />
-          Browse components
-        </Button>
-        <Drawer open={open} onOpenChange={setOpen} title="Components">
-          <div className="pb-6">
-            <NavLinks pathname={pathname} onNavigate={() => setOpen(false)} />
-          </div>
-        </Drawer>
-      </div>
+      <Drawer open={open} onOpenChange={setOpen} title="Components">
+        <div className="pb-6">
+          <NavLinks pathname={pathname} onNavigate={() => setOpen(false)} />
+        </div>
+      </Drawer>
     </>
   );
 }

@@ -1,6 +1,6 @@
 "use client";
 
-import { RotateCcw, Share2, ThumbsDown, ThumbsUp } from "lucide-react";
+import { ArrowUpRight, RotateCcw, Share2, ThumbsDown, ThumbsUp } from "lucide-react";
 import { motion, useReducedMotion } from "motion/react";
 import { type ReactNode, useState } from "react";
 import { CopyButton } from "@/components/motion/copy-button";
@@ -28,6 +28,9 @@ export interface StreamingResponseProps {
   /** Starting feedback when uncontrolled. Default null. */
   defaultFeedback?: StreamingResponseFeedback;
   onFeedbackChange?: (feedback: StreamingResponseFeedback) => void;
+  /** Suggested next prompts, listed below the actions once settled. Omit to hide the list. */
+  followUps?: string[];
+  onFollowUp?: (text: string, index: number) => void;
   className?: string;
 }
 
@@ -52,6 +55,8 @@ export function StreamingResponse({
   feedback,
   defaultFeedback = null,
   onFeedbackChange,
+  followUps,
+  onFollowUp,
   className,
 }: StreamingResponseProps) {
   const reduce = useReducedMotion();
@@ -117,6 +122,28 @@ export function StreamingResponse({
             </>
           ) : null}
         </motion.div>
+      ) : null}
+      {settled && followUps?.length ? (
+        <div className="flex flex-col">
+          {followUps.map((text, index) => (
+            <motion.button
+              // biome-ignore lint/suspicious/noArrayIndexKey: the list is static once passed in and never reorders.
+              key={index}
+              type="button"
+              onClick={() => onFollowUp?.(text, index)}
+              initial={reduce ? false : { opacity: 0, y: 6 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.2, ease: EASE_OUT, delay: reduce ? 0 : index * 0.05 }}
+              className="group flex items-center gap-2 border-b border-border py-2 text-left text-sm text-foreground transition-colors duration-150 last:border-b-0 hover:text-accent"
+            >
+              <span className="flex-1">{text}</span>
+              <ArrowUpRight
+                aria-hidden="true"
+                className="h-3.5 w-3.5 shrink-0 text-muted-foreground transition-transform duration-150 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-accent motion-reduce:transition-none"
+              />
+            </motion.button>
+          ))}
+        </div>
       ) : null}
     </div>
   );

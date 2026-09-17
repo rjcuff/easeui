@@ -7,6 +7,7 @@ import { StreamingText } from "@/components/motion/streaming-text";
 
 const RESPONSE =
   "The migration ran clean end to end: three tables backfilled, no locks held longer than a second, and the old columns are now safe to drop.";
+const FOLLOW_UPS = ["Which tables were backfilled?", "Show me the rollback plan"];
 /** The first run cuts off partway through, so Replay has something to fix. */
 const FAILS_ON_ATTEMPT = 0;
 /** Characters per second. A continuous rate reads far smoother than stepping word by word. */
@@ -49,6 +50,7 @@ export function StreamingResponsePreview() {
           window.setTimeout(() => setShared(false), 1500);
         }}
         showFeedback
+        followUps={status === "complete" ? FOLLOW_UPS : undefined}
       >
         <StreamingText text={RESPONSE.slice(0, count)} streaming={streaming} />
         {status === "error" ? (

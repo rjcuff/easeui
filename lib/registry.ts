@@ -116,7 +116,6 @@ export const catalog: CategoryEntry[] = [
         description:
           "A pull-down gesture over scrollable content: the indicator tracks the finger 1:1, then resists past the trigger distance and spins while refreshing.",
         file: "components/motion/pull-to-refresh.tsx",
-        badge: "new",
         launchedAt: "2026-09-15",
         keywords: ["pull to refresh", "gesture", "mobile refresh", "swipe down"],
       },
@@ -126,7 +125,6 @@ export const catalog: CategoryEntry[] = [
         description:
           "A deck of notification cards: collapsed to the top card with peeking edges behind it, fanning into a readable list on hover or focus.",
         file: "components/motion/notification-stack.tsx",
-        badge: "new",
         launchedAt: "2026-09-15",
         keywords: ["notification stack", "card stack", "notification center"],
       },
@@ -136,7 +134,6 @@ export const catalog: CategoryEntry[] = [
         description:
           "A row of icon tabs where the selected one expands to reveal its label, sliding a shared background pill to match.",
         file: "components/motion/expandable-tabs.tsx",
-        badge: "new",
         launchedAt: "2026-09-15",
         keywords: ["expandable tabs", "icon tabs", "segmented control"],
       },
@@ -146,7 +143,6 @@ export const catalog: CategoryEntry[] = [
         description:
           "A circular search button that morphs into a text field: the same element grows and reshapes via a layout animation, rather than a new one popping in beside it.",
         file: "components/motion/morphing-search.tsx",
-        badge: "new",
         launchedAt: "2026-09-15",
         keywords: ["morphing search", "expanding search", "search bar animation"],
       },
@@ -156,7 +152,6 @@ export const catalog: CategoryEntry[] = [
         description:
           "A pill that morphs between a compact status line and any number of named live-activity views, the same element reshaping via layout animation each time.",
         file: "components/motion/dynamic-island.tsx",
-        badge: "new",
         launchedAt: "2026-09-15",
         keywords: ["dynamic island", "morphing pill", "status pill"],
       },
@@ -373,7 +368,6 @@ export const catalog: CategoryEntry[] = [
         description:
           "A plain, composable data table: sortable headers with an arrow that only shows on hover until active, and rows that tint when selected.",
         file: "components/motion/table.tsx",
-        badge: "new",
         launchedAt: "2026-09-15",
         keywords: ["react table", "data table", "sortable table"],
       },
@@ -383,7 +377,6 @@ export const catalog: CategoryEntry[] = [
         description:
           "A floating bar of bulk actions that fades and rises in once a selection leaves zero, for pairing with Table or any selectable list.",
         file: "components/motion/selection-actions.tsx",
-        badge: "new",
         launchedAt: "2026-09-15",
         keywords: ["bulk actions", "selection toolbar", "floating action bar"],
       },
@@ -393,7 +386,6 @@ export const catalog: CategoryEntry[] = [
         description:
           "A stat tile: a label, a headline value, and an optional trend pill. Pass a Number Ticker as the value to have it roll in on change.",
         file: "components/motion/insight-card.tsx",
-        badge: "new",
         launchedAt: "2026-09-15",
         keywords: ["stat card", "metric tile", "kpi card"],
       },
@@ -403,7 +395,6 @@ export const catalog: CategoryEntry[] = [
         description:
           "A line-by-line diff with an added or removed mark in the gutter and a tinted row for each side. Renders a diff, doesn't compute one.",
         file: "components/motion/diff-view.tsx",
-        badge: "new",
         launchedAt: "2026-09-15",
         keywords: ["diff view", "code diff", "line diff"],
       },
@@ -413,7 +404,6 @@ export const catalog: CategoryEntry[] = [
         description:
           "One component, three ways to animate text: a scramble that resolves into place, a word or character reveal out of a blur, and a loading shimmer sweep.",
         file: "components/motion/text-animation.tsx",
-        badge: "new",
         launchedAt: "2026-09-15",
         keywords: ["text scramble", "text reveal", "text shimmer", "animated text"],
       },
@@ -449,7 +439,6 @@ export const catalog: CategoryEntry[] = [
         description:
           "A 3x3 grid of cells that twinkle on independent, randomized cycles, paired with a shimmering label and an optional live elapsed timer.",
         file: "components/motion/pixel-loader.tsx",
-        badge: "new",
         launchedAt: "2026-09-15",
         keywords: ["pixel loader", "grid loader", "elapsed timer"],
       },
@@ -475,7 +464,7 @@ export const catalog: CategoryEntry[] = [
         slug: "streaming-response",
         name: "Streaming Response",
         description:
-          "Wraps a response with the actions people expect once it settles: copy, replay, share, and a thumbs up or down. No card or border, so the answer reads as part of the page.",
+          "Wraps a response with the actions people expect once it settles: copy, replay, share, a thumbs up or down, and a list of suggested follow-up prompts. No card or border, so the answer reads as part of the page.",
         file: "components/motion/streaming-response.tsx",
         launchedAt: "2026-09-14",
         keywords: ["ai response actions", "copy retry feedback", "chat response toolbar"],
@@ -513,7 +502,6 @@ export const catalog: CategoryEntry[] = [
         description:
           "A sequence of steps on a dotted canvas, connected by curves that measure the actual cards and follow as you drag one. Click a step to light up its connectors, or edit an if/else step's chips with real dropdowns.",
         file: "components/motion/flowchart.tsx",
-        badge: "new",
         launchedAt: "2026-09-15",
         keywords: ["agent workflow", "flowchart", "node canvas", "if else", "condition"],
       },
@@ -523,7 +511,6 @@ export const catalog: CategoryEntry[] = [
         description:
           "A small pill naming a tool an agent used, with a spinner, check, or error mark that crossfades in place as its status changes.",
         file: "components/motion/tool-chip.tsx",
-        badge: "new",
         launchedAt: "2026-09-15",
         keywords: ["tool chip", "agent tool", "tool call status"],
       },

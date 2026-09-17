@@ -7,6 +7,7 @@ import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { createPortal } from "react-dom";
 import { GithubIcon, XIcon } from "@/components/app/brand-icons";
+import { useMobileSidebar } from "@/components/app/chrome/mobile-sidebar-context";
 import { Button } from "@/components/motion/button";
 import { componentDates } from "@/lib/component-dates";
 import { catalog } from "@/lib/registry";
@@ -60,7 +61,7 @@ function MenuLink({ href, label, active }: { href: string; label: string; active
 
 /** Menu button for small screens. The panel drops in under the header. */
 export function MobileNav() {
-  const [open, setOpen] = useState(false);
+  const { open, setOpen, hasSidebar } = useMobileSidebar();
   const [mounted, setMounted] = useState(false);
   const pathname = usePathname();
   const reduce = useReducedMotion();
@@ -79,7 +80,7 @@ export function MobileNav() {
     };
     window.addEventListener("keydown", onKeyDown);
     return () => window.removeEventListener("keydown", onKeyDown);
-  }, [open]);
+  }, [open, setOpen]);
 
   const enter = { duration: reduce ? 0 : 0.15, ease: EASE };
   const exit = { duration: reduce ? 0 : 0.1, ease: EASE };
@@ -91,14 +92,14 @@ export function MobileNav() {
         size="icon"
         aria-label={open ? "Close menu" : "Open menu"}
         aria-expanded={open}
-        aria-controls="mobile-menu"
-        onClick={() => setOpen((value) => !value)}
+        aria-controls={hasSidebar ? undefined : "mobile-menu"}
+        onClick={() => setOpen(!open)}
       >
         {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
       </Button>
 
-      {/* Rendered into the body so the header's backdrop blur cannot trap the fixed panel. */}
-      {mounted
+      {/* Rendered into the body so the header's backdrop blur cannot trap the fixed panel. A page with its own sidebar (like the components catalog) opens that instead of this panel. */}
+      {mounted && !hasSidebar
         ? createPortal(
             <AnimatePresence>
               {open ? (
