@@ -6,8 +6,8 @@ import { Tabs, TabsList, TabsTrigger } from "@/components/motion/tabs";
 import { installCommand, PACKAGE_MANAGERS as PMS, PM_COMMANDS, REGISTRY_NAMESPACE, type PackageManager as PM } from "@/lib/install-command";
 import { cn } from "@/lib/utils";
 
-/** Shown when no specific component is given, such as on the homepage. */
-const PLACEHOLDER = "component-name";
+/** Shown when no specific component is given, such as on the homepage. A real, working slug, so the copied command runs as-is. */
+const EXAMPLE_SLUG = "toast";
 
 export function InstallCommand({
   className,
@@ -17,7 +17,7 @@ export function InstallCommand({
   slug?: string;
 }) {
   const [pm, setPm] = useState<PM>("bun");
-  const name = slug ?? PLACEHOLDER;
+  const name = slug ?? EXAMPLE_SLUG;
   const command = installCommand(name, pm);
 
   return (
