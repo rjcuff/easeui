@@ -8,6 +8,7 @@ import { MobileNav } from "@/components/app/chrome/mobile-nav";
 import { SiteSearch } from "@/components/app/chrome/site-search";
 import { EaseMark } from "@/components/app/logo";
 import { PressLink } from "@/components/app/press-link";
+import { ProBadge } from "@/components/app/pro-button";
 import { ThemeToggle } from "@/components/motion/theme-toggle";
 import { GITHUB_URL } from "@/lib/site";
 import { cn } from "@/lib/utils";
@@ -82,6 +83,7 @@ export function SiteHeader({ githubStarCount }: { githubStarCount: number | null
 
         <div className="ml-auto flex items-center gap-1.5">
           {pathname === "/" ? null : <SiteSearch className="w-9 justify-center px-0 sm:w-48 sm:justify-start sm:px-3" />}
+          <ProBadge className="hidden sm:inline-flex" />
           <PressLink
             href={GITHUB_URL}
             target="_blank"

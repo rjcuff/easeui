@@ -1,15 +1,13 @@
 "use client";
 
-import { ArrowRight, ArrowUpRight, Sparkles } from "lucide-react";
+import { ArrowRight, Sparkles } from "lucide-react";
 import { motion, useReducedMotion } from "motion/react";
 import type { ReactNode } from "react";
+import { ProButton } from "@/components/app/pro-button";
 import { PressLink } from "@/components/app/press-link";
 import { GradientText } from "@/components/motion/gradient-text";
 import { EASE_OUT } from "@/lib/ease";
 import { registry } from "@/lib/registry";
-
-/** The Pro catalog, which lives on its own domain. */
-const PRO_URL = "https://pro.easeui.dev";
 
 const MOTION_COUNT = registry.find((category) => category.slug === "motion")?.components.length ?? 0;
 const AGENT_COUNT = registry.find((category) => category.slug === "agents")?.components.length ?? 0;
@@ -74,8 +72,8 @@ export function Hero() {
       </motion.p>
 
       {/* An even split on a phone, sized to their labels above it. The free
-          catalog keeps the filled button; Pro sits beside it as the quieter of
-          the two, because this page is not trying to sell first. */}
+          catalog keeps the filled button; Pro answers it with a turning rainbow
+          border, which reads as the louder of the two without being heavier. */}
       <motion.div
         {...enter(LINES.length + 2)}
         className="mt-8 flex w-full items-stretch justify-center gap-3 sm:w-auto sm:flex-wrap sm:items-center"
@@ -91,18 +89,7 @@ export function Hero() {
           <ArrowRight className="hidden h-4 w-4 transition-transform duration-150 group-hover:translate-x-0.5 motion-reduce:transition-none sm:block" />
         </PressLink>
 
-        <PressLink
-          href={PRO_URL}
-          target="_blank"
-          rel="noreferrer noopener"
-          className="group inline-flex min-h-11 flex-1 touch-manipulation items-center justify-center gap-2 rounded-full px-5 text-sm font-medium text-foreground shadow-[0_0_0_1px_var(--border-strong)] transition-colors duration-150 hover:bg-foreground/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-foreground/40 sm:flex-none"
-        >
-          easeUI Pro
-          <ArrowUpRight
-            aria-hidden="true"
-            className="h-4 w-4 text-muted-foreground transition-transform duration-150 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 motion-reduce:transition-none"
-          />
-        </PressLink>
+        <ProButton className="flex-1 sm:flex-none" />
       </motion.div>
     </div>
   );

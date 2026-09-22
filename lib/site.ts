@@ -7,6 +7,9 @@ export const SITE_URL = (
 export const GITHUB_REPO = "rjcuff/easeui";
 export const GITHUB_URL = `https://github.com/${GITHUB_REPO}`;
 
+/** The Pro catalog, which lives on its own domain. */
+export const PRO_URL = "https://pro.easeui.dev";
+
 export const SITE_AUTHOR = "Ryan";
 /** Author's X profile. */
 export const AUTHOR_X_URL = "https://x.com/ryancuff_";
