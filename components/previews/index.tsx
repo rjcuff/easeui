@@ -88,6 +88,15 @@ export const previews: Record<string, ComponentType> = {
   "motion/avatar": dynamic(() =>
     import("./motion/avatar.preview").then((m) => m.AvatarPreview),
   ),
+  "motion/rating": dynamic(() =>
+    import("./motion/rating.preview").then((m) => m.RatingPreview),
+  ),
+  "motion/stepper": dynamic(() =>
+    import("./motion/stepper.preview").then((m) => m.StepperPreview),
+  ),
+  "motion/tag-input": dynamic(() =>
+    import("./motion/tag-input.preview").then((m) => m.TagInputPreview),
+  ),
   "motion/alert": dynamic(() =>
     import("./motion/alert.preview").then((m) => m.AlertPreview),
   ),

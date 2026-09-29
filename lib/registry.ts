@@ -294,10 +294,10 @@ export const catalog: CategoryEntry[] = [
         slug: "avatar",
         name: "Avatar",
         description:
-          "Round avatar whose image fades in on load and crossfades to initials if it fails.",
+          "Round avatar in three sizes with an optional status dot. The image fades in on load and falls back to initials, and a group stacks them and fans them out on hover.",
         file: "components/motion/avatar.tsx",
         launchedAt: "2026-09-14",
-        keywords: ["react avatar", "profile picture", "initials fallback"],
+        keywords: ["react avatar", "avatar group", "profile picture", "initials fallback", "status dot"],
       },
       {
         slug: "alert",
@@ -406,6 +406,36 @@ export const catalog: CategoryEntry[] = [
         file: "components/motion/text-animation.tsx",
         launchedAt: "2026-09-15",
         keywords: ["text scramble", "text reveal", "text shimmer", "animated text"],
+      },
+      {
+        slug: "rating",
+        name: "Rating",
+        description:
+          "A row of stars that previews the score on hover, fills up to the pick in a quick wave, and moves one star at a time with the arrow keys.",
+        file: "components/motion/rating.tsx",
+        badge: "new",
+        launchedAt: "2026-09-29",
+        keywords: ["react rating", "star rating", "review stars"],
+      },
+      {
+        slug: "stepper",
+        name: "Stepper",
+        description:
+          "Numbered steps joined by a line that fills as you move forward. Finished steps trade their number for a check and can be clicked to go back.",
+        file: "components/motion/stepper.tsx",
+        badge: "new",
+        launchedAt: "2026-09-29",
+        keywords: ["react stepper", "steps", "progress steps", "onboarding steps"],
+      },
+      {
+        slug: "tag-input",
+        name: "Tag Input",
+        description:
+          "A field that turns what you type into tags. Enter or a comma adds one, Backspace marks then removes the last, and a duplicate shakes the tag that already exists.",
+        file: "components/motion/tag-input.tsx",
+        badge: "new",
+        launchedAt: "2026-09-29",
+        keywords: ["react tag input", "chips input", "multi value input"],
       },
     ],
   },
