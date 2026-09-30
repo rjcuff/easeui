@@ -9,10 +9,13 @@ import { CopyPage } from "@/components/app/docs/copy-page";
 import { InstallSection } from "@/components/app/docs/install-section";
 import { PropsTable } from "@/components/app/docs/props-table";
 import { NewLabel } from "@/components/app/new-indicator";
+import { ProMatchCard } from "@/components/app/pro-match-card";
 import { ShowcaseCard } from "@/components/app/showcase-card";
+import { StarNudge } from "@/components/app/star-nudge";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/motion/tabs";
 import { getPreview } from "@/components/previews";
 import { componentDates } from "@/lib/component-dates";
+import { findProMatch } from "@/lib/pro-matches";
 import { getComponentProps } from "@/lib/props-extractor";
 import { findCategory, findComponent, registry } from "@/lib/registry";
 import {
@@ -95,6 +98,7 @@ export default async function ComponentPage({ params }: { params: Params }) {
   const Preview = getPreview(cat.slug, comp.slug);
   const propsDocs = getComponentProps(comp.file);
   const related = relatedComponents(cat.slug, comp.slug, 3);
+  const proMatch = findProMatch(cat.slug, comp.slug);
   const dates = componentDates(cat.slug, comp.slug);
   const updated = new Intl.DateTimeFormat("en", { dateStyle: "medium", timeZone: "UTC" }).format(
     new Date(`${dates.updatedAt}T00:00:00Z`),
@@ -167,6 +171,9 @@ export default async function ComponentPage({ params }: { params: Params }) {
         <InstallSection category={cat.slug} slug={comp.slug} />
       </Section>
 
+      {/* Right after install, once someone has decided to use it, and only where Pro has a real match. */}
+      {proMatch ? <ProMatchCard match={proMatch} from={comp.slug} /> : null}
+
       {propsDocs.length ? (
         <Section id="api" title="API reference">
           <PropsTable docs={propsDocs} />
@@ -191,9 +198,12 @@ export default async function ComponentPage({ params }: { params: Params }) {
         </Section>
       ) : null}
 
-      <p className="text-xs text-muted-foreground">
-        Updated <time dateTime={dates.updatedAt}>{updated}</time>
-      </p>
+      <div className="flex flex-wrap items-center justify-between gap-3">
+        <p className="text-xs text-muted-foreground">
+          Updated <time dateTime={dates.updatedAt}>{updated}</time>
+        </p>
+        <StarNudge />
+      </div>
     </article>
   );
 }

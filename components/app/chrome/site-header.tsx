@@ -84,15 +84,22 @@ export function SiteHeader({ githubStarCount }: { githubStarCount: number | null
         <div className="ml-auto flex items-center gap-1.5">
           {pathname === "/" ? null : <SiteSearch className="w-9 justify-center px-0 sm:w-48 sm:justify-start sm:px-3" />}
           <ProBadge className="hidden sm:inline-flex" />
+          {/* A labelled pill rather than a bare icon, so a visitor sees they can star the repo. */}
           <PressLink
             href={GITHUB_URL}
             target="_blank"
             rel="noreferrer noopener"
-            aria-label={stars ? `easeUI on GitHub, ${stars} stars` : "easeUI on GitHub"}
-            className={cn(iconButton, "gap-1.5 px-2.5 text-xs font-medium")}
+            aria-label={stars ? `Star easeUI on GitHub, ${stars} stars` : "Star easeUI on GitHub"}
+            className={cn(
+              iconButton,
+              "gap-1.5 px-2.5 text-xs font-medium sm:shadow-[0_0_0_1px_var(--border-strong)] sm:hover:text-foreground",
+            )}
           >
             <GithubIcon className="h-4 w-4" />
-            {stars ? <span className="tabular-nums">{stars}</span> : null}
+            <span className="hidden sm:inline">Star</span>
+            {stars ? (
+              <span className="hidden tabular-nums text-muted-foreground sm:inline">{stars}</span>
+            ) : null}
           </PressLink>
           <ThemeToggle variant="circle" className={cn(iconButton, "w-9")} iconClassName="h-4 w-4" />
         </div>

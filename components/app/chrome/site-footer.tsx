@@ -1,12 +1,13 @@
 import Link from "next/link";
 import { GithubIcon, XIcon } from "@/components/app/brand-icons";
 import { EaseMark } from "@/components/app/logo";
-import { AUTHOR_X_URL, GITHUB_URL, SITE_AUTHOR } from "@/lib/site";
+import { AUTHOR_X_URL, GITHUB_URL, proUrl, SITE_AUTHOR } from "@/lib/site";
 
 const LINKS = [
   { href: "/components/motion", label: "Components" },
   { href: "/playground", label: "Playground" },
   { href: "/llms.txt", label: "llms.txt" },
+  { href: proUrl("", "footer"), label: "easeUI Pro", external: true },
 ];
 
 const iconLinkClass =
@@ -35,6 +36,7 @@ export function SiteFooter() {
             <li key={link.href}>
               <Link
                 href={link.href}
+                {...("external" in link ? { target: "_blank", rel: "noreferrer noopener" } : {})}
                 className="text-sm text-muted-foreground transition-colors duration-150 hover:text-foreground"
               >
                 {link.label}

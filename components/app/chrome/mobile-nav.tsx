@@ -8,6 +8,7 @@ import { useEffect, useState } from "react";
 import { createPortal } from "react-dom";
 import { GithubIcon, XIcon } from "@/components/app/brand-icons";
 import { useMobileSidebar } from "@/components/app/chrome/mobile-sidebar-context";
+import { ProButton } from "@/components/app/pro-button";
 import { Button } from "@/components/motion/button";
 import { componentDates } from "@/lib/component-dates";
 import { catalog } from "@/lib/registry";
@@ -137,6 +138,8 @@ export function MobileNav() {
                       />
                     ))}
                   </ul>
+                  {/* The header's Pro link is hidden on a phone, so the menu carries it. */}
+                  <ProButton placement="mobile-menu" className="mx-1" />
                   {NEWEST_COMPONENTS.length ? (
                     <div className="flex flex-col gap-1 border-t border-border pt-3">
                       <p className="px-3 text-xs font-medium text-muted-foreground">Newest</p>

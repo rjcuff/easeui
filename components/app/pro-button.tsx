@@ -3,7 +3,7 @@
 import { ArrowUpRight } from "lucide-react";
 import type { CSSProperties } from "react";
 import { PressLink } from "@/components/app/press-link";
-import { PRO_URL } from "@/lib/site";
+import { proUrl } from "@/lib/site";
 import { cn } from "@/lib/utils";
 
 /** The same full color wheel the hero's gradient text drifts through. */
@@ -64,10 +64,10 @@ const LABEL = "Explore Pro";
  * the filled button beside it. The interior stays on the page background, so it
  * reads as an outlined button rather than a second filled one.
  */
-export function ProButton({ className }: { className?: string }) {
+export function ProButton({ className, placement = "hero" }: { className?: string; placement?: string }) {
   return (
     <PressLink
-      href={PRO_URL}
+      href={proUrl("", placement)}
       target="_blank"
       rel="noreferrer noopener"
       className={cn(
@@ -95,7 +95,7 @@ export function ProButton({ className }: { className?: string }) {
 export function ProBadge({ className }: { className?: string }) {
   return (
     <PressLink
-      href={PRO_URL}
+      href={proUrl("", "header")}
       target="_blank"
       rel="noreferrer noopener"
       className={cn(

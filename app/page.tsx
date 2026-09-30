@@ -3,6 +3,7 @@ import { SiteFrame } from "@/components/app/chrome/site-frame";
 import { SiteFooter } from "@/components/app/chrome/site-footer";
 import { InstallCommand } from "@/components/app/docs/install-command";
 import { Hero } from "@/components/app/landing/hero";
+import { ProSection } from "@/components/app/landing/pro-section";
 import { ShowcaseCard } from "@/components/app/showcase-card";
 import { registry } from "@/lib/registry";
 
@@ -54,6 +55,8 @@ export default function Home() {
             Browse all components
           </Link>
         </div>
+
+        <ProSection />
 
         <SiteFooter />
       </div>
