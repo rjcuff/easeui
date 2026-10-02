@@ -65,6 +65,19 @@ export function ProSection() {
               />
             </a>
           </div>
+          {/* For the visitor who would rather pay for the result than the parts. */}
+          <p className="text-sm text-muted-foreground">
+            Rather have it built for you?{" "}
+            <a
+              href={proUrl("/studio", "home-section")}
+              target="_blank"
+              rel="noreferrer noopener"
+              className="font-medium text-foreground underline-offset-4 hover:underline"
+            >
+              Studio
+            </a>{" "}
+            rebuilds your screens with Pro, from $750.
+          </p>
         </div>
 
         <a

@@ -8,6 +8,7 @@ const LINKS = [
   { href: "/playground", label: "Playground" },
   { href: "/llms.txt", label: "llms.txt" },
   { href: proUrl("", "footer"), label: "easeUI Pro", external: true },
+  { href: proUrl("/studio", "footer"), label: "Studio", external: true },
 ];
 
 const iconLinkClass =
