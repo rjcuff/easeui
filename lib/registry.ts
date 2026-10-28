@@ -102,6 +102,26 @@ export const catalog: CategoryEntry[] = [
         keywords: ["theme toggle", "dark mode toggle", "view transition"],
       },
       {
+        slug: "color-picker",
+        name: "Color Picker",
+        description:
+          "Opaque color picker with a draggable color field, native sliders, HEX input, and preset swatches. Supports controlled values and forms.",
+        file: "components/motion/color-picker.tsx",
+        badge: "new",
+        launchedAt: "2026-10-28",
+        keywords: ["react color picker", "hex color input", "color swatches", "accessible color picker"],
+        examples: [
+          {
+            slug: "controlled",
+            name: "Controlled",
+            description: "Pass value and onValueChange to update a preview as the color changes. Use the color field with a pointer, or adjust Hue, Saturation and Brightness with arrow keys, Home and End. Only opaque #RGB and #RRGGBB colors are supported. HEX edits commit on Enter or blur, invalid edits revert, and Escape cancels an edit. Add disabled to disable every control, or pass swatches={[]} to hide presets. Repeated adjustments have no animation; preset presses respect reduced motion.",
+            file: "components/motion/color-picker.tsx",
+            previewKey: "motion/color-picker",
+            previewFile: "components/previews/motion/color-picker.preview.tsx",
+          },
+        ],
+      },
+      {
         slug: "range-slider",
         name: "Range Slider",
         description:

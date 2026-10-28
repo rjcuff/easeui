@@ -9,6 +9,7 @@ export type ComponentDates = {
 };
 
 const COMPONENT_DATES: Readonly<Record<string, ComponentDates>> = {
+  "motion/color-picker": { publishedAt: "2026-10-28", updatedAt: "2026-10-28" },
   "motion/button": { publishedAt: "2026-09-13", updatedAt: "2026-09-13" },
   "motion/tabs": { publishedAt: "2026-09-13", updatedAt: "2026-09-13" },
   "motion/select": { publishedAt: "2026-09-13", updatedAt: "2026-09-13" },

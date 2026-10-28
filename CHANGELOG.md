@@ -12,6 +12,8 @@ changes to a component's API are marked **Breaking**.
 
 ### Added
 
+- **Color Picker**. A draggable color field, native keyboard sliders, HEX editing, and preset swatches. Supports controlled and uncontrolled values, disabled controls, form submission and reset, and reduced motion.
+
 - `CHANGELOG.md`, branch and release rules in `CONTRIBUTING.md`, a pull request template, and issue templates for bugs and component requests.
 - 21st.dev export scripts. `scripts/build-21st.ts` turns seven picks (Rating, Tag Input, Morphing Search, Hold to Confirm, Expandable Tabs, Stepper, Number Ticker) into self-contained files with the motion tokens inlined and colors mapped to the stock shadcn theme.
 - `scripts/build-21st-blocks.ts` bundles six blocks (Agent Run, Onboarding Flow, Revenue Dashboard, Account Settings, Sign In With Code, Mobile App Shell) into single files, inlining every free component each one uses.
